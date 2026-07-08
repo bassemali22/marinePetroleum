@@ -1,0 +1,48 @@
+.accreditation-section {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.accreditation-section h2 {
+  font-size: 40px;
+  color: #0d3b66;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+
+.accreditation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 30px;
+}
+
+.accreditation-card {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.accreditation-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 119, 182, 0.2);
+}
+
+.accreditation-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.accreditation-card h3 {
+  color: #0d3b66;
+  margin-bottom: 10px;
+}
+
+.accreditation-card p {
+  color: #666;
+  font-size: 14px;
+}

@@ -1,0 +1,55 @@
+.services {
+  padding: 90px 0;
+
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 35px;
+
+  margin-top: 40px;
+}
+
+.service {
+  width: 160px;
+
+  height: 160px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-weight: 600;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+
+  transition: 0.4s;
+
+  cursor: pointer;
+}
+
+.service:hover {
+  transform: rotate(6deg) scale(1.08);
+
+  background: #0d3b66;
+
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

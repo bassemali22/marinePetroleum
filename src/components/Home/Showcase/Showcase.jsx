@@ -1,5 +1,5 @@
 import "./Showcase.css";
-import showcaseImage from "../../../assets/images/fake.jpg";
+import showcaseImage from "../../../assets/images/primary.jpg";
 
 const Showcase = () => {
   return (
@@ -7,7 +7,7 @@ const Showcase = () => {
       className="showcase"
       style={{ backgroundImage: `url(${showcaseImage})` }}
     >
-      <div className="showcases-overlay">
+      <div className="showcase-overlay">
         <h2>Precision. Safety. Excellence.</h2>
       </div>
     </section>
