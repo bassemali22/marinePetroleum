@@ -1,5 +1,11 @@
 import { useEffect } from "react";
+
 import ContactHero from "../components/Contact/ContactHero/ContactHero";
+//import Features from "../components/Features/Features";
+import ContactInfo from "../components/Contact/ContactInfo/ContactInfo";
+import ContactForm from "../components/Contact/ContactForm/ContactForm";
+import ContactMap from "../components/Contact/ContactMap/ContactMap";
+import ContactFooter from "../components/Contact/ContactFooter/ContactFooter";
 
 const Contact = () => {
   useEffect(() => {
@@ -9,7 +15,11 @@ const Contact = () => {
   return (
     <>
       <ContactHero />
-      
+      {/* <Features /> */}
+      <ContactInfo />
+      <ContactForm />
+      <ContactMap />
+      <ContactFooter />
     </>
   );
 };
