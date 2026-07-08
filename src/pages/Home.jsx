@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Accreditations from "../components/Accreditations/Accreditations";
 import ContactInfo from "../components/ContactInfo/ContactInfo";
 import ContactSection from "../components/ContactSection/ContactSection";
@@ -6,6 +7,9 @@ import Showcase from "../components/Showcase/Showcase";
 import WhyChooseUs from "../components/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Hero />

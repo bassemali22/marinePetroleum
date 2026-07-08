@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.png"; //src/assets/images/logo.png
+import { FaBars, FaTimes } from "react-icons/fa";
+import logo from "../../assets/images/logo.png";
 import "./Header.css";
+
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -10,6 +15,7 @@ const Header = () => {
     { name: "Get a Quote", path: "/quote" },
     { name: "Contact", path: "/contact" },
   ];
+
   return (
     <header className="header">
       <div className="container">
@@ -19,11 +25,17 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav className="nav">
+        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </div>
+
+        <nav className={`nav ${menuOpen ? "active" : ""}`}>
           <ul>
             {navLinks.map((link) => (
               <li key={link.path}>
-                <Link to={link.path}>{link.name}</Link>
+                <Link to={link.path} onClick={() => setMenuOpen(false)}>
+                  {link.name}
+                </Link>
               </li>
             ))}
           </ul>

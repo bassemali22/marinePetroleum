@@ -1,0 +1,72 @@
+.quality-policy {
+  padding: 100px 0;
+  background: #f8f9fa;
+}
+
+.policy-header {
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.subtitle {
+  color: #0077b6;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.policy-header h2 {
+  margin: 20px 0;
+  font-size: 42px;
+  color: #003b5c;
+}
+
+.policy-header p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 60px;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.policy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.check-icon {
+  color: #0077b6;
+  font-size: 20px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.policy-item span {
+  color: #555;
+  line-height: 1.7;
+}
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+}
+@media (max-width: 768px) {
+  .policy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .policy-header h2 {
+    font-size: 32px;
+  }
+}

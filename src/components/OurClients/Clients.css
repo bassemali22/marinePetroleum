@@ -1,0 +1,71 @@
+.clients {
+  padding: 100px 0;
+  background: #f8f9fa;
+}
+
+.clients .subtitle {
+  display: block;
+  text-align: center;
+  color: #0077b6;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.clients h2 {
+  text-align: center;
+  font-size: 42px;
+  color: #003b5c;
+  margin-bottom: 20px;
+}
+
+.clients .description {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  text-align: center;
+  color: #666;
+  line-height: 1.8;
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+}
+
+.client-card {
+  background: #fff;
+  height: 140px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s;
+}
+
+.client-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.client-card img {
+  max-width: 140px;
+  max-height: 80px;
+  object-fit: contain;
+  transition: 0.3s;
+}
+
+.client-card:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .clients h2 {
+    font-size: 32px;
+  }
+}
