@@ -1,12 +1,12 @@
 import "./Suppliers.css";
-import bgImage from "../../assets/images/fake.jpg";
+import bgImage from "../../../assets/images/fake.jpg";
 
-import supplier1 from "../../assets/images/logo.png";
-import supplier2 from "../../assets/images/fake.jpg";
-import supplier3 from "../../assets/images/logo.png";
-import supplier4 from "../../assets/images/fake.jpg";
-import supplier5 from "../../assets/images/logo.png";
-import supplier6 from "../../assets/images/fake.jpg";
+import supplier1 from "../../../assets/images/logo.png";
+import supplier2 from "../../../assets/images/fake.jpg";
+import supplier3 from "../../../assets/images/logo.png";
+import supplier4 from "../../../assets/images/fake.jpg";
+import supplier5 from "../../../assets/images/logo.png";
+import supplier6 from "../../../assets/images/fake.jpg";
 
 const suppliers = [
   supplier1,

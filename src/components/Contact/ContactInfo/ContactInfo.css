@@ -1,0 +1,37 @@
+.contact-info {
+  padding: 90px 0;
+}
+
+.contact-info .container {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 25px;
+}
+
+.info-box {
+  padding: 35px;
+
+  text-align: center;
+
+  background: #fff;
+
+  border-radius: 12px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.info-box svg {
+  font-size: 35px;
+
+  color: #0077b6;
+
+  margin-bottom: 20px;
+}
+
+@media (max-width: 992px) {
+  .contact-info .container {
+    grid-template-columns: 1fr;
+  }
+}

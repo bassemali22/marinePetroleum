@@ -1,11 +1,11 @@
 import "./Clients.css";
 
-import client1 from "../../assets/images/logo.png";
-import client2 from "../../assets/images/fake.jpg";
-import client3 from "../../assets/images/logo.png";
-import client4 from "../../assets/images/fake.jpg";
-import client5 from "../../assets/images/logo.png";
-import client6 from "../../assets/images/fake.jpg";
+import client1 from "../../../assets/images/logo.png";
+import client2 from "../../../assets/images/fake.jpg";
+import client3 from "../../../assets/images/logo.png";
+import client4 from "../../../assets/images/fake.jpg";
+import client5 from "../../../assets/images/logo.png";
+import client6 from "../../../assets/images/fake.jpg";
 
 const clients = [client1, client2, client3, client4, client5, client6];
 

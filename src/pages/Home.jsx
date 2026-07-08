@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Accreditations from "../components/Accreditations/Accreditations";
-import ContactInfo from "../components/ContactInfo/ContactInfo";
-import ContactSection from "../components/ContactSection/ContactSection";
-import Hero from "../components/hero/Hero";
-import Showcase from "../components/Showcase/Showcase";
-import WhyChooseUs from "../components/WhyChooseUs/WhyChooseUs";
+import Accreditations from "../components/Home/Accreditations/Accreditations";
+import ContactInfo from "../components/Home/ContactInfo/ContactInfo";
+import ContactSection from "../components/Home/ContactSection/ContactSection";
+import Hero from "../components/Home/hero/Hero";
+import Showcase from "../components/Home/Showcase/Showcase";
+import WhyChooseUs from "../components/Home/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   useEffect(() => {

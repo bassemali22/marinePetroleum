@@ -1,9 +1,9 @@
 import "./Accreditations.css";
 
-import iso9001 from "../../assets/images/logo.png";
-import iso14001 from "../../assets/images/fake.jpg";
-import iso45001 from "../../assets/images/logo.png";
-import ukas from "../../assets/images/fake.jpg";
+import iso9001 from "../../../assets/images/logo.png";
+import iso14001 from "../../../assets/images/fake.jpg";
+import iso45001 from "../../../assets/images/logo.png";
+import ukas from "../../../assets/images/fake.jpg";
 
 const logos = [iso9001, iso14001, iso45001, ukas];
 

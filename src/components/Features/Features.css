@@ -1,0 +1,43 @@
+.why-contact {
+  padding: 90px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.why-card {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-10px);
+}
+
+.why-card .icon {
+  font-size: 55px;
+  color: #0077b6;
+  margin-bottom: 20px;
+}
+
+.why-card h3 {
+  color: #0d3b66;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.why-card p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+@media (max-width: 992px) {
+  .why-contact {
+    grid-template-columns: 1fr;
+  }
+}

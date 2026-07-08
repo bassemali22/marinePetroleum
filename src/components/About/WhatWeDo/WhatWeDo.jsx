@@ -1,5 +1,5 @@
 import "./WhatWeDo.css";
-import image from "../../assets/images/logo.png";
+import image from "../../../assets/images/logo.png";
 
 const WhatWeDo = () => {
   return (

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import MissionVision from "../components/MissionVision/MissionVision";
-import QualityPolicy from "../components/QualityPolicy/QualityPolicy";
-import Suppliers from "../components/Suppliers/Suppliers";
-import WhatWeDo from "../components/WhatWeDo/WhatWeDo";
-import Clients from "../components/OurClients/Clients";
+import MissionVision from "../components/About/MissionVision/MissionVision";
+import QualityPolicy from "../components/About/QualityPolicy/QualityPolicy";
+import Suppliers from "../components/About/Suppliers/Suppliers";
+import WhatWeDo from "../components/About/WhatWeDo/WhatWeDo";
+import Clients from "../components/About/OurClients/Clients";
 
 const About = () => {
   useEffect(() => {
