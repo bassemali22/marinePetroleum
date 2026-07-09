@@ -64,8 +64,149 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .clients {
+    padding: 120px 0;
+  }
+
   .clients h2 {
-    font-size: 32px;
+    font-size: 52px;
+  }
+
+  .clients .description {
+    font-size: 18px;
+    max-width: 850px;
+  }
+
+  .clients-grid {
+    gap: 40px;
+  }
+
+  .client-card {
+    height: 170px;
+  }
+
+  .client-card img {
+    max-width: 170px;
+    max-height: 100px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .clients h2 {
+    font-size: 38px;
+  }
+
+  .clients-grid {
+    gap: 25px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .clients {
+    padding: 80px 0;
+  }
+
+  .clients h2 {
+    font-size: 34px;
+  }
+
+  .clients .description {
+    max-width: 100%;
+    margin-bottom: 40px;
+    padding: 0 15px;
+  }
+
+  .clients-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .client-card {
+    height: 130px;
+  }
+
+  .client-card img {
+    max-width: 120px;
+    max-height: 70px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .clients {
+    padding: 70px 0;
+  }
+
+  .clients .subtitle {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .clients h2 {
+    font-size: 30px;
+  }
+
+  .clients .description {
+    font-size: 15px;
+    margin-bottom: 35px;
+    padding: 0 10px;
+  }
+
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .client-card {
+    height: 120px;
+  }
+
+  .client-card img {
+    max-width: 100px;
+    max-height: 60px;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .clients {
+    padding: 60px 0;
+  }
+
+  .clients .subtitle {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .clients h2 {
+    font-size: 26px;
+  }
+
+  .clients .description {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .clients-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .client-card {
+    height: 110px;
+  }
+
+  .client-card img {
+    max-width: 90px;
+    max-height: 55px;
   }
 }

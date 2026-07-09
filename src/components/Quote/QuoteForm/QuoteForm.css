@@ -4,7 +4,7 @@
 }
 
 .form-card {
-  background: white;
+  background: #fff;
   padding: 50px;
   border-radius: 15px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
@@ -13,6 +13,8 @@
 .form-card h2 {
   margin-bottom: 40px;
   color: #0d3b66;
+  font-size: 38px;
+  text-align: center;
 }
 
 .input-group {
@@ -26,53 +28,182 @@ input,
 select,
 textarea {
   width: 100%;
-
   padding: 16px;
-
   border: 1px solid #ddd;
-
   border-radius: 8px;
-
   outline: none;
-
   font-size: 16px;
+  transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 0 4px rgba(0, 119, 182, 0.12);
 }
 
 textarea {
-  resize: none;
+  resize: vertical;
+  min-height: 180px;
   margin-bottom: 20px;
 }
 
 button {
   width: 100%;
-
   padding: 18px;
-
   border: none;
-
   background: #0077b6;
-
-  color: white;
-
+  color: #fff;
   font-size: 18px;
-
+  font-weight: 600;
   border-radius: 8px;
-
   cursor: pointer;
-
   transition: 0.3s;
 }
 
 button:hover {
   background: #005f8f;
+  transform: translateY(-3px);
 }
 
-@media (max-width: 768px) {
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .quote-form {
+    padding: 120px 0;
+  }
+
+  .form-card {
+    padding: 70px;
+  }
+
+  .form-card h2 {
+    font-size: 44px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 18px;
+    font-size: 17px;
+  }
+
+  button {
+    font-size: 19px;
+    padding: 20px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .form-card {
+    padding: 45px;
+  }
+
+  .form-card h2 {
+    font-size: 34px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .quote-form {
+    padding: 80px 0;
+  }
+
   .input-group {
     grid-template-columns: 1fr;
   }
 
   .form-card {
-    padding: 30px;
+    padding: 40px 30px;
+  }
+
+  .form-card h2 {
+    font-size: 30px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 15px;
+    padding: 15px;
+  }
+
+  button {
+    font-size: 17px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .quote-form {
+    padding: 70px 0;
+  }
+
+  .form-card {
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+
+  .form-card h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .input-group {
+    gap: 15px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 16px;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .quote-form {
+    padding: 60px 0;
+  }
+
+  .form-card {
+    padding: 20px 15px;
+  }
+
+  .form-card h2 {
+    font-size: 22px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  textarea {
+    min-height: 130px;
+  }
+
+  button {
+    padding: 15px;
+    font-size: 15px;
   }
 }

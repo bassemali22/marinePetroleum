@@ -13,18 +13,17 @@
 
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
 
   text-align: center;
 
   backdrop-filter: blur(2px);
+  padding: 20px;
 }
 
 .landing-logo {
   width: 130px;
-
   margin-bottom: 25px;
 
   animation: zoom 1s;
@@ -32,16 +31,116 @@
 
 .landing-overlay h1 {
   color: #222;
-
   font-size: 48px;
-
   margin-bottom: 15px;
+  line-height: 1.2;
 }
 
 .landing-overlay p {
-  letter-spacing: 4px;
-
   color: #555;
-
   font-size: 18px;
+  letter-spacing: 4px;
+  line-height: 1.7;
+}
+
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .landing-logo {
+    width: 170px;
+  }
+
+  .landing-overlay h1 {
+    font-size: 64px;
+  }
+
+  .landing-overlay p {
+    font-size: 22px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .landing-logo {
+    width: 120px;
+  }
+
+  .landing-overlay h1 {
+    font-size: 42px;
+  }
+
+  .landing-overlay p {
+    font-size: 17px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .landing-hero,
+  .landing-overlay {
+    min-height: 85vh;
+  }
+
+  .landing-logo {
+    width: 110px;
+  }
+
+  .landing-overlay h1 {
+    font-size: 36px;
+  }
+
+  .landing-overlay p {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .landing-hero,
+  .landing-overlay {
+    min-height: 75vh;
+  }
+
+  .landing-logo {
+    width: 90px;
+    margin-bottom: 20px;
+  }
+
+  .landing-overlay h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .landing-overlay p {
+    font-size: 15px;
+    letter-spacing: 2px;
+    max-width: 90%;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .landing-hero,
+  .landing-overlay {
+    min-height: 70vh;
+  }
+
+  .landing-logo {
+    width: 75px;
+  }
+
+  .landing-overlay h1 {
+    font-size: 24px;
+  }
+
+  .landing-overlay p {
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
 }

@@ -1,11 +1,11 @@
 .suppliers {
   position: relative;
   padding: 120px 0;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  /* الإحساس بالـ 3D أثناء الـ Scroll */
   background-attachment: fixed;
 }
 
@@ -21,6 +21,7 @@
   color: #00a8e8;
   letter-spacing: 2px;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .suppliers h2 {
@@ -33,30 +34,23 @@
 .description {
   max-width: 700px;
   margin: auto;
+  margin-bottom: 60px;
+
   text-align: center;
   color: #d6d6d6;
   line-height: 1.8;
-  margin-bottom: 60px;
 }
 
 .suppliers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 30px;
+  justify-items: center;
 }
 
 .supplier-card {
-  height: 140px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: 0.3s;
+  width: 100%;
+  max-width: 220px;
 }
 
 .supplier-card:hover {
@@ -75,4 +69,161 @@
 
 .supplier-card:hover img {
   transform: scale(1.08);
+}
+
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .suppliers {
+    padding: 150px 0;
+  }
+
+  .suppliers h2 {
+    font-size: 52px;
+  }
+
+  .description {
+    max-width: 850px;
+    font-size: 18px;
+  }
+
+  .suppliers-grid {
+    gap: 40px;
+  }
+
+  .supplier-card {
+    height: 170px;
+  }
+
+  .supplier-card img {
+    max-width: 170px;
+    max-height: 90px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .suppliers h2 {
+    font-size: 38px;
+  }
+
+  .suppliers-grid {
+    gap: 25px;
+  }
+
+  .supplier-card {
+    height: 130px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .suppliers {
+    padding: 90px 0;
+
+    /* fixed لا يعمل جيدًا على الأجهزة اللوحية */
+    background-attachment: scroll;
+  }
+
+  .suppliers h2 {
+    font-size: 34px;
+  }
+
+  .description {
+    max-width: 100%;
+    padding: 0 20px;
+    margin-bottom: 45px;
+  }
+
+  .suppliers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .supplier-card {
+    height: 120px;
+  }
+
+  .supplier-card img {
+    max-width: 100px;
+    max-height: 60px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .suppliers {
+    padding: 70px 0;
+    background-attachment: scroll;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .suppliers h2 {
+    font-size: 30px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0 15px;
+    margin-bottom: 35px;
+  }
+
+  .suppliers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .supplier-card {
+    height: 110px;
+  }
+
+  .supplier-card img {
+    max-width: 90px;
+    max-height: 55px;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .suppliers {
+    padding: 60px 0;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .suppliers h2 {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .suppliers-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .supplier-card {
+    height: 100px;
+  }
+
+  .supplier-card img {
+    max-width: 80px;
+    max-height: 50px;
+  }
 }

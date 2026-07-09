@@ -1,5 +1,5 @@
 /* ===== Google Font ===== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&display=swap");
 
 * {
   margin: 0;
@@ -35,35 +35,16 @@ ul {
   top: 0;
   left: 0;
   background: #0d3b66;
-  z-index: 999;
-
-  animation: slideFromLeft 1.2s ease-in-out;
+  z-index: 1000;
 }
 
-@keyframes slideFromLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
 .header .container {
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
 }
 
-.logo a {
-  color: #fff;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
 .logo img {
   width: 90px;
   height: 90px;
@@ -71,18 +52,28 @@ ul {
   display: block;
 }
 
-.nav ul {
+/*================ Navigation ================*/
+
+.nav {
+  z-index: 999;
+}
+
+.nav > ul {
   display: flex;
   align-items: center;
   gap: 35px;
+}
+
+.nav > ul > li {
+  position: relative;
 }
 
 .nav a {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
-  transition: 0.3s;
   position: relative;
+  transition: 0.3s;
 }
 
 .nav a::after {
@@ -104,55 +95,325 @@ ul {
   width: 100%;
 }
 
-.btn-contact {
-  padding: 12px 28px;
-  border-radius: 50px;
-  background: #00b4d8;
-  color: #fff !important;
-  font-weight: 600;
+/*================ Services Link ================*/
+
+.has-dropdown {
+  position: relative;
+}
+
+.service-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-title a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.service-title svg {
+  cursor: pointer;
+  color: #fff;
   transition: 0.3s;
 }
 
-.btn-contact:hover {
-  background: #0096c7;
+.rotate {
+  transform: rotate(180deg);
 }
+
+.arrow {
+  color: #fff;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/*================ Dropdown Global Base ================*/
+
+.dropdown {
+  display: none; /* مخفية افتراضياً وتظهر حسب الشاشة والـ Action */
+  flex-direction: column;
+}
+
+.dropdown li {
+  width: 100%;
+}
+
+.dropdown a::after {
+  display: none; /* إزالة الخط السفلي في روابط الساب منيو */
+}
+
+/*================ Desktop Mode (Screens > 992px) =================*/
+
+@media (min-width: 993px) {
+  /* اللينك الأب */
+  .has-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* تفعيل كليك الماوس على العنوان الرئيسي */
+  .service-title {
+    pointer-events: auto !important;
+    cursor: pointer;
+  }
+
+  /* هوفر اللينك الأب بالكامل والـ Chevron معاً */
+  .has-dropdown:hover .service-title a,
+  .has-dropdown:hover .service-title svg {
+    color: #00b4d8;
+  }
+
+  /* الساب منيو للكمبيوتر */
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(12px); /* نزول خفيف للأسفل لبدء حركة الأنميشن */
+
+    display: flex; /* تفعيل الفليكس لبناء الهيكل الحركي */
+
+    /* تنسيق الألوان المحدثة النظيفة (أبيض وأزرق) */
+    background-color: #ffffff;
+    border: 1px solid #e6f0fa;
+    box-shadow: 0px 10px 25px rgba(13, 59, 102, 0.1);
+
+    padding: 12px;
+    min-width: 220px;
+    border-radius: 8px;
+
+    /* إخفاء افتراضي حركي */
+    opacity: 0;
+    visibility: hidden;
+
+    /* أنميشين فائق النعومة والانسيابية */
+    transition:
+      opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      visibility 0.4s;
+    z-index: 999;
+  }
+
+  /* تأثير الهوفر لفتح المنيو بنعومة */
+  .has-dropdown:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* الروابط الداخلية للساب منيو (شاشات كبيرة) */
+  .dropdown a {
+    display: block;
+    width: 100%;
+    padding: 10px 14px !important;
+    color: #0d3b66 !important; /* لون النص الأساسي */
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    border-radius: 6px;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* هوفر احترافي كامل المساحة ناعم باللون الأزرق */
+  .dropdown a:hover {
+    background: #0077b6 !important;
+    color: #ffffff !important; /* النص يتحول للأبيض بوضوح */
+  }
+
+  /* إخفاء سهم الـ Chevron بالكمبيوتر للحفاظ على نظافة التصميم طالما الهوفر شغال */
+  .service-title svg {
+    display: none;
+  }
+}
+
+/*================ Overlay ================*/
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+}
+
+/*================ Menu Icon ================*/
 
 .menu-icon {
   display: none;
   color: #fff;
   font-size: 28px;
   cursor: pointer;
+  z-index: 1001;
 }
-/* Mobile */
+
+/*================ Laptop =================*/
+
+@media (max-width: 1200px) {
+  .container {
+    width: 94%;
+  }
+
+  .nav > ul {
+    gap: 25px;
+  }
+
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/*================ Tablet Mode (Screens <= 992px) =================*/
 
 @media (max-width: 992px) {
+  .header {
+    height: 80px;
+  }
+
+  .logo img {
+    width: 75px;
+    height: 75px;
+  }
+
   .menu-icon {
     display: block;
-    z-index: 1001;
   }
 
   .nav {
     position: fixed;
-    top: 90px;
+    top: 80px;
     right: -100%;
     width: 280px;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 80px);
     background: #0d3b66;
-    transition: 0.4s ease;
-    padding-top: 30px;
+    overflow-y: auto;
+    transition: 0.35s ease;
+    z-index: 999;
+    padding: 20px 0;
   }
 
   .nav.active {
     right: 0;
   }
 
-  .nav ul {
+  .nav > ul {
     flex-direction: column;
-    gap: 25px;
-    align-items: center;
+    align-items: stretch;
+    gap: 0;
   }
 
-  .nav a {
-    font-size: 20px;
+  .nav > ul > li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav > ul > li > a,
+  .service-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 20px;
+  }
+
+  .service-title {
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .service-title a {
+    color: #fff;
+  }
+
+  .service-title svg {
+    display: block; /* يظهر السهم في الموبايل والتابلت للكليك */
+  }
+
+  /* ستايل المنيو للموبايل لتفتح كقائمة منسدلة عمودية داخلية */
+  .dropdown {
+    position: static;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+    border-radius: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    padding: 0;
+    display: none;
+  }
+
+  /* تظهر بـ display: flex عند إضافة كلاس show بواسطة React */
+  .dropdown.show {
+    display: flex;
+  }
+
+  .dropdown a {
+    display: block;
+    width: 100%;
+    color: #fff !important;
+    text-align: center;
+    padding: 14px 10px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    transition: 0.2s;
+  }
+
+  .dropdown a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #00b4d8 !important;
+  }
+}
+
+/*================ Mobile =================*/
+
+@media (max-width: 768px) {
+  .header {
+    height: 70px;
+  }
+
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .nav {
+    top: 70px;
+    width: 250px;
+    height: calc(100vh - 70px);
+  }
+
+  .menu-icon {
+    font-size: 26px;
+  }
+}
+
+/*================ Small Mobile =================*/
+
+@media (max-width: 480px) {
+  .container {
+    width: 92%;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav > ul > li > a,
+  .service-title {
+    font-size: 17px;
+    padding: 18px 12px;
+  }
+
+  .dropdown a {
+    font-size: 15px;
   }
 }

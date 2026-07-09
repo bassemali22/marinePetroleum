@@ -1,11 +1,73 @@
 .quote-footer {
   background: #0d3b66;
-
   padding: 25px 0;
-
   text-align: center;
 }
 
 .quote-footer p {
-  color: white;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .quote-footer {
+    padding: 35px 0;
+  }
+
+  .quote-footer p {
+    font-size: 18px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .quote-footer {
+    padding: 25px 20px;
+  }
+
+  .quote-footer p {
+    font-size: 15px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .quote-footer {
+    padding: 22px 20px;
+  }
+
+  .quote-footer p {
+    font-size: 15px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .quote-footer {
+    padding: 20px 15px;
+  }
+
+  .quote-footer p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .quote-footer {
+    padding: 18px 12px;
+  }
+
+  .quote-footer p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
 }

@@ -8,6 +8,10 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import GetAuote from "./pages/GetAuote";
 import Landing from "./pages/Landing";
+import Inspection from "./pages/servisecPages/Inspect";
+import Certification from "./pages/servisecPages/Certificate";
+import LoadTesting from "./pages/servisecPages/LoadTesting";
+import Training from "./pages/servisecPages/Traning";
 
 function App() {
   return (
@@ -19,6 +23,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/inspection" element={<Inspection />} />
+          <Route path="/services/certification" element={<Certification />} />
+          <Route path="/services/load-testing" element={<LoadTesting />} />
+          <Route path="/services/training" element={<Training />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<GetAuote />} />

@@ -7,6 +7,7 @@
   color: #0077b6;
   font-weight: 700;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .why-us h2 {
@@ -29,7 +30,7 @@
 }
 
 .why-card {
-  background: white;
+  background: #fff;
   padding: 35px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
@@ -43,9 +44,144 @@
 .why-card h3 {
   margin-bottom: 15px;
   color: #0b2545;
+  font-size: 24px;
 }
 
 .why-card p {
   color: #666;
   line-height: 1.7;
+}
+
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .why-us {
+    padding: 120px 0;
+  }
+
+  .why-us h2 {
+    font-size: 52px;
+  }
+
+  .why-card {
+    padding: 45px;
+  }
+
+  .why-card h3 {
+    font-size: 28px;
+  }
+
+  .why-card p {
+    font-size: 18px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .why-us h2 {
+    font-size: 38px;
+  }
+
+  .why-card {
+    padding: 30px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .why-us {
+    padding: 80px 0;
+  }
+
+  .why-us h2 {
+    font-size: 34px;
+  }
+
+  .section-description {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .why-card {
+    padding: 30px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .why-us {
+    padding: 70px 0;
+    text-align: center;
+  }
+
+  .why-us h2 {
+    font-size: 30px;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+  }
+
+  .section-description {
+    font-size: 15px;
+    margin-bottom: 35px;
+  }
+
+  .why-grid {
+    gap: 20px;
+  }
+
+  .why-card {
+    padding: 25px;
+  }
+
+  .why-card h3 {
+    font-size: 22px;
+  }
+
+  .why-card p {
+    font-size: 15px;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .why-us {
+    padding: 60px 0;
+  }
+
+  .why-us h2 {
+    font-size: 26px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .section-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .why-card {
+    padding: 20px;
+  }
+
+  .why-card h3 {
+    font-size: 20px;
+  }
+
+  .why-card p {
+    font-size: 14px;
+  }
 }

@@ -2,6 +2,7 @@
   height: 50vh;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
 }
 
@@ -21,10 +22,104 @@
 
 .hero-content h1 {
   font-size: 55px;
+  line-height: 1.2;
   margin: 20px 0;
 }
 
 .hero-content p {
-  line-height: 1.8;
   font-size: 18px;
+  line-height: 1.8;
+}
+
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .contact-hero {
+    height: 60vh;
+  }
+
+  .hero-content {
+    max-width: 850px;
+  }
+
+  .hero-content h1 {
+    font-size: 68px;
+  }
+
+  .hero-content p {
+    font-size: 22px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .hero-content h1 {
+    font-size: 48px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .contact-hero {
+    height: 45vh;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .contact-hero {
+    height: 40vh;
+  }
+
+  .contact-hero .overlay {
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+    margin: 15px 0;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .contact-hero {
+    height: 35vh;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
 }

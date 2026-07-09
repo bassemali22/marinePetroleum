@@ -1,31 +1,92 @@
 .gallery {
-  padding: 100px;
-
+  padding: 100px 0;
   display: flex;
-
   justify-content: center;
+  align-items: center;
 }
 
 .gallery button {
   padding: 18px 55px;
-
   background: #0d3b66;
-
-  color: white;
-
+  color: #fff;
   border: none;
-
   border-radius: 40px;
-
   font-size: 18px;
-
+  font-weight: 600;
   cursor: pointer;
-
   transition: 0.4s;
 }
 
 .gallery button:hover {
   background: #0077b6;
-
   transform: translateY(-5px);
+}
+
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .gallery {
+    padding: 120px 0;
+  }
+
+  .gallery button {
+    padding: 20px 65px;
+    font-size: 20px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .gallery {
+    padding: 90px 0;
+  }
+
+  .gallery button {
+    padding: 17px 50px;
+    font-size: 17px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .gallery {
+    padding: 80px 20px;
+  }
+
+  .gallery button {
+    padding: 16px 45px;
+    font-size: 16px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 70px 20px;
+  }
+
+  .gallery button {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    font-size: 16px;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .gallery {
+    padding: 60px 15px;
+  }
+
+  .gallery button {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 30px;
+  }
 }

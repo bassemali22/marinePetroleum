@@ -9,10 +9,19 @@
   align-items: center;
 }
 
+.what-image {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
 .what-image img {
   width: 100%;
-  border-radius: 12px;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.what-image:hover img {
+  transform: scale(1.06);
 }
 
 .subtitle {
@@ -50,12 +59,140 @@
   background: #005f8f;
 }
 
-@media (max-width: 768px) {
+/* ================= Large Screen ================= */
+
+@media (min-width: 1400px) {
+  .what-we-do {
+    padding: 120px 0;
+  }
+
   .what-we-do .container {
-    grid-template-columns: 1fr;
+    gap: 80px;
   }
 
   .what-content h2 {
-    font-size: 32px;
+    font-size: 52px;
+  }
+
+  .what-content p {
+    font-size: 18px;
+  }
+
+  .what-image img {
+    border-radius: 16px;
+  }
+}
+
+/* ================= Laptop ================= */
+
+@media (max-width: 1200px) {
+  .what-we-do .container {
+    gap: 50px;
+  }
+
+  .what-content h2 {
+    font-size: 38px;
+  }
+
+  .what-content p {
+    font-size: 16px;
+  }
+}
+
+/* ================= Tablet ================= */
+
+@media (max-width: 992px) {
+  .what-we-do {
+    padding: 80px 0;
+  }
+
+  .what-we-do .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .what-image {
+    order: 1;
+  }
+
+  .what-content {
+    order: 2;
+    text-align: center;
+  }
+
+  .what-content h2 {
+    font-size: 34px;
+  }
+
+  .what-content p {
+    font-size: 15px;
+  }
+}
+
+/* ================= Mobile ================= */
+
+@media (max-width: 768px) {
+  .what-we-do {
+    padding: 70px 0;
+  }
+
+  .what-we-do .container {
+    gap: 30px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .what-content h2 {
+    font-size: 30px;
+    margin: 15px 0;
+  }
+
+  .what-content p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .what-content button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .what-image img {
+    border-radius: 10px;
+  }
+}
+
+/* ================= Small Mobile ================= */
+
+@media (max-width: 480px) {
+  .what-we-do {
+    padding: 60px 0;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .what-content h2 {
+    font-size: 26px;
+  }
+
+  .what-content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .what-content button {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .what-image img {
+    border-radius: 8px;
   }
 }
