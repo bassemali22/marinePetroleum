@@ -1,0 +1,124 @@
+.gallery-grid {
+  padding: 60px 0 100px;
+}
+
+.gallery-grid-container {
+  width: 90%;
+  max-width: 1350px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 30px;
+}
+
+.empty-gallery {
+  grid-column: 1/-1;
+
+  text-align: center;
+
+  padding: 80px 20px;
+}
+
+.empty-gallery h3 {
+  font-size: 32px;
+
+  color: #0d3b66;
+
+  margin-bottom: 15px;
+}
+
+.empty-gallery p {
+  color: #666;
+
+  font-size: 18px;
+}
+
+/*================== Large Laptop ==================*/
+
+@media (max-width: 1400px) {
+  .gallery-grid-container {
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+  }
+}
+
+/*================== Laptop ==================*/
+
+@media (max-width: 1200px) {
+  .gallery-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*================== Tablet ==================*/
+
+@media (max-width: 992px) {
+  .gallery-grid {
+    padding: 50px 0 80px;
+  }
+
+  .gallery-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
+  }
+
+  .empty-gallery h3 {
+    font-size: 28px;
+  }
+}
+
+/*================== Mobile ==================*/
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    padding: 40px 0 70px;
+  }
+
+  .gallery-grid-container {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+
+    width: 92%;
+  }
+
+  .empty-gallery {
+    padding: 60px 20px;
+  }
+
+  .empty-gallery h3 {
+    font-size: 24px;
+  }
+
+  .empty-gallery p {
+    font-size: 16px;
+  }
+}
+
+/*================== Small Mobile ==================*/
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    padding: 30px 0 60px;
+  }
+
+  .gallery-grid-container {
+    width: 94%;
+
+    gap: 18px;
+  }
+
+  .empty-gallery h3 {
+    font-size: 22px;
+  }
+
+  .empty-gallery p {
+    font-size: 15px;
+  }
+}

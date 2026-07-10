@@ -1,0 +1,143 @@
+.certificate-card {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  cursor: pointer;
+
+  background: #fff;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  transition: 0.4s;
+}
+
+.certificate-card:hover {
+  transform: translateY(-8px);
+}
+
+.certificate-card img {
+  width: 100%;
+
+  height: 260px;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: 0.5s;
+}
+
+.certificate-card:hover img {
+  transform: scale(1.1);
+}
+
+.certificate-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(13, 59, 102, 0.82);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  padding: 20px;
+
+  color: #fff;
+
+  opacity: 0;
+
+  transition: 0.4s;
+}
+
+.certificate-card:hover .certificate-overlay {
+  opacity: 1;
+}
+
+.certificate-overlay svg {
+  font-size: 34px;
+
+  margin-bottom: 18px;
+}
+
+.certificate-overlay h3 {
+  font-size: 22px;
+
+  margin-bottom: 10px;
+}
+
+.certificate-overlay p {
+  font-size: 15px;
+
+  letter-spacing: 1px;
+}
+
+/*========== 1200px ==========*/
+
+@media (max-width: 1200px) {
+  .certificate-card img {
+    height: 240px;
+  }
+}
+
+/*========== 992px ==========*/
+
+@media (max-width: 992px) {
+  .certificate-card img {
+    height: 220px;
+  }
+
+  .certificate-overlay h3 {
+    font-size: 20px;
+  }
+}
+
+/*========== 768px ==========*/
+
+@media (max-width: 768px) {
+  .certificate-card img {
+    height: 200px;
+  }
+
+  .certificate-overlay svg {
+    font-size: 28px;
+  }
+
+  .certificate-overlay h3 {
+    font-size: 18px;
+  }
+
+  .certificate-overlay p {
+    font-size: 14px;
+  }
+}
+
+/*========== 480px ==========*/
+
+@media (max-width: 480px) {
+  .certificate-card img {
+    height: 180px;
+  }
+
+  .certificate-overlay {
+    padding: 15px;
+  }
+
+  .certificate-overlay h3 {
+    font-size: 17px;
+  }
+
+  .certificate-overlay p {
+    font-size: 13px;
+  }
+}
