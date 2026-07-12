@@ -6,11 +6,11 @@ const GalleryGrid = ({ certificates, openImage }) => {
     <section className="gallery-grid">
       <div className="gallery-grid-container">
         {certificates.length > 0 ? (
-          certificates.map((certificate, index) => (
+          certificates.map((certificate) => (
             <CertificateCard
               key={certificate.id}
               certificate={certificate}
-              onOpen={() => openImage(index)}
+              onOpen={() => openImage(certificate.id)}
             />
           ))
         ) : (

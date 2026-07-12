@@ -47,14 +47,27 @@ const Gallery = () => {
     currentPage * itemsPerPage,
   );
 
+  // const openImage = (certificateId) => {
+  //   const index = filteredCertificates.findIndex(
+  //     (item) => item.id === certificateId,
+  //   );
+
+  //   setCurrentIndex(index);
+  // };
+
   const openImage = (certificateId) => {
     const index = filteredCertificates.findIndex(
       (item) => item.id === certificateId,
     );
 
+    console.log({
+      certificateId,
+      index,
+      item: filteredCertificates[index],
+    });
+
     setCurrentIndex(index);
   };
-
   const closeImage = () => {
     setCurrentIndex(null);
   };
