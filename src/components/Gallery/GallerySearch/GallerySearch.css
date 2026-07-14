@@ -1,87 +1,239 @@
-.gallery-search {
+/* ================= حاوية البحث لضمان التنسيق والتوسيط ================= */
+.gallery-search-wrapper {
   width: 100%;
-
-  max-width: 550px;
-
+  max-width: 580px; /* زيادة العرض قليلاً لمظهر أكثر ثقة */
   margin: 0 auto 60px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 
+/* ================= شريط البحث الفخم والتفاعلي ================= */
+.gallery-search {
   position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 100px; /* دائري بالكامل */
+  border: 1px solid rgba(61, 182, 242, 0.12);
+  box-shadow: 0 12px 35px rgba(14, 94, 141, 0.05);
+
+  /* تهيئة البعد الثالث للحركة */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  backface-visibility: hidden;
+
+  /* ترانزشن بطيء وانسيابي لتغير الحواف والظل */
+  transition:
+    transform 1.1s cubic-bezier(0.1, 0.9, 0.2, 1),
+    border-color 1.1s cubic-bezier(0.1, 0.9, 0.2, 1),
+    box-shadow 1.1s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.gallery-search svg {
-  position: absolute;
-
-  top: 50%;
-
-  left: 22px;
-
-  transform: translateY(-50%);
-
-  color: #888;
-
-  font-size: 18px;
+/* تأثير الـ Focus والـ Hover على شريط البحث بالكامل */
+.gallery-search:focus-within,
+.gallery-search:hover {
+  border-color: rgba(61, 182, 242, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(14, 94, 141, 0.12);
 }
 
+/* ================= حقل الإدخال (Input Field) ================= */
 .gallery-search input {
   width: 100%;
-
-  height: 60px;
-
-  padding-left: 60px;
-
+  height: 64px;
+  padding: 0 50px 0 65px; /* مسافات داخلية مريحة للأيقونات */
   border: none;
-
   outline: none;
-
-  border-radius: 50px;
-
-  background: white;
-
+  background: transparent;
   font-size: 16px;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-  transition: 0.35s;
+  font-weight: 500;
+  color: #0e5e8d; /* لون النص المكتوب */
+  position: relative;
+  z-index: 2;
 }
 
-.gallery-search input:focus {
-  box-shadow: 0 12px 35px rgba(0, 119, 182, 0.25);
+/* لون النص المؤقت (Placeholder) */
+.gallery-search input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+  transition: color 0.5s ease;
 }
 
-/* Tablet */
+.gallery-search:focus-within input::placeholder {
+  color: #cbd5e1; /* يبهت اللون بنعومة عند التركيز */
+}
 
+/* ================= صندوق الأيقونة التفاعلي ================= */
+.search-icon-box {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f0f7fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none; /* لمنع إعاقة الضغط على الـ input */
+
+  transition:
+    transform 1.1s cubic-bezier(0.1, 0.9, 0.2, 1),
+    background-color 0.8s ease;
+}
+
+.search-icon {
+  color: #0e5e8d;
+  font-size: 16px;
+  transition:
+    color 0.8s ease,
+    transform 1.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+/* تفاعل الأيقونة عند التركيز أو وجود نص */
+.gallery-search:focus-within .search-icon-box,
+.gallery-search.has-text .search-icon-box {
+  background-color: #3db6f2;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-search:focus-within .search-icon,
+.gallery-search.has-text .search-icon {
+  color: #ffffff;
+  transform: rotate(15deg); /* حركة التفافية هادئة جداً */
+}
+
+/* ================= زر مسح النص الذكي (Clear Button) ================= */
+.clear-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.7);
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+
+  /* ظهور واختفاء فائق البطء لتجنب القفزات البصرية */
+  transition:
+    opacity 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    color 0.4s ease,
+    background-color 0.4s ease;
+}
+
+.clear-btn:hover {
+  background-color: #f1f5f9;
+  color: #ef4444; /* تحول للون الأحمر الهادئ عند رغبة الحذف */
+}
+
+/* إظهار الزر عندما تتوفر فئة الظهور */
+.clear-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ================= هالة الإضاءة المضيئة (Background Glow) ================= */
+.search-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  background: radial-gradient(
+    circle at 50% 100%,
+    rgba(61, 182, 242, 0.08),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 1.1s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-search:focus-within .search-glow {
+  opacity: 1;
+}
+
+/* ================= شاشات التجاوب (Responsive) ================= */
+
+/* ================= شاشات التابلت ================= */
 @media (max-width: 992px) {
-  .gallery-search {
+  .gallery-search-wrapper {
     max-width: 100%;
   }
 }
 
-/* Mobile */
-
+/* ================= الهواتف المحمولة ================= */
 @media (max-width: 768px) {
-  .gallery-search {
+  .gallery-search-wrapper {
     margin-bottom: 40px;
   }
 
   .gallery-search input {
-    height: 55px;
-
+    height: 56px;
     font-size: 15px;
+    padding: 0 45px 0 58px;
+  }
+
+  .search-icon-box {
+    width: 42px;
+    height: 42px;
+  }
+
+  .search-icon {
+    font-size: 14px;
+  }
+
+  .clear-btn {
+    right: 15px;
+    font-size: 14px;
+  }
+
+  /* تقليل حركة الارتفاع على الجوالات لمنع التداخل */
+  .gallery-search:focus-within,
+  .gallery-search:hover {
+    transform: translateY(-2px);
   }
 }
 
-/* Small Mobile */
-
+/* ================= الهواتف الصغيرة جداً ================= */
 @media (max-width: 480px) {
   .gallery-search input {
     height: 50px;
-
     font-size: 14px;
-
-    padding-left: 55px;
+    padding: 0 40px 0 52px;
   }
 
-  .gallery-search svg {
-    left: 18px;
+  .search-icon-box {
+    width: 36px;
+    height: 36px;
+    left: 6px;
+  }
+
+  .search-icon {
+    font-size: 12px;
+  }
+
+  .clear-btn {
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
   }
 }

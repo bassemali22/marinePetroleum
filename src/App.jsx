@@ -26,7 +26,7 @@ function App() {
           <Route path="/services/certification" element={<Certification />} />
           <Route path="/services/load-testing" element={<LoadTesting />} />
           <Route path="/services/training" element={<Training />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/certificate" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<GetAuote />} />
         </Routes>

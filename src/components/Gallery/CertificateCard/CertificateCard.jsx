@@ -3,15 +3,30 @@ import { FaExpandAlt } from "react-icons/fa";
 
 const CertificateCard = ({ certificate, onOpen }) => {
   return (
-    <div className="certificate-card" onClick={onOpen}>
-      <img src={certificate.image} alt={certificate.title} />
+    <div className="certificate-circle-card" onClick={onOpen}>
+      <div className="medallion-ring ring-outer"></div>
+      <div className="medallion-ring ring-inner"></div>
 
-      <div className="certificate-overlay">
-        <FaExpandAlt />
+      <div className="circle-image-wrapper">
+        <img
+          src={certificate.image}
+          alt={certificate.title}
+          className="certificate-img"
+        />
 
-        <h3>{certificate.title}</h3>
+        <div className="circle-overlay">
+          <div className="overlay-content">
+            <div className="zoom-icon-box">
+              <FaExpandAlt />
+            </div>
+            <span className="overlay-category">{certificate.category}</span>
+          </div>
+        </div>
+      </div>
 
-        <p>{certificate.category}</p>
+      <div className="circle-card-info">
+        <h4>{certificate.title}</h4>
+        <span className="badge-category">{certificate.category}</span>
       </div>
     </div>
   );

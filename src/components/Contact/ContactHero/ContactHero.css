@@ -1,45 +1,118 @@
+/* ================= قسم الهيدر الرئيسي وتأثير البارالاكس ================= */
 .contact-hero {
-  height: 50vh;
+  height: 55vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; /* تأثير حركة بارالاكس فخم عند التمرير */
   position: relative;
+  overflow: hidden;
 }
 
-.contact-hero .overlay {
+/* ================= الأوفيرلاي الزجاجي المتدرج الفاخر ================= */
+.contact-hero-overlay {
   width: 100%;
   height: 100%;
-  background: rgba(13, 59, 102, 0.75);
-
+  /* تدرج لوني عميق يعزل المحتوى بلمعة زرقاء ملكية خفيفة */
+  background: linear-gradient(
+    135deg,
+    rgba(7, 21, 38, 0.88) 0%,
+    rgba(14, 94, 141, 0.75) 100%
+  );
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 2;
+
+  /* حركة ناعمة وبطيئة لتأثير الضوء عند حوم الماوس */
+  transition: background 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
+.contact-hero:hover .contact-hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(7, 21, 38, 0.92) 0%,
+    rgba(14, 94, 141, 0.8) 100%
+  );
+}
+
+/* الحاوية الداخلية */
+.contact-hero-container {
+  width: 90%;
+  max-width: 1350px;
+  margin: auto;
+}
+
+/* ================= محتويات ونصوص الهيدر ================= */
 .hero-content {
-  max-width: 700px;
-  color: #fff;
+  max-width: 750px;
+  color: #ffffff;
+
+  /* تهيئة البعد الثالث للحركة الانسيابية */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.contact-hero:hover .hero-content {
+  transform: translateX(10px); /* إزاحة أفقية طفيفة تعزز عمق الأبعاد */
+}
+
+/* الخط التزييني والتسمية الفرعية */
+.subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #3db6f2;
+  text-transform: uppercase;
+}
+
+.subtitle-line {
+  width: 50px;
+  height: 2px;
+  background-color: #3db6f2;
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.contact-hero:hover .subtitle-line {
+  width: 80px; 
 }
 
 .hero-content h1 {
-  font-size: 55px;
+  font-size: 56px;
+  font-weight: 800;
+  margin: 0 0 20px 0;
   line-height: 1.2;
-  margin: 20px 0;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+/* النص الوصفي */
 .hero-content p {
   font-size: 18px;
   line-height: 1.8;
+  color: #cbd5e1;
+  font-weight: 500;
 }
 
-/* ================= Large Screen ================= */
+/* ================= شاشات التجاوب (Responsive) ================= */
 
+/* الشاشات الكبيرة جداً */
 @media (min-width: 1400px) {
   .contact-hero {
     height: 60vh;
   }
 
   .hero-content {
-    max-width: 850px;
+    max-width: 900px;
   }
 
   .hero-content h1 {
@@ -47,13 +120,16 @@
   }
 
   .hero-content p {
-    font-size: 22px;
+    font-size: 21px;
   }
 }
 
-/* ================= Laptop ================= */
-
+/* أجهزة اللابتوب */
 @media (max-width: 1200px) {
+  .contact-hero {
+    height: 50vh;
+  }
+
   .hero-content h1 {
     font-size: 48px;
   }
@@ -63,11 +139,14 @@
   }
 }
 
-/* ================= Tablet ================= */
-
+/* أجهزة التابلت */
 @media (max-width: 992px) {
   .contact-hero {
     height: 45vh;
+  }
+
+  .contact-hero {
+    background-attachment: scroll;
   }
 
   .hero-content {
@@ -83,17 +162,28 @@
   }
 }
 
-/* ================= Mobile ================= */
-
+/* أجهزة الموبايل */
 @media (max-width: 768px) {
   .contact-hero {
-    height: 40vh;
+    height: 42vh;
   }
 
-  .contact-hero .overlay {
+  .contact-hero-overlay {
     justify-content: center;
-    text-align: center;
     padding: 20px;
+  }
+
+  .hero-content {
+    text-align: center;
+    transform: none !important; /
+  }
+
+  .subtitle-wrapper {
+    justify-content: center;
+  }
+
+  .subtitle-line {
+    display: none; 
   }
 
   .hero-content h1 {
@@ -107,11 +197,9 @@
   }
 }
 
-/* ================= Small Mobile ================= */
-
 @media (max-width: 480px) {
   .contact-hero {
-    height: 35vh;
+    height: 38vh;
   }
 
   .hero-content h1 {

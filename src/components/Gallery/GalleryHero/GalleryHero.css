@@ -1,104 +1,203 @@
+/* ================= هيرو المعرض الاحترافي ================= */
 .gallery-hero {
-  height: 55vh;
-
-  background:
-    linear-gradient(rgba(8, 34, 59, 0.82), rgba(8, 34, 59, 0.82)),
-    url("../../../assets/hero.png");
-
+  position: relative;
+  height: 60vh; /* زيادة الارتفاع قليلاً لمنح الهيرو هيبة أكبر */
+  background: url("../../../assets/hero.png") no-repeat center center;
   background-size: cover;
-
-  background-position: center;
-
+  background-attachment: fixed; /* تأثير Parallax فخم وهادئ أثناء السكرول */
   display: flex;
-
   align-items: center;
+  overflow: hidden;
 }
 
+/* طبقة الأوفيرلاي المتدرجة بلمسة من ألوان الهوية */
 .gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 31, 53, 0.92) 0%,
+    rgba(14, 94, 141, 0.75) 100%
+  );
+  z-index: 1;
 }
 
-.gallery-hero span {
-  color: #00b4d8;
-
-  letter-spacing: 2px;
-
-  font-weight: 700;
-
-  display: block;
-
-  margin-bottom: 15px;
+.gallery-hero .container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
-.gallery-hero h1 {
-  color: white;
+/* بطاقة المحتوى الزجاجية الفخمة والغنية بالعمق */
+.hero-content-card {
+  max-width: 750px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 45px 50px;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(7, 31, 53, 0.3);
+}
 
-  font-size: 56px;
-
-  line-height: 1.2;
-
+/* الشارة العلوية المضيئة */
+.hero-badge {
+  color: #3db6f2; /* الأزرق المضيء الحركي */
+  letter-spacing: 3px;
+  font-weight: 800;
+  font-size: 14px;
+  display: inline-block;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  position: relative;
+  padding-left: 15px;
 }
 
+/* نقطة مضيئة تسبق الشارة */
+.hero-badge::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #3db6f2;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #3db6f2;
+}
+
+/* العنوان الرئيسي الضخم */
+.gallery-hero h1 {
+  color: #ffffff;
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+}
+
+/* إضاءة تدريجية على الكلمة الثانية */
+.gallery-hero h1 span {
+  background: linear-gradient(90deg, #ffffff, #3db6f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* الوصف السفلي الأنيق والمريح للعين */
 .gallery-hero p {
-  max-width: 650px;
-
-  color: rgba(255, 255, 255, 0.85);
-
-  line-height: 1.8;
-
-  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.85;
+  font-size: 17.5px;
+  margin: 0;
+  font-weight: 400;
 }
 
-/* Laptop */
+/* ================= شاشات التجاوب (Responsive) ================= */
 
-@media (max-width: 1200px) {
-  .gallery-hero h1 {
-    font-size: 48px;
-  }
-}
-
-/* Tablet */
-
-@media (max-width: 992px) {
+/* ================= الشاشات الكبيرة جداً ================= */
+@media (min-width: 1400px) {
   .gallery-hero {
-    height: 45vh;
+    height: 65vh;
+  }
+
+  .hero-content-card {
+    max-width: 850px;
+    padding: 60px 70px;
   }
 
   .gallery-hero h1 {
-    font-size: 40px;
+    font-size: 64px;
   }
 
   .gallery-hero p {
-    font-size: 16px;
+    font-size: 19px;
   }
 }
 
-/* Mobile */
-
-@media (max-width: 768px) {
+/* ================= شاشات اللابتوب ================= */
+@media (max-width: 1200px) {
   .gallery-hero {
-    height: 40vh;
+    height: 55vh;
+  }
 
-    text-align: center;
+  .hero-content-card {
+    max-width: 700px;
+    padding: 40px;
   }
 
   .gallery-hero h1 {
-    font-size: 34px;
+    font-size: 46px;
+  }
+
+  .gallery-hero p {
+    font-size: 16.5px;
+  }
+}
+
+/* ================= شاشات التابلت ================= */
+@media (max-width: 992px) {
+  .gallery-hero {
+    height: 50vh;
+    background-attachment: scroll; /* إيقاف البارالاكس في الأجهزة اللوحية والمحمولة لتحسين الأداء */
+  }
+
+  .hero-content-card {
+    max-width: 100%;
+    padding: 35px;
+  }
+
+  .gallery-hero h1 {
+    font-size: 38px;
+  }
+}
+
+/* ================= الهواتف المحمولة ================= */
+@media (max-width: 768px) {
+  .gallery-hero {
+    height: 48vh;
+    text-align: center;
+  }
+
+  .hero-content-card {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 20px 10px;
+  }
+
+  .hero-badge {
+    padding-left: 0;
+  }
+
+  .hero-badge::before {
+    display: none; /* إخفاء النقطة للتوسيط المثالي */
+  }
+
+  .gallery-hero h1 {
+    font-size: 32px;
   }
 
   .gallery-hero p {
     font-size: 15px;
-
-    margin: auto;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
-/* Small Mobile */
-
+/* ================= الهواتف الصغيرة جداً ================= */
 @media (max-width: 480px) {
   .gallery-hero {
-    height: 35vh;
+    height: 42vh;
   }
 
   .gallery-hero h1 {

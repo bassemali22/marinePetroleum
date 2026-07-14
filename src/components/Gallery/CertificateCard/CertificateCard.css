@@ -1,143 +1,207 @@
-.certificate-card {
+/* ================= كارت الميدالية الدائري الفخم ================= */
+.certificate-circle-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-
-  overflow: hidden;
-
-  border-radius: 18px;
-
   cursor: pointer;
-
-  background: #fff;
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-
-  transition: 0.4s;
-}
-
-.certificate-card:hover {
-  transform: translateY(-8px);
-}
-
-.certificate-card img {
+  text-align: center;
   width: 100%;
 
-  height: 260px;
-
-  object-fit: cover;
-
-  display: block;
-
-  transition: 0.5s;
+  /* تهيئة البعد الثالث للحركات الانسيابية لمنع أي اهتزاز */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  backface-visibility: hidden;
 }
 
-.certificate-card:hover img {
-  transform: scale(1.1);
-}
-
-.certificate-overlay {
+/* ================= حلقات الختم الدائرية المضيئة ================= */
+.medallion-ring {
   position: absolute;
-
-  inset: 0;
-
-  background: rgba(13, 59, 102, 0.82);
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  text-align: center;
-
-  padding: 20px;
-
-  color: #fff;
-
-  opacity: 0;
-
-  transition: 0.4s;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: all 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.certificate-card:hover .certificate-overlay {
+/* الحلقة الخارجية (المنقطة) */
+.medallion-ring.ring-outer {
+  top: -8px;
+  width: 236px;
+  height: 236px;
+  border: 1px dashed rgba(61, 182, 242, 0.25);
+  transform: rotate(0deg);
+}
+
+/* الحلقة الداخلية الناعمة */
+.medallion-ring.ring-inner {
+  top: -4px;
+  width: 228px;
+  height: 228px;
+  border: 1px solid rgba(14, 94, 141, 0.1);
+  box-shadow: 0 10px 30px rgba(14, 94, 141, 0.03);
+}
+
+/* تأثير دوران وحركة الحلقات ببطء شديد عند تمرير الماوس */
+.certificate-circle-card:hover .ring-outer {
+  transform: rotate(180deg) scale(1.08);
+  border-color: #3db6f2;
+}
+
+.certificate-circle-card:hover .ring-inner {
+  transform: scale(1.04);
+  border-color: rgba(61, 182, 242, 0.3);
+  box-shadow: 0 15px 40px rgba(61, 182, 242, 0.15);
+}
+
+/* ================= حاوية الصورة الدائرية المثالية ================= */
+.circle-image-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%; /* دائرة كاملة */
+  overflow: hidden;
+  background: #ffffff;
+  border: 6px solid #ffffff; /* إطار أبيض سميك يعطي فخامة للشهادة */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  z-index: 2;
+  transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.certificate-circle-card:hover .circle-image-wrapper {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* صورة الشهادة بالداخل لتبدو بوسط الدائرة تماماً */
+.certificate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* لضمان ملء الدائرة بالكامل بدون تمطيط للشهادة */
+  transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.certificate-circle-card:hover .certificate-img {
+  transform: scale(1.1) rotate(2deg); /* زووم خفيف مريح جداً للعين */
+}
+
+/* ================= طبقة الـ Hover الزجاجية المظلمة ================= */
+.circle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(14, 94, 141, 0.9) 0%,
+    rgba(7, 31, 53, 0.95) 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 1s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.certificate-circle-card:hover .circle-overlay {
   opacity: 1;
 }
 
-.certificate-overlay svg {
-  font-size: 34px;
-
-  margin-bottom: 18px;
+/* محتويات الأوفيرلاي (العدسة المكبرة والنص) */
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(20px);
+  transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.certificate-overlay h3 {
-  font-size: 22px;
-
-  margin-bottom: 10px;
+.certificate-circle-card:hover .overlay-content {
+  transform: translateY(0);
 }
 
-.certificate-overlay p {
-  font-size: 15px;
-
-  letter-spacing: 1px;
+/* أيقونة الزووم المضيئة */
+.zoom-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #3db6f2;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 8px 20px rgba(61, 182, 242, 0.4);
 }
 
-/*========== 1200px ==========*/
-
-@media (max-width: 1200px) {
-  .certificate-card img {
-    height: 240px;
-  }
+.overlay-category {
+  color: #cbd5e1;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
 }
 
-/*========== 992px ==========*/
+/* ================= تفاصيل الكارت بالأسفل ================= */
+.circle-card-info {
+  margin-top: 25px;
+  z-index: 2;
+  transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
 
+.certificate-circle-card:hover .circle-card-info {
+  transform: translateY(-4px);
+}
+
+.circle-card-info h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0e5e8d;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  transition: color 0.8s ease;
+}
+
+.certificate-circle-card:hover .circle-card-info h4 {
+  color: #3db6f2;
+}
+
+/* شارة الفئة الصغيرة الهادئة */
+.badge-category {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 30px;
+  background-color: #f0f7fd;
+  color: #0e5e8d;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid rgba(61, 182, 242, 0.08);
+}
+
+/* ================= شاشات التجاوب (Responsive) ================= */
 @media (max-width: 992px) {
-  .certificate-card img {
-    height: 220px;
-  }
-
-  .certificate-overlay h3 {
-    font-size: 20px;
-  }
-}
-
-/*========== 768px ==========*/
-
-@media (max-width: 768px) {
-  .certificate-card img {
-    height: 200px;
-  }
-
-  .certificate-overlay svg {
-    font-size: 28px;
-  }
-
-  .certificate-overlay h3 {
-    font-size: 18px;
-  }
-
-  .certificate-overlay p {
-    font-size: 14px;
-  }
-}
-
-/*========== 480px ==========*/
-
-@media (max-width: 480px) {
-  .certificate-card img {
+  .circle-image-wrapper {
+    width: 180px;
     height: 180px;
   }
-
-  .certificate-overlay {
-    padding: 15px;
+  .medallion-ring.ring-outer {
+    width: 196px;
+    height: 196px;
   }
-
-  .certificate-overlay h3 {
-    font-size: 17px;
+  .medallion-ring.ring-inner {
+    width: 188px;
+    height: 188px;
   }
+  .circle-card-info h4 {
+    font-size: 15px;
+  }
+}
 
-  .certificate-overlay p {
-    font-size: 13px;
+@media (max-width: 768px) {
+  /* حركات أبسط لشاشات اللمس لمنع أي تعليق بصري */
+  .certificate-circle-card:hover .ring-outer {
+    transform: scale(1.03);
   }
 }

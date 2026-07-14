@@ -1,92 +1,167 @@
 .accreditations {
   padding: 100px 0;
-  background: #fff;
+  background-color: #f8fbfe;
+  text-align: center;
+}
+
+.accreditations .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .accreditations h2 {
-  text-align: center;
-  margin-bottom: 60px;
   font-size: 42px;
-  color: #003b5c;
+  font-weight: 800;
+  color: #0e5e8d;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
 }
 
-.logos {
+.accreditations h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 4px;
+  background: linear-gradient(90deg, #3db6f2, #0e5e8d);
+  border-radius: 2px;
+}
+
+.logos-grid {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 35px;
 }
 
 .logo-card {
-  width: 180px;
-  height: 140px;
-
+  width: 190px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(61, 182, 242, 0.12);
+  box-shadow: 0 10px 30px rgba(14, 94, 141, 0.04);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 
-  background: #fff;
-  border-radius: 10px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  backface-visibility: hidden;
 
-  transition: 0.3s;
+  transition:
+    transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    box-shadow 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    border-color 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 .logo-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.04);
+  border-color: rgba(61, 182, 242, 0.4);
+  box-shadow: 0 25px 50px rgba(14, 94, 141, 0.12);
+}
+
+.logo-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(61, 182, 242, 0.06),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  pointer-events: none;
+}
+
+.logo-card:hover .logo-glow {
+  opacity: 1;
+}
+
+.logo-img-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .logo-card img {
   max-width: 100%;
   max-height: 90px;
   object-fit: contain;
+  filter: contrast(98%);
+
+  transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-/* ================= Large Screen ================= */
+.logo-card:hover img {
+  transform: scale(1.06); /* تكبير الشعار بنسبة بسيطة وهادئة جداً */
+}
 
+/* ================= شاشات التجاوب (Responsive) ================= */
+
+/* ================= الشاشات الكبيرة جداً ================= */
 @media (min-width: 1400px) {
   .accreditations {
     padding: 120px 0;
   }
 
   .accreditations h2 {
-    font-size: 52px;
+    font-size: 50px;
     margin-bottom: 80px;
   }
 
-  .logos {
-    gap: 50px;
+  .logos-grid {
+    gap: 45px;
   }
 
   .logo-card {
-    width: 220px;
+    width: 230px;
     height: 170px;
+    border-radius: 28px;
   }
 
   .logo-card img {
-    max-height: 110px;
+    max-height: 105px;
   }
 }
 
-/* ================= Laptop ================= */
-
+/* ================= شاشات اللابتوب ================= */
 @media (max-width: 1200px) {
   .accreditations h2 {
     font-size: 38px;
   }
 
-  .logos {
-    gap: 30px;
+  .logos-grid {
+    gap: 25px;
   }
 
   .logo-card {
-    width: 170px;
-    height: 130px;
+    width: 175px;
+    height: 135px;
+    border-radius: 20px;
   }
 }
 
-/* ================= Tablet ================= */
-
+/* ================= شاشات التابلت ================= */
 @media (max-width: 992px) {
   .accreditations {
     padding: 80px 0;
@@ -97,13 +172,13 @@
     margin-bottom: 50px;
   }
 
-  .logos {
-    gap: 25px;
+  .logos-grid {
+    gap: 20px;
   }
 
   .logo-card {
-    width: 150px;
-    height: 120px;
+    width: 155px;
+    height: 125px;
   }
 
   .logo-card img {
@@ -111,25 +186,29 @@
   }
 }
 
-/* ================= Mobile ================= */
-
+/* ================= الهواتف المحمولة ================= */
 @media (max-width: 768px) {
   .accreditations {
     padding: 70px 0;
   }
 
   .accreditations h2 {
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 40px;
   }
 
-  .logos {
-    gap: 20px;
+  .logos-grid {
+    gap: 15px;
   }
 
   .logo-card {
     width: 140px;
     height: 110px;
+    border-radius: 16px;
+  }
+
+  .logo-card:hover {
+    transform: translateY(-6px) scale(1.01);
   }
 
   .logo-card img {
@@ -137,25 +216,24 @@
   }
 }
 
-/* ================= Small Mobile ================= */
-
 @media (max-width: 480px) {
   .accreditations {
     padding: 60px 0;
   }
 
   .accreditations h2 {
-    font-size: 26px;
+    font-size: 24px;
     margin-bottom: 30px;
   }
 
-  .logos {
-    gap: 15px;
+  .logos-grid {
+    gap: 12px;
   }
 
   .logo-card {
-    width: 120px;
-    height: 90px;
+    width: 125px;
+    height: 100px;
+    border-radius: 14px;
   }
 
   .logo-card img {

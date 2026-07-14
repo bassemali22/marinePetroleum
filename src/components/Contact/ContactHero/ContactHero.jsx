@@ -7,10 +7,13 @@ const ContactHero = () => {
       className="contact-hero"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      <div className="overlay">
-        <div className="container">
+      <div className="contact-hero-overlay">
+        <div className="container contact-hero-container">
           <div className="hero-content">
-            <span className="subtitle">CONTACT US</span>
+            <div className="subtitle-wrapper">
+              <span className="subtitle">CONTACT US</span>
+              <div className="subtitle-line"></div>
+            </div>
 
             <h1>We're Ready To Help Your Business</h1>
 

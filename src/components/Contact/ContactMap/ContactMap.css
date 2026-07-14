@@ -1,44 +1,138 @@
+/* ================= قسم الخريطة الرئيسي والخلفية ================= */
 .contact-map {
   padding: 100px 0;
-  background: #f8f9fa;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcff 100%);
+  position: relative;
+  overflow: hidden;
 }
 
+/* توهج مائي خفي بالخلفية لإعطاء عمق بصري */
+.map-glow-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(61, 182, 242, 0.04) 0%,
+    transparent 70%
+  );
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contact-map-container {
+  width: 90%;
+  max-width: 1350px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= الهيدر ونصوص العنوان اللامعة ================= */
 .map-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
+}
+
+.map-subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.map-subtitle-wrapper .subtitle {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #0e5e8d;
+}
+
+.map-subtitle-wrapper .subtitle-line {
+  width: 40px;
+  height: 2px;
+  background-color: #0e5e8d;
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.contact-map:hover .subtitle-line {
+  width: 60px;
+  background-color: #3db6f2; /* يتحول الخط للون المائي المضيء ببطء */
 }
 
 .map-header h2 {
-  margin-top: 15px;
-  color: #0d3b66;
-  font-size: 40px;
+  margin: 15px 0 0;
+  color: #0e5e8d;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.map-header p {
-  max-width: 700px;
-  margin: 15px auto 0;
-  color: #666;
-  line-height: 1.8;
+.contact-map:hover .map-header h2 {
+  color: #3db6f2; /* يضيء العنوان بنعومة شديدة عند وقوف الماوس على القسم */
+}
+
+/* ================= حاوية الخريطة والإطار الزجاجي العائم ================= */
+.iframe-wrapper {
+  position: relative;
+  border-radius: 24px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 94, 141, 0.06);
+  box-shadow: 0 20px 50px rgba(14, 94, 141, 0.04);
+
+  /* تهيئة الترانزشن لردة الفعل البطيئة والناعمة */
+  transition:
+    transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    border-color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    box-shadow 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.iframe-wrapper:hover {
+  transform: translateY(-8px); /* تأثير طفو ناعم للخريطة */
+  border-color: rgba(61, 182, 242, 0.25);
+  box-shadow: 0 30px 65px rgba(14, 94, 141, 0.12);
 }
 
 .contact-map iframe {
   width: 100%;
   height: 550px;
-
   border: none;
-  border-radius: 15px;
-
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-
-  transition: 0.3s;
+  border-radius: 16px;
+  display: block;
+  filter: grayscale(10%) contrast(105%); /* تعديل سينمائي خفيف لألوان الخريطة */
+  transition: filter 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.contact-map iframe:hover {
-  box-shadow: 0 20px 45px rgba(0, 119, 182, 0.15);
+.iframe-wrapper:hover iframe {
+  filter: grayscale(0%) contrast(100%); /* تعود الألوان طبيعية تماماً عند التركيز عليها */
 }
 
-/* ================= Large Screen ================= */
+/* هالة ضوئية تحيط بالحواف عند الوقوف عليها */
+.map-border-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(61, 182, 242, 0);
+  pointer-events: none;
+  transition: border-color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
 
+.iframe-wrapper:hover .map-border-pulse {
+  border-color: rgba(61, 182, 242, 0.4);
+}
+
+/* ================= شاشات التجاوب (Responsive) ================= */
+
+/* الشاشات الكبيرة جداً */
 @media (min-width: 1400px) {
   .contact-map {
     padding: 120px 0;
@@ -48,29 +142,23 @@
     font-size: 48px;
   }
 
-  .map-header p {
-    font-size: 18px;
-  }
-
   .contact-map iframe {
     height: 650px;
   }
 }
 
-/* ================= Laptop ================= */
-
+/* أجهزة اللابتوب */
 @media (max-width: 1200px) {
   .contact-map iframe {
-    height: 520px;
+    height: 500px;
   }
 
   .map-header h2 {
-    font-size: 36px;
+    font-size: 38px;
   }
 }
 
-/* ================= Tablet ================= */
-
+/* أجهزة التابلت */
 @media (max-width: 992px) {
   .contact-map {
     padding: 80px 0;
@@ -81,23 +169,18 @@
   }
 
   .map-header h2 {
-    font-size: 32px;
-  }
-
-  .map-header p {
-    font-size: 15px;
+    font-size: 34px;
   }
 
   .contact-map iframe {
-    height: 450px;
+    height: 420px;
   }
 }
 
-/* ================= Mobile ================= */
-
+/* أجهزة الموبايل الذكي */
 @media (max-width: 768px) {
   .contact-map {
-    padding: 70px 0;
+    padding: 60px 0;
   }
 
   .map-header {
@@ -108,35 +191,29 @@
     font-size: 28px;
   }
 
-  .map-header p {
-    font-size: 14px;
-    line-height: 1.7;
-    padding: 0 10px;
+  .iframe-wrapper {
+    padding: 6px;
+    border-radius: 18px;
+    transform: none !important; /* إلغاء الطفو على الجوال لضمان ثبات اللمس على الخريطة */
   }
 
   .contact-map iframe {
     height: 350px;
     border-radius: 12px;
   }
+
+  .map-border-pulse {
+    border-radius: 18px;
+  }
 }
 
-/* ================= Small Mobile ================= */
-
+/* الهواتف الصغيرة جداً */
 @media (max-width: 480px) {
-  .contact-map {
-    padding: 60px 0;
-  }
-
   .map-header h2 {
     font-size: 24px;
   }
 
-  .map-header p {
-    font-size: 13px;
-  }
-
   .contact-map iframe {
     height: 280px;
-    border-radius: 10px;
   }
 }

@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import "./GallerySection.css";
 
 const Gallery = () => {
   return (
     <section className="gallery">
-      <button>VIEW GALLERY</button>
+      <Link to="/certificate">
+        <button>VIEW CERTIFICATE</button>
+      </Link>
     </section>
   );
 };

@@ -1,122 +1,208 @@
-.pagination {
+/* ================= حاوية التنقل الخارجية لتأمين المسافات ================= */
+.pagination-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   margin-top: 70px;
+  padding: 10px 0;
+  position: relative;
+  z-index: 5;
+}
 
+/* ================= شريط التنقل الزجاجي العائم ================= */
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px); /* تأثير زجاجي شفاف وفخم */
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 14px;
+  border-radius: 100px; /* دائري مدمج بالكامل ليتوافق مع أسلوب الدوائر */
+  border: 1px solid rgba(61, 182, 242, 0.12);
+  box-shadow: 0 12px 35px rgba(14, 94, 141, 0.05);
   gap: 12px;
+
+  /* تهيئة البعد الثالث لضمان جودة الحركة البطيئة */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    box-shadow 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
+/* ارتفاع عائم وانسيابي جداً عند مرور الماوس على الحاوية كاملة */
+.pagination:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(14, 94, 141, 0.1);
+}
+
+/* ================= التنسيق العام لأزرار المكون ================= */
 .pagination button {
-  width: auto;
-
-  min-width: 48px;
-
-  height: 48px;
-
-  padding: 0 20px;
-
   border: none;
-
-  border-radius: 8px;
-
-  background: white;
-
-  color: #0d3b66;
-
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  background: transparent;
 
-  font-weight: 600;
-
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-
-  transition: 0.3s;
+  /* ترانزشن بطيء لتبديل الألوان والظلال */
+  transition:
+    background-color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    box-shadow 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.pagination button:hover {
-  background: #0077b6;
-  color: white;
+/* ================= أزرار أرقام الصفحات الدائرية ================= */
+.page-numbers-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.pagination button.active {
-  background: #0d3b66;
-  color: white;
+.page-num-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* دوائر مثالية صغيرة ومتناسقة مع كروت الشهادات */
+  color: #0e5e8d;
 }
 
+.page-num-btn:hover {
+  background-color: #f0f7fd;
+  color: #3db6f2;
+  transform: scale(1.05);
+}
+
+/* رقم الصفحة النشطة حالياً */
+.page-num-btn.active {
+  background-color: #0e5e8d;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(14, 94, 141, 0.2);
+}
+
+/* ================= أزرار الاتجاهات (Previous / Next) ================= */
+.nav-btn {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 100px;
+  color: #0e5e8d;
+  gap: 8px;
+  background-color: rgba(61, 182, 242, 0.05) !important;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background-color: #3db6f2 !important;
+  color: #ffffff;
+  box-shadow: 0 6px 15px rgba(61, 182, 242, 0.25);
+}
+
+/* تأثير حركة هادئة للأيقونة عند الحوم */
+.arrow-icon {
+  font-size: 12px;
+  transition: transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.prev-btn:hover .arrow-icon {
+  transform: translateX(-3px);
+}
+
+.next-btn:hover .arrow-icon {
+  transform: translateX(3px);
+}
+
+/* ================= أزرار الـ Disabled (عند الوصول للنهايات) ================= */
 .pagination button:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
+  background-color: transparent !important;
+  color: #94a3b8 !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
-.pagination button:disabled:hover {
-  background: white;
-  color: #0d3b66;
-}
+/* ================= شاشات التجاوب (Responsive) ================= */
 
-/* ================= Large Desktop ================= */
-
+/* أجهزة الديسك توب الضخمة */
 @media (min-width: 1400px) {
-  .pagination {
+  .pagination-wrapper {
     margin-top: 80px;
   }
 }
 
-/* ================= Laptop ================= */
-
+/* أجهزة اللابتوب */
 @media (max-width: 1200px) {
-  .pagination {
+  .pagination-wrapper {
     margin-top: 60px;
   }
 }
 
-/* ================= Tablet ================= */
-
+/* أجهزة التابلت */
 @media (max-width: 992px) {
   .pagination {
-    gap: 10px;
-  }
-
-  .pagination button {
-    height: 44px;
-
-    padding: 0 18px;
-
-    font-size: 15px;
-  }
-}
-
-/* ================= Mobile ================= */
-
-@media (max-width: 768px) {
-  .pagination {
-    margin-top: 45px;
-
+    padding: 8px 10px;
     gap: 8px;
   }
 
-  .pagination button {
-    height: 42px;
+  .nav-btn,
+  .page-num-btn {
+    height: 40px;
+  }
 
+  .page-num-btn {
+    width: 40px;
+  }
+
+  .nav-btn {
     padding: 0 16px;
-
-    font-size: 14px;
+    font-size: 13.5px;
   }
 }
 
-/* ================= Small Mobile ================= */
-
-@media (max-width: 480px) {
-  .pagination {
-    justify-content: center;
+/* أجهزة الموبايل */
+@media (max-width: 768px) {
+  .pagination-wrapper {
+    margin-top: 50px;
   }
 
-  .pagination button {
-    height: 40px;
+  .pagination {
+    gap: 6px;
+    padding: 6px 8px;
+  }
 
-    padding: 0 14px;
+  /* إخفاء الكلمات المكتوبة على الموبايل والاعتماد بالكامل على الأسهم لتوفير مساحة مريحة */
+  .nav-btn span {
+    display: none;
+  }
 
+  .nav-btn {
+    width: 40px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .page-numbers-container {
+    gap: 4px;
+  }
+}
+
+/* الهواتف الصغيرة جداً */
+@media (max-width: 480px) {
+  .nav-btn,
+  .page-num-btn {
+    height: 36px;
+  }
+
+  .page-num-btn {
+    width: 36px;
     font-size: 13px;
+  }
+
+  .nav-btn {
+    width: 36px;
   }
 }

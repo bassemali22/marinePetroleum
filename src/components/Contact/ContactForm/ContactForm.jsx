@@ -1,12 +1,21 @@
 import "./ContactForm.css";
 
 const ContactForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <section className="contact-form">
-      <div className="container">
+    <section className="contact-form-section">
+      <div className="form-bg-glow"></div>
+
+      <div className="container contact-form-container">
         <div className="form-content">
           <div className="form-header">
-            <span className="subtitle">GET IN TOUCH</span>
+            <div className="form-subtitle-wrapper">
+              <span className="subtitle">GET IN TOUCH</span>
+              <div className="subtitle-line"></div>
+            </div>
 
             <h2>Send Us a Message</h2>
 
@@ -16,22 +25,52 @@ const ContactForm = () => {
             </p>
           </div>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-row">
-              <input type="text" placeholder="First Name" />
-              <input type="text" placeholder="Last Name" />
+              <div className="input-wrapper">
+                <input type="text" required placeholder="First Name" />
+                <span className="input-focus-line"></span>
+              </div>
+              <div className="input-wrapper">
+                <input type="text" required placeholder="Last Name" />
+                <span className="input-focus-line"></span>
+              </div>
             </div>
 
             <div className="input-row">
-              <input type="email" placeholder="Email Address" />
-              <input type="tel" placeholder="Phone Number" />
+              <div className="input-wrapper">
+                <input type="email" required placeholder="Email Address" />
+                <span className="input-focus-line"></span>
+              </div>
+              <div className="input-wrapper">
+                <input type="tel" placeholder="Phone Number" />
+                <span className="input-focus-line"></span>
+              </div>
             </div>
 
-            <input className="subject" type="text" placeholder="Subject" />
+            <div className="input-wrapper subject-wrapper">
+              <input
+                className="subject"
+                type="text"
+                required
+                placeholder="Subject"
+              />
+              <span className="input-focus-line"></span>
+            </div>
 
-            <textarea rows="7" placeholder="Write your message..."></textarea>
+            <div className="input-wrapper textarea-wrapper">
+              <textarea
+                rows="7"
+                required
+                placeholder="Write your message..."
+              ></textarea>
+              <span className="input-focus-line"></span>
+            </div>
 
-            <button>Send Message</button>
+            <button type="submit" className="submit-btn">
+              <span className="btn-text">Send Message</span>
+              <span className="btn-glow-effect"></span>
+            </button>
           </form>
         </div>
       </div>

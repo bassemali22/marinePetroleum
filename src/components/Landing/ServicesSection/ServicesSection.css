@@ -1,135 +1,233 @@
 .services {
-  padding: 90px 0;
+  padding: 100px 0;
   text-align: center;
+  background-color: #ffffff;
+}
+
+.services .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.services h2 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0e5e8d;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+}
+
+.services h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 4px;
+  background: linear-gradient(90deg, #3db6f2, #0e5e8d);
+  border-radius: 2px;
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 35px;
-  margin-top: 40px;
+  gap: 30px;
+  margin-top: 20px;
+  box-sizing: border-box;
 }
 
-.service {
-  width: 160px;
-  height: 160px;
-
-  margin: auto;
-
-  border-radius: 50%;
-
-  background: #fff;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  padding: 20px;
-
-  font-weight: 600;
-  line-height: 1.5;
-
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-
-  transition: 0.4s;
+.service-card {
+  background: #ffffff;
+  padding: 45px 25px;
+  border-radius: 24px;
+  border: 1px solid rgba(61, 182, 242, 0.12);
+  box-shadow: 0 12px 35px rgba(14, 94, 141, 0.04);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  backface-visibility: hidden;
+
+  transition:
+    transform 2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    box-shadow 2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    border-color 2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-.service:hover {
-  transform: rotate(6deg) scale(1.08);
-  background: #0d3b66;
-  color: #fff;
+.service-card:hover {
+  transform: translateY(-14px) scale(1.03);
+  border-color: rgba(61, 182, 242, 0.4);
+  box-shadow: 0 30px 60px rgba(14, 94, 141, 0.15);
 }
 
-/* ================= Large Screen ================= */
+.service-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 100%,
+    rgba(61, 182, 242, 0.06),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  pointer-events: none;
+}
 
+.service-card:hover .service-glow {
+  opacity: 1;
+}
+
+.service-icon-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #f0f7fd, #e1f0fa);
+  color: #0e5e8d;
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+
+  transition:
+    transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    background 0.9s ease,
+    color 0.9s ease,
+    box-shadow 1.2s ease;
+}
+
+.service-card:hover .service-icon-box {
+  background: linear-gradient(135deg, #3db6f2, #0e5e8d);
+  color: #ffffff;
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 12px 25px rgba(14, 94, 141, 0.2);
+}
+
+.service-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0e5e8d;
+  margin: 0;
+  transition: color 0.5s ease;
+}
+
+.service-card:hover h3 {
+  color: #3db6f2;
+}
+
+/* ================= شاشات التجاوب (Responsive) ================= */
 @media (min-width: 1400px) {
   .services {
     padding: 120px 0;
   }
-
   .services-grid {
-    gap: 45px;
+    gap: 40px;
   }
-
-  .service {
-    width: 200px;
-    height: 200px;
-    font-size: 20px;
+  .service-card {
+    padding: 55px 30px;
+  }
+  .service-icon-box {
+    width: 90px;
+    height: 90px;
+    font-size: 38px;
+  }
+  .service-card h3 {
+    font-size: 24px;
   }
 }
-
-/* ================= Laptop ================= */
 
 @media (max-width: 1200px) {
   .services-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
   }
-
-  .service {
-    width: 150px;
-    height: 150px;
-    font-size: 16px;
+  .service-card {
+    padding: 35px 20px;
+  }
+  .service-icon-box {
+    width: 75px;
+    height: 75px;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .service-card h3 {
+    font-size: 19px;
   }
 }
-
-/* ================= Tablet ================= */
 
 @media (max-width: 992px) {
   .services {
     padding: 80px 0;
   }
-
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
-
-  .service {
-    width: 150px;
-    height: 150px;
-    font-size: 16px;
+  .service-card {
+    padding: 40px 25px;
   }
 }
-
-/* ================= Mobile ================= */
 
 @media (max-width: 768px) {
   .services {
     padding: 70px 0;
   }
-
+  .services h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
   .services-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-
-  .service {
-    width: 130px;
-    height: 130px;
-    font-size: 15px;
-    padding: 15px;
+  .service-card {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+  .service-card:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+  .service-icon-box {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  .service-card h3 {
+    font-size: 17px;
   }
 }
-
-/* ================= Small Mobile ================= */
 
 @media (max-width: 480px) {
   .services {
     padding: 60px 0;
   }
-
+  .services h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 20px;
+    max-width: 280px;
+    margin: 20px auto 0;
   }
-
-  .service {
-    width: 120px;
-    height: 120px;
-    font-size: 14px;
-    padding: 12px;
+  .service-card {
+    padding: 35px 20px;
   }
 }

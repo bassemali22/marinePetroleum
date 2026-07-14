@@ -38,20 +38,26 @@ const AccreditationSection = () => {
   return (
     <section className="accreditation-section">
       <div className="container">
-        <h2>ACCREDITATIONS</h2>
+        <h2 data-aos="fade-up" data-aos-duration="1000">
+          ACCREDITATIONS
+        </h2>
 
         <div className="accreditation-grid">
           {accreditations.map((item, index) => (
             <div
               className="accreditation-card"
               key={index}
-              data-aos="zoom-in"
-              data-aos-delay={index * 150}
+              data-aos="fade-up" 
+              data-aos-delay={index * 100}
+              data-aos-duration="800"
             >
-              <img src={item.image} alt={item.title} />
+              <div className="card-glow"></div>
+
+              <div className="img-container">
+                <img src={item.image} alt={item.title} />
+              </div>
 
               <h3>{item.title}</h3>
-
               <p>{item.desc}</p>
             </div>
           ))}

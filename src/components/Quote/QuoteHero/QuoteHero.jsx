@@ -7,10 +7,13 @@ const QuoteHero = () => {
       className="quote-hero"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
-      <div className="overlay">
-        <div className="container">
+      <div className="quote-hero-overlay">
+        <div className="container quote-container">
           <div className="quote-content">
-            <span className="subtitle">GET A PRICE QUOTE</span>
+            <div className="subtitle-wrapper">
+              <span className="subtitle">GET A PRICE QUOTE</span>
+              <div className="subtitle-line"></div>
+            </div>
 
             <h1>Request a Free Quote</h1>
 

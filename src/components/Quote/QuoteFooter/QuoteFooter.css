@@ -1,72 +1,125 @@
+/* ================= تصميم الفوتر الرئيسي والطبقة الزجاجية ================= */
 .quote-footer {
-  background: #0d3b66;
-  padding: 25px 0;
+  /* الاعتماد على تدرج لوني عميق جداً من الأزرق الملكي المظلم متناسق مع الأوفيرلاي */
+  background: linear-gradient(180deg, #071526 0%, #030a12 100%);
+  padding: 30px 0;
+  position: relative;
+  overflow: hidden;
   text-align: center;
 }
 
-.quote-footer p {
-  color: #fff;
-  font-size: 16px;
-  line-height: 1.8;
+/* خط تزييني علوي رفيع يضيء تدريجياً وبنعومة */
+.footer-top-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(61, 182, 242, 0.4) 50%,
+    transparent 100%
+  );
+  transition: opacity 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-/* ================= Large Screen ================= */
+.quote-footer:hover .footer-top-border {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #3db6f2 50%,
+    transparent 100%
+  );
+}
 
+.quote-footer-container {
+  width: 90%;
+  max-width: 1350px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= النصوص والتأثيرات الضوئية (Typography) ================= */
+.copyright-text {
+  color: #94a3b8; /* لون رمادي ناعم مريح للعين في الأماكن المظلمة */
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0;
+  line-height: 1.8;
+
+  /* تهيئة الترانزشن للتحول اللوني البطيء عند الحوم */
+  transition: color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.quote-footer:hover .copyright-text {
+  color: #cbd5e1; /* تفتيح النص بنعومة شديدة عند وقوف الماوس */
+}
+
+/* إبراز اسم البراند باللون الأزرق المضيء */
+.brand-highlight {
+  color: #3db6f2;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  transition: text-shadow 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.quote-footer:hover .brand-highlight {
+  text-shadow: 0 0 12px rgba(61, 182, 242, 0.6); /* وهج نيوني فخم لاسم الشركة */
+}
+
+/* ================= شاشات التجاوب (Responsive) ================= */
+
+/* الشاشات الكبيرة */
 @media (min-width: 1400px) {
   .quote-footer {
-    padding: 35px 0;
+    padding: 40px 0;
   }
 
-  .quote-footer p {
-    font-size: 18px;
+  .copyright-text {
+    font-size: 16px;
   }
 }
 
-/* ================= Laptop ================= */
-
+/* أجهزة اللابتوب */
 @media (max-width: 1200px) {
+  .quote-footer {
+    padding: 28px 20px;
+  }
+
+  .copyright-text {
+    font-size: 14.5px;
+  }
+}
+
+/* أجهزة التابلت والموبايل */
+@media (max-width: 992px) {
   .quote-footer {
     padding: 25px 20px;
   }
-
-  .quote-footer p {
-    font-size: 15px;
-  }
 }
-
-/* ================= Tablet ================= */
-
-@media (max-width: 992px) {
-  .quote-footer {
-    padding: 22px 20px;
-  }
-
-  .quote-footer p {
-    font-size: 15px;
-  }
-}
-
-/* ================= Mobile ================= */
 
 @media (max-width: 768px) {
   .quote-footer {
-    padding: 20px 15px;
+    padding: 22px 15px;
   }
 
-  .quote-footer p {
-    font-size: 14px;
-    line-height: 1.7;
+  .copyright-text {
+    font-size: 13.5px;
+    letter-spacing: 0.2px;
   }
 }
 
-/* ================= Small Mobile ================= */
-
+/* الهواتف الصغيرة جداً */
 @media (max-width: 480px) {
   .quote-footer {
-    padding: 18px 12px;
+    padding: 20px 12px;
   }
 
-  .quote-footer p {
+  .copyright-text {
     font-size: 13px;
     line-height: 1.6;
   }

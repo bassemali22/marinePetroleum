@@ -9,38 +9,55 @@ import {
 const ContactInfo = () => {
   return (
     <section className="contact-info">
-      <div className="container">
+      <div className="info-glow glow-left"></div>
+      <div className="info-glow glow-right"></div>
+
+      <div className="container contact-info-container">
         <div className="info-box">
-          <FaMapMarkerAlt />
-
+          <div className="info-icon-wrapper">
+            <div className="info-pulse-ring"></div>
+            <FaMapMarkerAlt className="info-icon" />
+          </div>
           <h3>Address</h3>
-
           <p>Badr Industrial City - Plots 196 / 148 Cairo - Egypt</p>
         </div>
 
         <div className="info-box">
-          <FaPhoneAlt />
-
+          <div className="info-icon-wrapper">
+            <div className="info-pulse-ring"></div>
+            <FaPhoneAlt className="info-icon" />
+          </div>
           <h3>Phone</h3>
-
-          <p>+202-2860-7400</p>
+          <p>
+            <a href="tel:+20228607400" className="info-clickable-link">
+              +202-2860-7400
+            </a>
+          </p>
         </div>
 
         <div className="info-box">
-          <FaEnvelope />
-
+          <div className="info-icon-wrapper">
+            <div className="info-pulse-ring"></div>
+            <FaEnvelope className="info-icon" />
+          </div>
           <h3>Email</h3>
-
-          <p>info@petrolift.com</p>
+          <p>
+            <a
+              href="mailto:info@MarinePetroleum.com"
+              className="info-clickable-link"
+            >
+              info@Marine Petroleum.com
+            </a>
+          </p>
         </div>
 
         <div className="info-box">
-          <FaClock />
-
+          <div className="info-icon-wrapper">
+            <div className="info-pulse-ring"></div>
+            <FaClock className="info-icon" />
+          </div>
           <h3>Working Hours</h3>
-
-          <p>Sun - Thu</p>
-
+          <p className="hours-highlight">Sun - Thu</p>
           <p>8:00 AM - 4:30 PM</p>
         </div>
       </div>

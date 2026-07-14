@@ -1,42 +1,78 @@
 import "./QuoteForm.css";
 
 const QuoteForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // هنا يمكنك معالجة بيانات الفورم لاحقاً
+  };
+
   return (
     <section className="quote-form">
-      <div className="container">
-        <div className="form-card">
-          <h2>Get a Price Quote</h2>
+      {/* عناصر ضوئية عائمة في الخلفية لتعزيز الشعور بالعمق والبعد الثالث */}
+      <div className="bg-glow bg-glow-left"></div>
+      <div className="bg-glow bg-glow-right"></div>
 
-          <form>
+      <div className="container quote-form-container">
+        <div className="form-card" data-aos="fade-up" data-aos-duration="1200">
+          <div className="form-header">
+            <h2>Get a Price Quote</h2>
+            <div className="header-bar"></div>
+          </div>
+
+          <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <input type="text" placeholder="First Name" />
-              <input type="text" placeholder="Company" />
+              <div className="input-wrapper">
+                <input type="text" placeholder="First Name" required />
+              </div>
+              <div className="input-wrapper">
+                <input type="text" placeholder="Company" required />
+              </div>
             </div>
 
             <div className="input-group">
-              <input type="email" placeholder="Email" />
-              <input type="tel" placeholder="Phone" />
+              <div className="input-wrapper">
+                <input type="email" placeholder="Email" required />
+              </div>
+              <div className="input-wrapper">
+                <input type="tel" placeholder="Phone" required />
+              </div>
             </div>
 
             <div className="input-group">
-              <select>
-                <option>EG +20</option>
-                <option>SA +966</option>
-                <option>UAE +971</option>
-              </select>
+              <div className="input-wrapper">
+                <select defaultValue="">
+                  <option value="" disabled hidden>
+                    Country Code
+                  </option>
+                  <option value="EG">EG +20</option>
+                  <option value="SA">SA +966</option>
+                  <option value="UAE">UAE +971</option>
+                </select>
+              </div>
 
-              <select>
-                <option>Select a Service</option>
-                <option>Inspection</option>
-                <option>Certification</option>
-                <option>Load Testing</option>
-                <option>Training</option>
-              </select>
+              <div className="input-wrapper">
+                <select defaultValue="">
+                  <option value="" disabled hidden>
+                    Select a Service
+                  </option>
+                  <option value="Inspection">Inspection</option>
+                  <option value="Certification">Certification</option>
+                  <option value="Load Testing">Load Testing</option>
+                  <option value="Training">Training</option>
+                </select>
+              </div>
             </div>
 
-            <textarea rows="6" placeholder="Give us more details..."></textarea>
+            <div className="input-wrapper textarea-wrapper">
+              <textarea
+                rows="6"
+                placeholder="Give us more details about your project..."
+              ></textarea>
+            </div>
 
-            <button type="submit">Request a Quote</button>
+            <button type="submit" className="submit-quote-btn">
+              <span>Request a Quote</span>
+            </button>
           </form>
         </div>
       </div>
