@@ -1,14 +1,55 @@
-/* ===== Google Font ===== */
+/*==================================================
+  GOOGLE FONT
+==================================================*/
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+/*==================================================
+  VARIABLES
+==================================================*/
+
+:root {
+  --primary: #0e5e8d;
+
+  --primary-dark: #0b4e75;
+
+  --primary-light: #2f9fd8;
+
+  --accent: #3db6f2;
+
+  --text: #17324d;
+
+  --text-light: #5e7388;
+
+  --white: #ffffff;
+
+  --border: #e6edf3;
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/*==================================================
+  RESET
+==================================================*/
+
 * {
   margin: 0;
+
   padding: 0;
+
   box-sizing: border-box;
+
   font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: #fff;
+
+  overflow-x: hidden;
 }
 
 a {
@@ -19,39 +60,83 @@ ul {
   list-style: none;
 }
 
+img {
+  display: block;
+
+  max-width: 100%;
+}
+
 .container {
   width: 90%;
+
   max-width: 1300px;
+
   margin: auto;
 }
 
-/*================ Header ================*/
+/*==================================================
+  HEADER
+==================================================*/
 
 .header {
-  width: 100%;
-  height: 90px;
   position: fixed;
+
   top: 0;
+
   left: 0;
-  background: #0d3b66;
+
+  width: 100%;
+
+  height: 90px;
+
+  background: #fff;
+
+  border-bottom: 1px solid var(--border);
+
+  box-shadow: var(--shadow);
+
+  transition: 0.35s ease;
+
   z-index: 1000;
 }
 
 .header .container {
   height: 100%;
+
   display: flex;
+
   justify-content: space-between;
+
+  align-items: center;
+}
+
+/*==================================================
+  LOGO
+==================================================*/
+
+.logo {
+  display: flex;
+
   align-items: center;
 }
 
 .logo img {
-  width: 90px;
-  height: 90px;
+  width: 82px;
+
+  height: 82px;
+
   object-fit: contain;
-  display: block;
+
+  transition: 0.35s;
 }
 
-/*================ Navigation ================*/
+.logo:hover img {
+  transform: scale(1.06);
+}
+
+/*==================================================
+  NAVIGATION
+==================================================*/
 
 .nav {
   z-index: 999;
@@ -59,8 +144,10 @@ ul {
 
 .nav > ul {
   display: flex;
+
   align-items: center;
-  gap: 35px;
+
+  gap: 38px;
 }
 
 .nav > ul > li {
@@ -68,33 +155,53 @@ ul {
 }
 
 .nav a {
-  color: #fff;
+  color: var(--text);
+
   font-size: 16px;
-  font-weight: 500;
-  position: relative;
+
+  font-weight: 600;
+
   transition: 0.3s;
+
+  position: relative;
 }
 
 .nav a::after {
   content: "";
+
   position: absolute;
-  bottom: -8px;
+
   left: 0;
+
+  bottom: -8px;
+
   width: 0;
+
   height: 2px;
-  background: #00b4d8;
-  transition: 0.3s;
+
+  background: var(--accent);
+
+  transition: 0.35s;
 }
 
 .nav a:hover {
-  color: #00b4d8;
+  color: var(--primary-light);
 }
 
 .nav a:hover::after {
   width: 100%;
 }
 
-/*================ Services Link ================*/
+.nav a.active {
+  color: var(--primary);
+}
+
+.nav a.active::after {
+  width: 100%;
+}
+/*==================================================
+  SERVICES DROPDOWN
+==================================================*/
 
 .has-dropdown {
   position: relative;
@@ -102,173 +209,220 @@ ul {
 
 .service-title {
   display: flex;
+
   align-items: center;
+
   gap: 8px;
+
+  color: var(--text);
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.35s;
+
+  user-select: none;
 }
 
-.service-title a {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
+.service-title:hover {
+  color: var(--primary-light);
 }
 
 .service-title svg {
-  cursor: pointer;
-  color: #fff;
-  transition: 0.3s;
+  font-size: 12px;
+
+  transition: 0.35s ease;
+
+  color: var(--primary-light);
 }
 
 .rotate {
   transform: rotate(180deg);
 }
 
-.arrow {
-  color: #fff;
-  font-size: 12px;
-  transition: 0.3s;
-}
-
-.arrow.rotate {
-  transform: rotate(180deg);
-}
-
-/*================ Dropdown Global Base ================*/
-
-.dropdown {
-  display: none; /* مخفية افتراضياً وتظهر حسب الشاشة والـ Action */
-  flex-direction: column;
-}
-
-.dropdown li {
-  width: 100%;
-}
-
-.dropdown a::after {
-  display: none; /* إزالة الخط السفلي في روابط الساب منيو */
-}
-
-/*================ Desktop Mode (Screens > 992px) =================*/
+/*==================================================
+  DESKTOP DROPDOWN
+==================================================*/
 
 @media (min-width: 993px) {
-  /* اللينك الأب */
   .has-dropdown {
     position: relative;
-    display: inline-block;
   }
 
-  /* تفعيل كليك الماوس على العنوان الرئيسي */
-  .service-title {
-    pointer-events: auto !important;
-    cursor: pointer;
-  }
-
-  /* هوفر اللينك الأب بالكامل والـ Chevron معاً */
-  .has-dropdown:hover .service-title a,
-  .has-dropdown:hover .service-title svg {
-    color: #00b4d8;
-  }
-
-  /* الساب منيو للكمبيوتر */
   .dropdown {
     position: absolute;
-    top: 100%;
+
+    top: 115%;
+
     left: 50%;
-    transform: translateX(-50%) translateY(12px); /* نزول خفيف للأسفل لبدء حركة الأنميشن */
 
-    display: flex; /* تفعيل الفليكس لبناء الهيكل الحركي */
+    transform: translateX(-50%) translateY(20px);
 
-    /* تنسيق الألوان المحدثة النظيفة (أبيض وأزرق) */
-    background-color: #ffffff;
-    border: 1px solid #e6f0fa;
-    box-shadow: 0px 10px 25px rgba(13, 59, 102, 0.1);
+    width: 250px;
 
-    padding: 12px;
-    min-width: 220px;
-    border-radius: 8px;
+    background: #fff;
 
-    /* إخفاء افتراضي حركي */
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+
+    padding: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
     opacity: 0;
+
     visibility: hidden;
 
-    /* أنميشين فائق النعومة والانسيابية */
     transition:
-      opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-      visibility 0.4s;
+      opacity 0.35s,
+      transform 0.35s,
+      visibility 0.35s;
+
     z-index: 999;
   }
 
-  /* تأثير الهوفر لفتح المنيو بنعومة */
   .has-dropdown:hover .dropdown {
     opacity: 1;
+
     visibility: visible;
+
     transform: translateX(-50%) translateY(0);
   }
 
-  /* الروابط الداخلية للساب منيو (شاشات كبيرة) */
-  .dropdown a {
-    display: block;
+  .dropdown li {
     width: 100%;
-    padding: 10px 14px !important;
-    color: #0d3b66 !important; /* لون النص الأساسي */
+  }
+
+  .dropdown a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    padding: 12px 16px;
+
+    color: var(--text) !important;
+
     font-size: 15px;
+
     font-weight: 500;
-    text-align: left;
-    border-radius: 6px;
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+
+    border-radius: 10px;
+
+    transition: 0.3s;
   }
 
-  /* هوفر احترافي كامل المساحة ناعم باللون الأزرق */
+  .dropdown a::after {
+    display: none;
+  }
+
   .dropdown a:hover {
-    background: #0077b6 !important;
-    color: #ffffff !important; /* النص يتحول للأبيض بوضوح */
+    background: var(--primary-light);
+
+    color: #fff !important;
+
+    padding-left: 22px;
   }
 
-  /* إخفاء سهم الـ Chevron بالكمبيوتر للحفاظ على نظافة التصميم طالما الهوفر شغال */
+  .dropdown a:hover::before {
+    opacity: 1;
+  }
+
+  .dropdown a::before {
+    content: "";
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    margin-right: 10px;
+
+    opacity: 0;
+
+    transition: 0.3s;
+  }
+
   .service-title svg {
     display: none;
   }
 }
 
-/*================ Overlay ================*/
-
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 998;
-}
-
-/*================ Menu Icon ================*/
+/*==================================================
+  MENU ICON
+==================================================*/
 
 .menu-icon {
   display: none;
-  color: #fff;
+
   font-size: 28px;
+
+  color: var(--primary);
+
   cursor: pointer;
-  z-index: 1001;
+
+  transition: 0.3s;
 }
 
-/*================ Laptop =================*/
+.menu-icon:hover {
+  color: var(--primary-light);
+
+  transform: rotate(90deg);
+}
+
+/*==================================================
+  OVERLAY
+==================================================*/
+
+.nav-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(2px);
+
+  z-index: 998;
+}
+
+/*==================================================
+  LAPTOP
+==================================================*/
 
 @media (max-width: 1200px) {
   .container {
     width: 94%;
   }
 
-  .nav > ul {
-    gap: 25px;
+  .logo img {
+    width: 74px;
+
+    height: 74px;
   }
 
-  .logo img {
-    width: 80px;
-    height: 80px;
+  .nav > ul {
+    gap: 28px;
   }
 }
 
-/*================ Tablet Mode (Screens <= 992px) =================*/
+/*==================================================
+  TABLET
+==================================================*/
 
 @media (max-width: 992px) {
   .header {
@@ -276,24 +430,38 @@ ul {
   }
 
   .logo img {
-    width: 75px;
-    height: 75px;
+    width: 70px;
+
+    height: 70px;
   }
 
   .menu-icon {
     display: block;
   }
 
+  /*================ Sidebar =================*/
+
   .nav {
     position: fixed;
+
     top: 80px;
+
     right: -100%;
-    width: 280px;
+
+    width: 310px;
+
     height: calc(100vh - 80px);
-    background: #0d3b66;
+
+    background: #fff;
+
+    border-left: 1px solid var(--border);
+
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.08);
+
+    transition: 0.35s;
+
     overflow-y: auto;
-    transition: 0.35s ease;
-    z-index: 999;
+
     padding: 20px 0;
   }
 
@@ -301,78 +469,133 @@ ul {
     right: 0;
   }
 
+  /*================ List =================*/
+
   .nav > ul {
     flex-direction: column;
+
     align-items: stretch;
+
     gap: 0;
   }
 
   .nav > ul > li {
     width: 100%;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-bottom: 1px solid #edf3f8;
   }
+
+  /*================ Links =================*/
 
   .nav > ul > li > a,
   .service-title {
+    width: 100%;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     gap: 8px;
-    padding: 18px 20px;
-  }
 
-  .service-title {
-    cursor: pointer;
-    color: #fff;
+    padding: 18px;
+
+    color: var(--text);
+
     font-size: 16px;
-    font-weight: 500;
+
+    font-weight: 600;
+
+    transition: 0.3s;
   }
 
-  .service-title a {
-    color: #fff;
+  .nav > ul > li > a:hover,
+  .service-title:hover {
+    background: #f5fbff;
+
+    color: var(--primary-light);
   }
+
+  /*================ Arrow =================*/
 
   .service-title svg {
-    display: block; /* يظهر السهم في الموبايل والتابلت للكليك */
+    display: block;
+
+    font-size: 14px;
+
+    color: var(--primary-light);
+
+    transition: 0.35s;
   }
 
-  /* ستايل المنيو للموبايل لتفتح كقائمة منسدلة عمودية داخلية */
+  /*================ Mobile Dropdown =================*/
+
   .dropdown {
     position: static;
+
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: none;
-    border-radius: 0;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    padding: 0;
+
+    background: #f9fcfe;
+
     display: none;
+
+    flex-direction: column;
+
+    border-top: 1px solid var(--border);
   }
 
-  /* تظهر بـ display: flex عند إضافة كلاس show بواسطة React */
   .dropdown.show {
     display: flex;
+
+    animation: dropdownMobile 0.35s ease;
+  }
+
+  .dropdown li {
+    width: 100%;
   }
 
   .dropdown a {
     display: block;
+
     width: 100%;
-    color: #fff !important;
+
+    padding: 15px 20px;
+
     text-align: center;
-    padding: 14px 10px !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    transition: 0.2s;
+
+    color: var(--text) !important;
+
+    font-size: 15px;
+
+    transition: 0.3s;
   }
 
   .dropdown a:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #00b4d8 !important;
+    background: var(--primary-light);
+
+    color: #fff !important;
+  }
+
+  /*================ Animation =================*/
+
+  @keyframes dropdownMobile {
+    0% {
+      opacity: 0;
+
+      transform: translateY(-12px);
+    }
+
+    100% {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
   }
 }
-
-/*================ Mobile =================*/
+/*==================================================
+  MOBILE
+==================================================*/
 
 @media (max-width: 768px) {
   .header {
@@ -381,38 +604,208 @@ ul {
 
   .logo img {
     width: 60px;
+
     height: 60px;
   }
 
   .nav {
     top: 70px;
-    width: 250px;
+
+    width: 270px;
+
     height: calc(100vh - 70px);
   }
 
   .menu-icon {
     font-size: 26px;
   }
+
+  .nav > ul > li > a,
+  .service-title {
+    padding: 17px;
+
+    font-size: 16px;
+  }
+
+  .dropdown a {
+    padding: 14px;
+
+    font-size: 15px;
+  }
 }
 
-/*================ Small Mobile =================*/
+/*==================================================
+  SMALL MOBILE
+==================================================*/
 
 @media (max-width: 480px) {
   .container {
     width: 92%;
   }
 
+  .header {
+    height: 65px;
+  }
+
+  .logo img {
+    width: 55px;
+
+    height: 55px;
+  }
+
   .nav {
     width: 100%;
+
+    top: 65px;
+
+    height: calc(100vh - 65px);
+  }
+
+  .menu-icon {
+    font-size: 24px;
   }
 
   .nav > ul > li > a,
   .service-title {
     font-size: 17px;
+
     padding: 18px 12px;
   }
 
   .dropdown a {
     font-size: 15px;
+
+    padding: 15px 10px;
   }
 }
+
+/*==================================================
+  SCROLLBAR
+==================================================*/
+
+.nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav::-webkit-scrollbar-track {
+  background: #eef5fa;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+
+  border-radius: 20px;
+}
+
+.nav::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/*==================================================
+  BUTTONS
+==================================================*/
+
+button {
+  border: none;
+
+  background: none;
+
+  cursor: pointer;
+}
+
+/*==================================================
+  SMOOTH EFFECTS
+==================================================*/
+
+.logo {
+  transition: 0.35s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.menu-icon {
+  transition: 0.35s;
+}
+
+.menu-icon:hover {
+  color: var(--primary-light);
+
+  transform: rotate(90deg);
+}
+
+.nav a,
+.service-title,
+.dropdown a {
+  transition: all 0.3s ease;
+}
+
+/*==================================================
+  HEADER SHADOW ON SCROLL
+==================================================*/
+
+.header {
+  transition:
+    background 0.35s,
+    box-shadow 0.35s,
+    height 0.35s;
+}
+
+/*==================================================
+  NICE ANIMATION
+==================================================*/
+
+.header {
+  animation: headerFade 0.5s ease;
+}
+
+@keyframes headerFade {
+  0% {
+    opacity: 0;
+
+    transform: translateY(-25px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/*==================================================
+  ACTIVE LINK
+==================================================*/
+
+.nav a.active {
+  color: var(--primary);
+}
+
+.nav a.active::after {
+  width: 100%;
+}
+
+/*==================================================
+  SELECTION
+==================================================*/
+
+::selection {
+  background: var(--primary-light);
+
+  color: #fff;
+}
+
+/*==================================================
+  IMAGE
+==================================================*/
+
+img {
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+/*==================================================
+  END
+==================================================*/

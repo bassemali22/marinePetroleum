@@ -1,234 +1,317 @@
+/* ================= تنظيف ومنع أي ثيم داكن تلقائي من المتصفح ================= */
+:root {
+  color-scheme: light !important;
+}
+
+html,
+body,
+#root,
+#app {
+  background-color: #f0f9ff !important; /* ضمان بقاء الصفحة باللون الفاتح النقي */
+  margin: 0;
+  padding: 0;
+}
+
+/* ================= الـ Hero الرئيسي بالخلفية الفاتحة المضيئة ================= */
 .hero {
   width: 100%;
-  height: 100vh;
-  background: #0b3d5c; /* لون مؤقت */
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  /* تدرج لوني احترافي يجمع بين الأبيض والأزرق الفاتح واللمسات المضيئة */
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(61, 182, 242, 0.25),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #ffffff 0%, #f4faff 50%, #e0f2fe 100%) !important;
+}
+
+/* عناصر ديكورية متحركة في الخلفية لزيادة الاحترافية */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(61, 182, 242, 0.15);
+  filter: blur(80px);
+  top: -100px;
+  right: -100px;
+  animation: floatBackground 10s infinite ease-in-out;
+}
+
+/* ================= الـ Overlay المضيء ================= */
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+  background: transparent !important; /* إزالة اللون الأسود القديم تماماً */
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= محتوى الـ Hero والنصوص ================= */
+.hero-content {
+  max-width: 700px;
+  color: #334155;
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero-logo {
   width: 180px;
   margin-bottom: 30px;
-}
-.overlay {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-
-  display: flex;
-  align-items: center;
-}
-
-.hero-content {
-  max-width: 700px;
-  color: #fff;
+  filter: drop-shadow(0 10px 20px rgba(14, 94, 141, 0.1));
+  animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero-content h1 {
   font-size: 4rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 800;
+  line-height: 1.15;
   margin-bottom: 20px;
+  color: #0f172a !important; /* كحلي ملكي فخم وعميق */
+  letter-spacing: -1px;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   margin-bottom: 40px;
-  color: #e5e5e5;
+  color: #475569 !important; /* رمادي هادئ ومريح للعين */
 }
 
+/* ================= أزرار تفاعلية خارقة الجاذبية ================= */
 .hero-buttons {
   display: flex;
   gap: 20px;
+  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* الزر الرئيسي مع تأثير اللمعان (Shine Effect) */
 .primary-btn {
-  padding: 15px 35px;
-  background: #0077b6;
-  color: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #3db6f2, #0e5e8d) !important;
+  color: #ffffff !important;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 8px 25px rgba(14, 94, 141, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.primary-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: all 0.6s ease;
 }
 
 .primary-btn:hover {
-  background: #005f8f;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(14, 94, 141, 0.3);
 }
 
+.primary-btn:hover::before {
+  left: 150%; /* انزلاق تأثير اللمعان الفضي بسلاسة */
+}
+
+/* الزر الثانوي مع تأثير الملء الذكي (Hover Fill) */
 .secondary-btn {
-  padding: 15px 35px;
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 16px 36px;
+  background: #ffffff !important;
+  border: 2px solid #3db6f2 !important;
+  color: #0e5e8d !important;
+  border-radius: 12px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.secondary-btn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #3db6f2;
+  transition: all 0.3s ease-out;
 }
 
 .secondary-btn:hover {
-  background: #fff;
-  color: #003b5c;
+  color: #ffffff !important;
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(61, 182, 242, 0.25);
+  border-color: #3db6f2 !important;
 }
 
-/* Responsive */
+.secondary-btn:hover::after {
+  height: 100%; /* امتلاء الزر من الأسفل للأعلى بالأزرق الفاتح */
+}
 
-@media (max-width: 992px) {
-  .hero-content h1 {
-    font-size: 3rem;
+/* ================= تأثيرات الحركة (Animations) ================= */
+@keyframes floatBackground {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
   }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: flex-start;
+  50% {
+    transform: translate(-20px, 20px) scale(1.1);
   }
 }
 
-/* ================= Large Screens ================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= شاشات التجاوب الاحترافية (Responsive) ================= */
+
+/* الشاشات الضخمة */
 @media (min-width: 1400px) {
   .hero-content {
     max-width: 800px;
   }
-
   .hero-content h1 {
     font-size: 5rem;
   }
-
   .hero-content p {
     font-size: 1.35rem;
   }
-
   .hero-logo {
     width: 220px;
   }
 }
 
-/* ================= Laptop ================= */
-
+/* أجهزة اللابتوب */
 @media (max-width: 1200px) {
   .hero-content h1 {
     font-size: 3.5rem;
   }
-
   .hero-content p {
     font-size: 1.1rem;
   }
-
   .hero-logo {
     width: 160px;
   }
 }
 
-/* ================= Tablet ================= */
-
+/* التابلت والأجهزة المتوسطة */
 @media (max-width: 992px) {
   .hero {
     height: auto;
     min-height: 100vh;
   }
-
   .overlay {
     padding: 100px 0;
+    justify-content: center;
   }
-
   .hero-content {
     max-width: 100%;
+    text-align: center; /* توسيط المحتوى لمظهر أرتب */
   }
-
+  .hero-logo {
+    width: 140px;
+    margin: 0 auto 25px;
+    display: block;
+  }
   .hero-content h1 {
     font-size: 3rem;
   }
-
   .hero-content p {
     font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
-
-  .hero-logo {
-    width: 140px;
-  }
-
   .hero-buttons {
+    justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
   }
 }
 
-/* ================= Mobile ================= */
-
+/* الهواتف الذكية */
 @media (max-width: 768px) {
   .hero {
     min-height: 90vh;
   }
-
   .overlay {
-    justify-content: center;
-    text-align: center;
     padding: 80px 20px;
   }
-
-  .hero-content {
-    width: 100%;
-    max-width: 100%;
-  }
-
   .hero-logo {
     width: 120px;
-    margin: 0 auto 25px;
-    display: block;
   }
-
   .hero-content h1 {
     font-size: 2.3rem;
-    line-height: 1.3;
   }
-
-  .hero-content p {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
   .hero-buttons {
     flex-direction: column;
     width: 100%;
-    gap: 15px;
   }
-
   .primary-btn,
   .secondary-btn {
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 
-/* ================= Small Mobile ================= */
-
+/* الهواتف الصغيرة جداً */
 @media (max-width: 480px) {
   .hero {
     min-height: 80vh;
   }
-
   .hero-logo {
-    width: 90px;
+    width: 95px;
   }
-
   .hero-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.85rem;
   }
-
   .hero-content p {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
-
   .primary-btn,
   .secondary-btn {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 14px 20px;
+    font-size: 15px;
   }
 }

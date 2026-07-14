@@ -26,7 +26,6 @@ const Header = () => {
     { name: "Gallery", path: "/gallery" },
     { name: "Get a Quote", path: "/quote" },
     { name: "Contact", path: "/contact" },
-    { name: "Landing", path: "/landing" },
   ];
 
   return (

@@ -7,7 +7,6 @@ import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import GetAuote from "./pages/GetAuote";
-import Landing from "./pages/Landing";
 import Inspection from "./pages/servisecPages/Inspect";
 import Certification from "./pages/servisecPages/Certificate";
 import LoadTesting from "./pages/servisecPages/LoadTesting";
@@ -30,7 +29,6 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<GetAuote />} />
-          <Route path="/landing" element={<Landing />} />
         </Routes>
       </main>
     </>

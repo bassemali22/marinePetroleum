@@ -5,6 +5,7 @@ import ContactSection from "../components/Home/ContactSection/ContactSection";
 import Hero from "../components/Home/hero/Hero";
 import Showcase from "../components/Home/Showcase/Showcase";
 import WhyChooseUs from "../components/Home/WhyChooseUs/WhyChooseUs";
+import Landing from "./Landing";
 
 const Home = () => {
   useEffect(() => {
@@ -13,6 +14,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <Landing />
       <Showcase />
       <WhyChooseUs />
       <Accreditations />
