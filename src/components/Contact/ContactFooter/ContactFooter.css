@@ -1,21 +1,21 @@
-/* ================= الفوتر الرئيسي وتأثير الخلفية الزجاجية العميقة ================= */
+/* ================= الفوتر الرئيسي وتأثير الخلفية البيضاء الفاتحة ================= */
 .contact-footer {
-  background: linear-gradient(180deg, #071526 0%, #030a12 100%);
+  background: #ffffff; /* تغيير الخلفية إلى بيضاء تماماً */
   padding-top: 80px;
   margin-top: 100px;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(61, 182, 242, 0.1); /* خط علوي مضيء خفيف للغاية */
+  border-top: 1px solid rgba(61, 182, 242, 0.2); /* خط علوي لبني خفيف */
 }
 
-/* وهج ناعم يعطي انطباع بوجود إضاءة سفلية مخفية */
+/* وهج لبني ناعم يعطي انطباع بوجود إضاءة سفلية مخفية */
 .footer-bg-glow {
   position: absolute;
   width: 600px;
   height: 300px;
   background: radial-gradient(
     circle,
-    rgba(61, 182, 242, 0.04) 0%,
+    rgba(61, 182, 242, 0.08) 0%, /* زيادة الشفافية قليلاً لتظهر على الأبيض */
     transparent 70%
   );
   bottom: 0;
@@ -33,7 +33,7 @@
   z-index: 2;
 }
 
-/* ================= قسم الشعار والنص التعريفي بالأبيض الصافي ================= */
+/* ================= قسم الشعار والنص التعريفي باللون اللبني الداكن للقراءة ================= */
 .footer-logo-section {
   text-align: center;
   max-width: 750px;
@@ -49,22 +49,22 @@
 .logo-glow-wrapper img {
   width: 130px;
   margin-bottom: 25px;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 4px 10px rgba(61, 182, 242, 0.15)); /* ظل لبني ناعم للشعار */
   transition: filter 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 .contact-footer:hover .logo-glow-wrapper img {
   filter: drop-shadow(
-    0 0 15px rgba(61, 182, 242, 0.3)
-  ); /* وهج ناعم للشعار عند حوم الماوس */
+    0 0 15px rgba(61, 182, 242, 0.4)
+  ); /* وهج لبني واضح عند حوم الماوس */
 }
 
 .footer-description {
-  color: #ffffff; /* أبيض ناصع بالكامل */
+  color: #071526; /* تغيير لون النص للون داكن ليتناسب مع الخلفية البيضاء */
   line-height: 1.8;
   font-size: 16px;
   font-weight: 500;
-  opacity: 0.85; /* شفافية مريحة جداً لتباين النصوص الطويلة */
+  opacity: 0.75; /* شفافية مريحة جداً للقراءة */
   transition: opacity 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
@@ -87,20 +87,21 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.03);
-  color: #ffffff; /* أبيض ناصع للأيقونة */
+  background: rgba(61, 182, 242, 0.05); /* خلفية لبنية خفيفة جداً */
+  color: #3db6f2; /* لون لبني للأيقونة بشكل افتراضي */
   font-size: 20px;
   text-decoration: none;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(61, 182, 242, 0.2); /* إطار لبني خفيف */
+  box-shadow: 0 8px 20px rgba(61, 182, 242, 0.1); /* ظل لبني خفيف */
 
   /* تهيئة البعد الثالث والترانزشن البطيء */
   transform-style: preserve-3d;
   transition:
     transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
     border-color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
-    color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+    color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    background-color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 /* هالة ضوئية دائرية مخفية خلف الأيقونة تظهر وتتمدد عند الحوم */
@@ -110,7 +111,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(61, 182, 242, 0.4) 0%,
+    rgba(61, 182, 242, 0.3) 0%,
     transparent 70%
   );
   opacity: 0;
@@ -131,7 +132,9 @@
 .social-icon-btn:hover {
   transform: translateY(-8px) scale(1.05);
   border-color: #3db6f2;
-  color: #3db6f2; /* تضيء الأيقونة بلون النيون المائي عند الوقوف عليها */
+  background: #3db6f2; /* تنقلب الخلفية للون لبني كامل عند الوقوف عليها */
+  color: #ffffff; /* تتحول الأيقونة للأبيض عند الهوفر */
+  box-shadow: 0 12px 25px rgba(61, 182, 242, 0.3);
 }
 
 .social-icon-btn:hover .social-glow {
@@ -145,7 +148,7 @@
 
 /* ================= منطقة الحقوق والخط الفاصل ================= */
 .copyright-section {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(61, 182, 242, 0.15); /* خط فاصل لبني خفيف */
   padding: 30px 0;
   position: relative;
   z-index: 2;
@@ -159,12 +162,12 @@
 }
 
 .copyright-text {
-  color: #ffffff; /* أبيض بالكامل */
+  color: #071526; /* لون نص داكن متناسق */
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.5px;
   margin: 0;
-  opacity: 0.8;
+  opacity: 0.7;
   transition: opacity 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
@@ -173,7 +176,7 @@
 }
 
 .brand-highlight {
-  color: #ffffff;
+  color: #3db6f2; /* تمييز اسم البراند باللون اللبني */
   font-weight: 700;
   position: relative;
   display: inline-block;
@@ -181,7 +184,7 @@
 }
 
 .copyright-section:hover .brand-highlight {
-  text-shadow: 0 0 10px rgba(61, 182, 242, 0.8); /* توهج أزرق حول الاسم عند الحركة */
+  text-shadow: 0 0 8px rgba(61, 182, 242, 0.5); /* توهج لبني حول الاسم عند الحركة */
 }
 
 /* ================= شاشات التجاوب (Responsive) ================= */

@@ -38,7 +38,7 @@ const ContactBanner = () => {
           <h3>Email</h3>
           <p>
             <a href="mailto:info@petrolift.com" className="contact-link">
-              info@petrolift.com
+              info@Marine Petroleum.com
             </a>
           </p>
         </div>
