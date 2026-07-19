@@ -143,12 +143,15 @@
     margin-bottom: 80px;
   }
 
+  /* هنا هيعرض الـ 5 كروت جنب بعض بالظبط في صف واحد */
   .accreditation-grid {
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 25px; /* قللت الـ gap حاجة بسيطة لـ 25px عشان الـ 5 كروت يكفوا براحتهم */
   }
 
   .accreditation-card {
-    padding: 45px 30px;
+    padding: 45px 20px; /* تقليل البادينج الجانبي عشان المحتوى ميتزنقش */
   }
 
   .accreditation-card img {
@@ -157,11 +160,11 @@
   }
 
   .accreditation-card h3 {
-    font-size: 24px;
+    font-size: 22px; /* تصغير الخط سنة بسيطة عشان الـ 5 كروت */
   }
 
   .accreditation-card p {
-    font-size: 15.5px;
+    font-size: 15px;
   }
 }
 
@@ -171,9 +174,11 @@
     font-size: 38px;
   }
 
+  /* هنا الكروت هتترص جنب بعضها طول ما المساحة تسمح، والزيادة هينزل تحت بشكل تلقائي ومريح */
   .accreditation-grid {
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px;
   }
 
   .accreditation-card {

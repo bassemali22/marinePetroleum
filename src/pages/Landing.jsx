@@ -10,8 +10,8 @@ const Landing = () => {
   }, []);
   return (
     <>
-      <LandingHero />
       <AccreditationSection />
+      <LandingHero />
       <ServicesSection />
       <GallerySection />
     </>
