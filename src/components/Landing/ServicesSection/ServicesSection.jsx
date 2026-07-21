@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./ServicesSection.css";
 import {
   FaBoxes,
@@ -7,10 +8,14 @@ import {
 } from "react-icons/fa";
 
 const services = [
-  { title: "Supply", icon: <FaBoxes /> },
-  { title: "Inspection", icon: <FaClipboardCheck /> },
-  { title: "Training", icon: <FaGraduationCap /> },
-  { title: "Projects", icon: <FaProjectDiagram /> },
+  { title: "Supply", icon: <FaBoxes />, path: "/services/supply" },
+  {
+    title: "Inspection",
+    icon: <FaClipboardCheck />,
+    path: "/services/inspection",
+  },
+  { title: "Training", icon: <FaGraduationCap />, path: "/services/training" },
+  { title: "Projects", icon: <FaProjectDiagram />, path: "/services/project" },
 ];
 
 const Services = () => {
@@ -23,17 +28,19 @@ const Services = () => {
 
         <div className="services-grid">
           {services.map((item, index) => (
-            <div
-              className="service-card"
-              key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 250}
-              data-aos-duration="1500"
-            >
-              <div className="service-glow"></div>
-              <div className="service-icon-box">{item.icon}</div>
-              <h3>{item.title}</h3>
-            </div>
+            <Link to={item.path}>
+              <div
+                className="service-card"
+                key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 250}
+                data-aos-duration="1500"
+              >
+                <div className="service-glow"></div>
+                <div className="service-icon-box">{item.icon}</div>
+                <h3>{item.title}</h3>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

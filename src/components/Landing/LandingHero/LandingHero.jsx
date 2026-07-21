@@ -1,12 +1,12 @@
 import "./LandingHero.css";
-import bg from "../../../assets/images/primary.jpg";
+import bg from "../../../assets/images/marinePetroleum.jpeg";
 import logo from "../../../assets/images/logo.png";
 
 const Hero = () => {
   return (
     <section className="landing-hero" style={{ backgroundImage: `url(${bg})` }}>
       <div className="landing-overlay">
-        <img src={logo} alt="" className="landing-logo" />
+        {/* <img src={logo} alt="" className="landing-logo" /> */}
 
         <h1>MARINE PETROLEUM LIFTING</h1>
 

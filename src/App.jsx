@@ -9,8 +9,10 @@ import Contact from "./pages/Contact";
 import GetAuote from "./pages/GetAuote";
 import Inspection from "./pages/servisecPages/Inspect";
 import Certification from "./pages/servisecPages/Certificate";
-import LoadTesting from "./pages/servisecPages/LoadTesting";
+// import LoadTesting from "./pages/servisecPages/LoadTesting";
 import Training from "./pages/servisecPages/Traning";
+import Supply from "./pages/servisecPages/Supply";
+import Project from "./pages/servisecPages/Project";
 
 function App() {
   return (
@@ -22,10 +24,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/services/inspection" element={<Inspection />} />
           <Route path="/certificate" element={<Gallery />} />
-          <Route path="/services/load-testing" element={<LoadTesting />} />
+          <Route path="/services/inspection" element={<Inspection />} />
+          <Route path="/services/project" element={<Project />} />
+          <Route path="/services/supply" element={<Supply />} />
           <Route path="/services/training" element={<Training />} />
+          <Route path="/services/certificate" element={<Certification />} />
           <Route path="/certificate" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<GetAuote />} />

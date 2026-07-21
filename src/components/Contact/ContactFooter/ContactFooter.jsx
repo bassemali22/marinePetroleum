@@ -28,7 +28,8 @@ const ContactFooter = () => {
 
         <div className="footer-social-wrapper">
           <a
-            href="#"
+          href="https://www.facebook.com/share/1EjU4LEhp3/"
+          target="_blank"
             className="social-icon-btn facebook"
             aria-label="Facebook"
           >
@@ -46,7 +47,8 @@ const ContactFooter = () => {
           </a>
 
           <a
-            href="#"
+            href="https://www.linkedin.com/company/mpl-eg/"
+            target="_blank"
             className="social-icon-btn linkedin"
             aria-label="LinkedIn"
           >

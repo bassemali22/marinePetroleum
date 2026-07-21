@@ -12,7 +12,7 @@ const ContactBanner = () => {
             <FaMapMarkerAlt className="contact-icon" />
           </div>
           <h3>Address</h3>
-          <p>Badr Industrial City - Plots 196 / 148 Cairo - Egypt</p>
+          <p>Office: Apartment no. 2 Building no. 4 Faisal City - Alexandria - Egypt</p>
         </div>
 
         {/* كارت الهاتف */}
@@ -37,8 +37,8 @@ const ContactBanner = () => {
           </div>
           <h3>Email</h3>
           <p>
-            <a href="mailto:info@petrolift.com" className="contact-link">
-              info@Marine Petroleum.com
+            <a href="mailto:info@mpleg.net" className="contact-link">
+              info@mpleg.net
             </a>
           </p>
         </div>

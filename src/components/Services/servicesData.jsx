@@ -15,22 +15,22 @@ export const servicesData = [
 
   {
     icon: <FaCertificate />,
-    title: "Certification",
+    title: "Supply",
     text: "Reliable certification services ensuring compliance with global requirements.",
-    path: "/services/certification",
+    path: "/services/Supply",
   },
 
   {
     icon: <FaTools />,
-    title: "Load Testing",
+    title: "Traning",
     text: "Advanced load testing solutions for industrial equipment.",
-    path: "/services/load-testing",
+    path: "/services/training",
   },
 
   {
     icon: <FaGraduationCap />,
-    title: "Training Services",
+    title: "Projects",
     text: "Certified training programs helping professionals improve safety and operational skills.",
-    path: "/services/training",
+    path: "/services/project",
   },
 ];

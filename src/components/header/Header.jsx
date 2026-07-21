@@ -17,8 +17,8 @@ const Header = () => {
       path: "/services",
       submenu: [
         { name: "Inspection", path: "/services/inspection" },
-        { name: "Certification", path: "/certificate" },
-        { name: "Load Testing", path: "/services/load-testing" },
+        { name: "Project", path: "/services/project" },
+        { name: "Supply", path: "/services/supply" },
         { name: "Training", path: "/services/training" },
       ],
     },

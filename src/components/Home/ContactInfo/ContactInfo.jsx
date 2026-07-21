@@ -15,7 +15,6 @@ const ContactInfo = () => {
   return (
     <section className="contact-info">
       <div className="container">
-
         <div
           className="info-box"
           data-aos="fade-up"
@@ -29,18 +28,10 @@ const ContactInfo = () => {
           <h3>Address</h3>
 
           <p>
-            Badr Industrial City
-            <br />
-            Plots 196 / 148
-            <br />
-            Badr City
-            <br />
-            Postal Code 11829
-            <br />
-            Cairo - Egypt
+            Office: Apartment no. 2 Building no. 4 Faisal City - Alexandria -
+            Egypt
           </p>
         </div>
-
 
         <div
           className="info-box"
@@ -62,13 +53,10 @@ const ContactInfo = () => {
             <li className="email-link">
               <FaEnvelope className="mini-icon" />
 
-              <a href="mailto:info@mpleg.net">
-                info@mpleg.net
-              </a>
+              <a href="mailto:info@mpleg.net">info@mpleg.net</a>
             </li>
           </ul>
         </div>
-
 
         <div
           className="info-box"
@@ -89,26 +77,21 @@ const ContactInfo = () => {
           </p>
         </div>
 
-
         <div
           className="info-box social-box"
           data-aos="fade-up"
           data-aos-duration="1500"
           data-aos-delay="550"
         >
-
           <div className="icon-wrapper">
             <span className="join-dot"></span>
           </div>
 
-
           <h3>Join Us</h3>
 
-
           <div className="social-links">
-
             <a
-              href="#"
+              href="https://www.linkedin.com/company/mpl-eg/"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
@@ -116,7 +99,6 @@ const ContactInfo = () => {
             >
               <FaLinkedinIn />
             </a>
-
 
             <a
               href="https://www.facebook.com/share/1EjU4LEhp3/"
@@ -128,7 +110,6 @@ const ContactInfo = () => {
               <FaFacebookF />
             </a>
 
-
             <a
               href="#"
               target="_blank"
@@ -138,7 +119,6 @@ const ContactInfo = () => {
             >
               <FaInstagram />
             </a>
-
 
             <a
               href="#"
@@ -150,7 +130,6 @@ const ContactInfo = () => {
               <FaTwitter />
             </a>
 
-
             <a
               href="#"
               target="_blank"
@@ -160,11 +139,8 @@ const ContactInfo = () => {
             >
               <FaYoutube />
             </a>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

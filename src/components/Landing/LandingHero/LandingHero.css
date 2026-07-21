@@ -30,14 +30,14 @@
 }
 
 .landing-overlay h1 {
-  color: #222;
+  color: white;
   font-size: 48px;
   margin-bottom: 15px;
   line-height: 1.2;
 }
 
 .landing-overlay p {
-  color: #555;
+  color: white;
   font-size: 18px;
   letter-spacing: 4px;
   line-height: 1.7;

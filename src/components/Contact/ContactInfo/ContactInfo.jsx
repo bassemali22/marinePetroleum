@@ -19,7 +19,7 @@ const ContactInfo = () => {
             <FaMapMarkerAlt className="info-icon" />
           </div>
           <h3>Address</h3>
-          <p>Badr Industrial City - Plots 196 / 148 Cairo - Egypt</p>
+          <p>Office: Apartment no. 2 Building no. 4 Faisal City - Alexandria - Egypt</p>
         </div>
 
         <div className="info-box">
@@ -43,10 +43,10 @@ const ContactInfo = () => {
           <h3>Email</h3>
           <p>
             <a
-              href="mailto:info@MarinePetroleum.com"
+              href="mailto:info@mpleg.net"
               className="info-clickable-link"
             >
-              info@Marine Petroleum.com
+              info@mpleg.net
             </a>
           </p>
         </div>

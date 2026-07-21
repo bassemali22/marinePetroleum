@@ -1,5 +1,5 @@
 import "./Showcase.css";
-import showcaseImage from "../../../assets/images/primary.jpg";
+import showcaseImage from "../../../assets/images/marinePetroleum2.jpeg";
 
 const Showcase = () => {
   return (
