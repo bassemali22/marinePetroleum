@@ -10,8 +10,14 @@ const cookieParser = require("cookie-parser");
 const limiter = require("./middleware/ratelimt");
 const connectionDB = require("./config/Db");
 const authRoutes = require("./routes/user");
+const xss = require("xss-clean");
+
 app.use(express.json());
 app.use(cookieParser());
+const mongoSanitize = require("express-mongo-sanitize");
+
+app.use(xss());
+app.use(mongoSanitize());
 app.use(
   cors({
     origin: [process.env.CLIENT_URL, , "http://localhost:3000"],
