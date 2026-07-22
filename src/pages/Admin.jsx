@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaLock,
   FaEnvelope,
@@ -20,116 +20,35 @@ import {
   FaChevronRight,
   FaPalette,
   FaFont,
-  FaGlobe,
 } from "react-icons/fa";
 import "./Admin.css";
 
-// 🌐 قاموس النصوص
-const translations = {
-  ar: {
-    dashboard: "الإحصائيات",
-    quotes: "عروض الأسعار",
-    services: "إدارة الخدمات",
-    users: "المستخدمين",
-    logout: "تسجيل الخروج",
-    titleDashboard: "لوحة الإحصائيات العامة",
-    titleQuotes: "إدارة عروض الأسعار",
-    titleServices: "إدارة الخدمات المقدمة",
-    titleUsers: "إدارة فرق العمل والمستخدمين",
-    systemManager: "مدير النظام",
-    totalOrders: "إجمالي الطلبات",
-    activeServices: "الخدمات النشطة",
-    monthClients: "عملاء الشهر",
-    latestQuotes: "أحدث طلبات عروض الأسعار",
-    viewAll: "عرض الكل",
-    searchPlaceholder: "بحث عن عميل أو خدمة أو رقم طلب...",
-    addQuote: "إضافة طلب جديد",
-    orderNo: "رقم الطلب",
-    client: "اسم العميل",
-    service: "نوع الخدمة",
-    amount: "المبلغ المكتوب",
-    date: "التاريخ",
-    status: "الحالة",
-    actions: "الإجراءات",
-    loginTitle: "لوحة التحكم للأدمن",
-    loginSubtitle: "سجل الدخول لإدارة الخدمات والطلبات",
-    email: "البريد الإلكتروني",
-    password: "كلمة المرور",
-    loginBtn: "تسجيل الدخول",
-    pending: "قيد الانتظار",
-    approved: "مقبول",
-    rejected: "مرفوض",
-  },
-  en: {
-    dashboard: "Dashboard",
-    quotes: "Quotations",
-    services: "Manage Services",
-    users: "Users & Team",
-    logout: "Logout",
-    titleDashboard: "General Statistics Dashboard",
-    titleQuotes: "Manage Price Quotations",
-    titleServices: "Manage Offered Services",
-    titleUsers: "Manage Team & Users",
-    systemManager: "System Admin",
-    totalOrders: "Total Orders",
-    activeServices: "Active Services",
-    monthClients: "Monthly Clients",
-    latestQuotes: "Latest Quote Requests",
-    viewAll: "View All",
-    searchPlaceholder: "Search client, service or quote ID...",
-    addQuote: "Add New Request",
-    orderNo: "Quote ID",
-    client: "Client Name",
-    service: "Service Type",
-    amount: "Amount",
-    date: "Date",
-    status: "Status",
-    actions: "Actions",
-    loginTitle: "Admin Dashboard",
-    loginSubtitle: "Log in to manage services and requests",
-    email: "Email Address",
-    password: "Password",
-    loginBtn: "Login",
-    pending: "Pending",
-    approved: "Approved",
-    rejected: "Rejected",
-  },
-};
-
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // حالة تسجيل الدخول
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState("");
 
+  // حالات لوحة التحكم
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // حالات التحكم (اللغة، الثيم، الخط)
-  const [lang, setLang] = useState(
-    () => localStorage.getItem("appLang") || "ar",
-  );
+  // قراءة الثيم والخط المخزنين أو تفعيل الافتراضي
   const [selectedTheme, setSelectedTheme] = useState(
-    () => localStorage.getItem("appTheme") || "purple",
+    () => localStorage.getItem("appTheme") || "default",
   );
   const [selectedFont, setSelectedFont] = useState(
     () => localStorage.getItem("appFont") || "cairo",
   );
 
-  const t = translations[lang] || translations.ar;
-
-  // 💡 تطبيق اللغة، الاتجاه، الخط والثيم بشكل ديناميكي ممتاز على جذر الصفحة
+  // 💡 تطبيق الثيم والخط على HTML Root
   useEffect(() => {
     const root = document.documentElement;
 
-    // ضبط اتجاه الصفحة واللغة
-    root.setAttribute("lang", lang);
-    root.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-
-    // تنظيف الكلاسات السابقة لتجنب التداخل
+    // 1. إزالة الكلاسات القديمة بالكامل
     root.classList.remove(
-      "theme-default",
       "theme-navy",
       "theme-teal",
       "theme-purple",
@@ -140,19 +59,22 @@ const Admin = () => {
       "font-readex",
     );
 
-    // إضافة الكلاسات الجديدة
-    if (selectedTheme) {
+    // 2. تطبيق كلاس الثيم فقط إذا لم يكن "default"
+    if (selectedTheme !== "default") {
       root.classList.add(`theme-${selectedTheme}`);
     }
+
+    // 3. تطبيق كلاس الخط
     if (selectedFont) {
       root.classList.add(`font-${selectedFont}`);
     }
 
-    localStorage.setItem("appLang", lang);
+    // 4. حفظ التفضيلات
     localStorage.setItem("appTheme", selectedTheme);
     localStorage.setItem("appFont", selectedFont);
-  }, [selectedTheme, selectedFont, lang]);
+  }, [selectedTheme, selectedFont]);
 
+  // بيانات عروض الأسعار
   const [quotes, setQuotes] = useState([
     {
       id: "QT-101",
@@ -197,22 +119,12 @@ const Admin = () => {
       setIsAuthenticated(true);
       setLoginError("");
     } else {
-      setLoginError(
-        lang === "ar"
-          ? "البريد الإلكتروني أو كلمة السر غير صحيحة"
-          : "Invalid email or password",
-      );
+      setLoginError("البريد الإلكتروني أو كلمة السر غير صحيحة");
     }
   };
 
   const handleDeleteQuote = (id) => {
-    if (
-      window.confirm(
-        lang === "ar"
-          ? "هل أنت متأكد من حذف هذا الطلب؟"
-          : "Are you sure you want to delete this quote?",
-      )
-    ) {
+    if (window.confirm("هل أنت تأكد من حذف هذا الطلب؟")) {
       setQuotes(quotes.filter((q) => q.id !== id));
     }
   };
@@ -224,6 +136,9 @@ const Admin = () => {
       q.service.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  /* =========================================================
+      شاشة تسجيل الدخول
+     ========================================================= */
   if (!isAuthenticated) {
     return (
       <div className="admin-login-wrapper">
@@ -232,15 +147,15 @@ const Admin = () => {
             <div className="login-badge">
               <FaUserShield />
             </div>
-            <h2>{t.loginTitle}</h2>
-            <p>{t.loginSubtitle}</p>
+            <h2>لوحة التحكم للأدمن</h2>
+            <p>سجل الدخول لإدارة الخدمات والطلبات</p>
           </div>
 
           {loginError && <div className="login-error-msg">{loginError}</div>}
 
           <form onSubmit={handleLogin} className="login-form">
             <div className="input-group">
-              <label>{t.email}</label>
+              <label>البريد الإلكتروني</label>
               <div className="input-field">
                 <FaEnvelope className="field-icon" />
                 <input
@@ -256,7 +171,7 @@ const Admin = () => {
             </div>
 
             <div className="input-group">
-              <label>{t.password}</label>
+              <label>كلمة المرور</label>
               <div className="input-field">
                 <FaLock className="field-icon" />
                 <input
@@ -279,18 +194,21 @@ const Admin = () => {
             </div>
 
             <button type="submit" className="login-btn">
-              {t.loginBtn}
+              تسجيل الدخول
             </button>
           </form>
 
           <div className="login-hint">
-            <small>admin@marine.com / admin123</small>
+            <small>بيانات تجريبية: admin@marine.com / admin123</small>
           </div>
         </div>
       </div>
     );
   }
 
+  /* =========================================================
+      لوحة التحكم الرئيسية
+     ========================================================= */
   return (
     <div className="admin-dashboard-container">
       {sidebarOpen && (
@@ -321,7 +239,7 @@ const Admin = () => {
               setSidebarOpen(false);
             }}
           >
-            <FaChartBar /> <span>{t.dashboard}</span>
+            <FaChartBar /> الإحصائيات
           </button>
 
           <button
@@ -331,7 +249,7 @@ const Admin = () => {
               setSidebarOpen(false);
             }}
           >
-            <FaFileContract /> <span>{t.quotes}</span>
+            <FaFileContract /> عروض الأسعار
           </button>
 
           <button
@@ -341,7 +259,7 @@ const Admin = () => {
               setSidebarOpen(false);
             }}
           >
-            <FaBoxes /> <span>{t.services}</span>
+            <FaBoxes /> إدارة الخدمات
           </button>
 
           <button
@@ -351,7 +269,7 @@ const Admin = () => {
               setSidebarOpen(false);
             }}
           >
-            <FaUsers /> <span>{t.users}</span>
+            <FaUsers /> المستخدمين
           </button>
         </nav>
 
@@ -360,12 +278,12 @@ const Admin = () => {
             className="logout-btn"
             onClick={() => setIsAuthenticated(false)}
           >
-            <FaSignOutAlt /> <span>{t.logout}</span>
+            <FaSignOutAlt /> تسجيل الخروج
           </button>
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Panel View */}
       <main className="admin-main-content">
         <header className="admin-top-bar">
           <div className="top-bar-left">
@@ -376,30 +294,16 @@ const Admin = () => {
               <FaBars />
             </button>
             <h1 className="page-title">
-              {activeTab === "dashboard" && t.titleDashboard}
-              {activeTab === "quotes" && t.titleQuotes}
-              {activeTab === "services" && t.titleServices}
-              {activeTab === "users" && t.titleUsers}
+              {activeTab === "dashboard" && "لوحة الإحصائيات العامة"}
+              {activeTab === "quotes" && "إدارة عروض الأسعار"}
+              {activeTab === "services" && "إدارة الخدمات المقدمة"}
+              {activeTab === "users" && "إدارة فرق العمل والمستخدمين"}
             </h1>
           </div>
 
           <div className="top-bar-right">
-            {/* أدوات التحكم باللغة والثيم والخط */}
+            {/* 🎨 أزرار التحكم بالخط والألوان الشاملة للموقع */}
             <div className="style-controls">
-              {/* اللغة */}
-              <div className="style-group">
-                <FaGlobe className="ctrl-icon" title="Language / اللغة" />
-                <select
-                  value={lang}
-                  onChange={(e) => setLang(e.target.value)}
-                  className="lang-select"
-                >
-                  <option value="ar">العربية (AR)</option>
-                  <option value="en">English (EN)</option>
-                </select>
-              </div>
-
-              {/* الثيم */}
               <div className="style-group">
                 <FaPalette className="ctrl-icon" title="اختر الثيم" />
                 <select
@@ -407,14 +311,14 @@ const Admin = () => {
                   onChange={(e) => setSelectedTheme(e.target.value)}
                   className="theme-select"
                 >
-                  <option value="purple">Purple</option>
-                  <option value="navy">Navy</option>
-                  <option value="teal">Teal</option>
-                  <option value="dark">Dark</option>
+                  <option value="default">افتراضي الموقع (Default)</option>
+                  <option value="navy">كحلي بحري (Navy)</option>
+                  <option value="teal">تركواز فخم (Teal)</option>
+                  <option value="purple">بنفسجي رويال (Purple)</option>
+                  <option value="dark">داكن احترافي (Dark)</option>
                 </select>
               </div>
 
-              {/* الخط */}
               <div className="style-group">
                 <FaFont className="ctrl-icon" title="اختر الخط" />
                 <select
@@ -422,10 +326,10 @@ const Admin = () => {
                   onChange={(e) => setSelectedFont(e.target.value)}
                   className="font-select"
                 >
-                  <option value="cairo">Cairo</option>
-                  <option value="alexandria">Alexandria</option>
-                  <option value="tajawal">Tajawal</option>
-                  <option value="readex">Readex Pro</option>
+                  <option value="cairo">خط Cairo</option>
+                  <option value="alexandria">خط Alexandria</option>
+                  <option value="tajawal">خط Tajawal</option>
+                  <option value="readex">خط Readex Pro</option>
                 </select>
               </div>
             </div>
@@ -438,14 +342,14 @@ const Admin = () => {
             <div className="user-profile">
               <div className="avatar">AD</div>
               <div className="info">
-                <span className="name">{t.systemManager}</span>
+                <span className="name">مدير النظام</span>
                 <span className="role">Administrator</span>
               </div>
             </div>
           </div>
         </header>
 
-        {/* Dashboard Content */}
+        {/* 📊 Dashboard Tab */}
         {activeTab === "dashboard" && (
           <div className="dashboard-view">
             <div className="stats-grid">
@@ -454,9 +358,9 @@ const Admin = () => {
                   <FaFileContract />
                 </div>
                 <div className="stat-details">
-                  <h3>{t.totalOrders}</h3>
+                  <h3>إجمالي الطلبات</h3>
                   <p className="number">128</p>
-                  <span className="trend positive">+12%</span>
+                  <span className="trend positive">+12% هذا الشهر</span>
                 </div>
               </div>
 
@@ -465,8 +369,9 @@ const Admin = () => {
                   <FaBoxes />
                 </div>
                 <div className="stat-details">
-                  <h3>{t.activeServices}</h3>
+                  <h3>الخدمات النشطة</h3>
                   <p className="number">14</p>
+                  <span className="trend">4 أقسام رئيسية</span>
                 </div>
               </div>
 
@@ -475,20 +380,21 @@ const Admin = () => {
                   <FaUsers />
                 </div>
                 <div className="stat-details">
-                  <h3>{t.monthClients}</h3>
+                  <h3>عملاء الشهر</h3>
                   <p className="number">45</p>
+                  <span className="trend positive">+5 عملاء جدد</span>
                 </div>
               </div>
             </div>
 
             <div className="content-box">
               <div className="box-header">
-                <h2>{t.latestQuotes}</h2>
+                <h2>أحدث طلبات عروض الأسعار</h2>
                 <button
                   className="view-all-btn"
                   onClick={() => setActiveTab("quotes")}
                 >
-                  {t.viewAll} <FaChevronRight />
+                  عرض الكل <FaChevronRight />
                 </button>
               </div>
 
@@ -496,11 +402,11 @@ const Admin = () => {
                 <table className="admin-table">
                   <thead>
                     <tr>
-                      <th>{t.orderNo}</th>
-                      <th>{t.client}</th>
-                      <th>{t.service}</th>
-                      <th>{t.date}</th>
-                      <th>{t.status}</th>
+                      <th>رقم الطلب</th>
+                      <th>العميل</th>
+                      <th>الخدمة</th>
+                      <th>التاريخ</th>
+                      <th>الحالة</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -516,7 +422,7 @@ const Admin = () => {
                           <span
                             className={`status-pill ${q.status.toLowerCase()}`}
                           >
-                            {t[q.status.toLowerCase()]}
+                            {q.status}
                           </span>
                         </td>
                       </tr>
@@ -528,7 +434,7 @@ const Admin = () => {
           </div>
         )}
 
-        {/* Quotes Tab */}
+        {/* 📑 Quotes Tab */}
         {activeTab === "quotes" && (
           <div className="quotes-view">
             <div className="content-box">
@@ -537,14 +443,14 @@ const Admin = () => {
                   <FaSearch className="search-icon" />
                   <input
                     type="text"
-                    placeholder={t.searchPlaceholder}
+                    placeholder="بحث عن عميل أو خدمة أو رقم طلب..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
 
                 <button className="primary-action-btn">
-                  <FaPlus /> {t.addQuote}
+                  <FaPlus /> إضافة طلب جديد
                 </button>
               </div>
 
@@ -552,13 +458,13 @@ const Admin = () => {
                 <table className="admin-table">
                   <thead>
                     <tr>
-                      <th>{t.orderNo}</th>
-                      <th>{t.client}</th>
-                      <th>{t.service}</th>
-                      <th>{t.amount}</th>
-                      <th>{t.date}</th>
-                      <th>{t.status}</th>
-                      <th>{t.actions}</th>
+                      <th>رقم الطلب</th>
+                      <th>اسم العميل</th>
+                      <th>نوع الخدمة</th>
+                      <th>المبلغ المكتوب</th>
+                      <th>التاريخ</th>
+                      <th>الحالة</th>
+                      <th>الإجراءات</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -576,7 +482,7 @@ const Admin = () => {
                             <span
                               className={`status-pill ${q.status.toLowerCase()}`}
                             >
-                              {t[q.status.toLowerCase()]}
+                              {q.status}
                             </span>
                           </td>
                           <td className="actions-cell">
@@ -596,9 +502,7 @@ const Admin = () => {
                     ) : (
                       <tr>
                         <td colSpan="7" className="no-data">
-                          {lang === "ar"
-                            ? "لا توجد نتائج تطابق بحثك."
-                            : "No matching results found."}
+                          لا توجد نتائج تطابق بحثك.
                         </td>
                       </tr>
                     )}
@@ -609,9 +513,14 @@ const Admin = () => {
           </div>
         )}
 
+        {/* 📦 Other Tabs */}
         {(activeTab === "services" || activeTab === "users") && (
           <div className="content-box empty-state">
-            <h3>{activeTab === "services" ? t.services : t.users}</h3>
+            <h3>
+              قسم{" "}
+              {activeTab === "services" ? "إدارة الخدمات" : "إدارة المستخدمين"}
+            </h3>
+            <p>يمكنك إضافة عناصر تحكم وتفاصيل إضافية لهذا القسم بسهولة.</p>
           </div>
         )}
       </main>
