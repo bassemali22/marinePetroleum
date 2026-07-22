@@ -1,25 +1,49 @@
+/*==================================================
+  CONTACT SECTION
+==================================================*/
 .contact-section {
   padding: 100px 0;
-  background: #f8f9fa;
+  background: var(--bg-color, #f8f9fa);
+  transition: background-color 0.35s ease;
 }
 
 .contact-section .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 40px;
 }
 
+/*================ Form Wrapper =================*/
 .contact-form {
-  background: #fff;
+  background: #ffffff;
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.35s ease;
+}
+
+html.theme-dark .contact-form {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .contact-form h2 {
   margin-bottom: 30px;
-  color: #003b5c;
+  color: var(--primary-color, #0e5e8d);
   font-size: 2rem;
+  font-weight: 700;
+  transition: color 0.35s ease;
+}
+
+html.theme-dark .contact-form h2 {
+  color: #f8fafc;
 }
 
 .row {
@@ -29,14 +53,32 @@
   margin-bottom: 20px;
 }
 
+/*================ Inputs & Textarea =================*/
 input,
 textarea {
   width: 100%;
   padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   outline: none;
   font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+html.theme-dark input,
+html.theme-dark textarea {
+  background: #0f172a;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--secondary-color, #3db6f2);
+  box-shadow: 0 0 0 3px rgba(61, 182, 242, 0.15);
 }
 
 textarea {
@@ -45,30 +87,37 @@ textarea {
   min-height: 160px;
 }
 
+/*================ Button =================*/
 button {
   padding: 15px 40px;
-  background: #0077b6;
-  color: #fff;
+  background: var(--primary-color, #0e5e8d);
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.35s ease;
 }
 
 button:hover {
-  background: #005f8f;
+  background: var(--secondary-color, #3db6f2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
+/*================ Map =================*/
 .contact-map iframe {
   width: 100%;
   height: 100%;
   min-height: 500px;
   border: none;
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 /* ================= Large Screen ================= */
-
 @media (min-width: 1400px) {
   .contact-section {
     padding: 120px 0;
@@ -93,7 +142,6 @@ button:hover {
 }
 
 /* ================= Laptop ================= */
-
 @media (max-width: 1200px) {
   .contact-section .container {
     gap: 30px;
@@ -105,7 +153,6 @@ button:hover {
 }
 
 /* ================= Tablet ================= */
-
 @media (max-width: 992px) {
   .contact-section {
     padding: 80px 0;
@@ -130,7 +177,6 @@ button:hover {
 }
 
 /* ================= Mobile ================= */
-
 @media (max-width: 768px) {
   .contact-section {
     padding: 70px 0;
@@ -168,7 +214,6 @@ button:hover {
 }
 
 /* ================= Small Mobile ================= */
-
 @media (max-width: 480px) {
   .contact-section {
     padding: 60px 0;

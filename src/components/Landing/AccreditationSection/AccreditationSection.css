@@ -2,7 +2,8 @@
 .accreditation-section {
   padding: 100px 0;
   text-align: center;
-  background-color: #f8fbfe; /* خلفية هادئة ونظيفة تبرز الكروت البيضاء */
+  background-color: var(--bg-color); /* متغير خلفية الموقع الديناميكي */
+  transition: background-color 0.3s ease;
 }
 
 .accreditation-section .container {
@@ -17,12 +18,17 @@
 .accreditation-section h2 {
   font-size: 42px;
   font-weight: 800;
-  color: #0e5e8d; /* الأزرق الملكي العميق الموحد للهوية */
+  color: var(--primary-color); /* اللون الأساسي للثيم */
   margin-bottom: 60px;
   letter-spacing: 1px;
   position: relative;
   display: inline-block;
   padding-bottom: 15px;
+}
+
+/* التوافق مع الثيم الداكن للعنوان */
+html.theme-dark .accreditation-section h2 {
+  color: #f8fafc;
 }
 
 /* خط تزييني انسيابي ومضيء أسفل العنوان */
@@ -34,7 +40,11 @@
   transform: translateX(-50%);
   width: 65px;
   height: 4px;
-  background: linear-gradient(90deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   border-radius: 2px;
 }
 
@@ -52,13 +62,13 @@
   background: #ffffff;
   padding: 40px 25px;
   border-radius: 24px;
-  border: 1px solid rgba(61, 182, 242, 0.12);
-  box-shadow: 0 12px 35px rgba(14, 94, 141, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
   cursor: pointer;
   position: relative;
   overflow: hidden;
 
-  /* تهيئة عمق الـ 3D لمنع أي اهتزاز (Antialiasing) */
+  /* تهيئة عمق الـ 3D لمنع أي اهتزاز */
   transform-style: preserve-3d;
   perspective: 1000px;
   backface-visibility: hidden;
@@ -66,16 +76,24 @@
   /* انتقالات فائقة السلاسة */
   transition:
     border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease;
+}
+
+/* تخصيص الكارت للثيم الداكن */
+html.theme-dark .accreditation-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
 
 /* تأثير الـ Hover على الكارت */
 .accreditation-card:hover {
-  border-color: rgba(61, 182, 242, 0.4);
-  box-shadow: 0 25px 50px rgba(14, 94, 141, 0.14);
+  border-color: var(--secondary-color);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.14);
 }
 
-/* لمعان ناعم داخلي (Glow) يتوهج بنعومة عند الـ Hover */
+/* توهج ناعم داخلي (Glow) يتوهج بنعومة عند الـ Hover */
 .accreditation-card::before {
   content: "";
   position: absolute;
@@ -85,7 +103,7 @@
   height: 100%;
   background: radial-gradient(
     circle at 10% 10%,
-    rgba(61, 182, 242, 0.08),
+    var(--secondary-color),
     transparent 60%
   );
   opacity: 0;
@@ -94,7 +112,7 @@
 }
 
 .accreditation-card:hover::before {
-  opacity: 1;
+  opacity: 0.12;
 }
 
 /* تنسيق الشعار/الصورة بالداخل */
@@ -104,7 +122,6 @@
   object-fit: contain;
   margin-bottom: 25px;
   filter: grayscale(10%) contrast(98%);
-  /* سلاسة حركة الشعار عند الـ Hover */
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15);
 }
 
@@ -114,15 +131,19 @@
 
 /* نصوص الكارت */
 .accreditation-card h3 {
-  color: #0e5e8d;
+  color: var(--primary-color);
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 12px;
   transition: color 0.3s ease;
 }
 
+html.theme-dark .accreditation-card h3 {
+  color: #f8fafc;
+}
+
 .accreditation-card:hover h3 {
-  color: #3db6f2; /* تحول ناعم للون الأزرق المضيء */
+  color: var(--secondary-color); /* تحول ناعم للون الأزرق/اللون الفرعي المضيء */
 }
 
 .accreditation-card p {
@@ -130,6 +151,10 @@
   font-size: 14.5px;
   line-height: 1.6;
   margin: 0;
+}
+
+html.theme-dark .accreditation-card p {
+  color: #cbd5e1;
 }
 
 /* ================= الشاشات الكبيرة (Ultra Wide) ================= */
@@ -143,15 +168,14 @@
     margin-bottom: 80px;
   }
 
-  /* هنا هيعرض الـ 5 كروت جنب بعض بالظبط في صف واحد */
   .accreditation-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 25px; /* قللت الـ gap حاجة بسيطة لـ 25px عشان الـ 5 كروت يكفوا براحتهم */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
   }
 
   .accreditation-card {
-    padding: 45px 20px; /* تقليل البادينج الجانبي عشان المحتوى ميتزنقش */
+    padding: 45px 20px;
   }
 
   .accreditation-card img {
@@ -160,7 +184,7 @@
   }
 
   .accreditation-card h3 {
-    font-size: 22px; /* تصغير الخط سنة بسيطة عشان الـ 5 كروت */
+    font-size: 22px;
   }
 
   .accreditation-card p {
@@ -174,10 +198,9 @@
     font-size: 38px;
   }
 
-  /* هنا الكروت هتترص جنب بعضها طول ما المساحة تسمح، والزيادة هينزل تحت بشكل تلقائي ومريح */
   .accreditation-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
   }
 
@@ -198,7 +221,7 @@
   }
 
   .accreditation-grid {
-    grid-template-columns: repeat(2, 1fr); /* توازن رائع بعمودين */
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
 }
@@ -206,7 +229,7 @@
 /* ================= الموبايل (Mobile) ================= */
 @media (max-width: 768px) {
   .accreditation-section {
-    padding: 70px 0;
+    padding: 60px 0;
   }
 
   .accreditation-section h2 {
@@ -251,7 +274,7 @@
   }
 
   .accreditation-grid {
-    grid-template-columns: 1fr; /* كارت واحد مريح في الشاشات الضيقة للغاية */
+    grid-template-columns: 1fr;
     gap: 20px;
     max-width: 340px;
     margin: 0 auto;

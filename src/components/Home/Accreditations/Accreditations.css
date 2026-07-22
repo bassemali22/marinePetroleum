@@ -1,7 +1,11 @@
+/*==================================================
+  ACCREDITATIONS SECTION
+==================================================*/
 .accreditations {
   padding: 100px 0;
-  background-color: #f8fbfe;
+  background-color: var(--bg-color, #f8fbfe);
   text-align: center;
+  transition: background-color 0.35s ease;
 }
 
 .accreditations .container {
@@ -15,7 +19,7 @@
 .accreditations h2 {
   font-size: 42px;
   font-weight: 800;
-  color: #0e5e8d;
+  color: var(--primary-color, #0e5e8d);
   margin-bottom: 60px;
   letter-spacing: 2px;
   position: relative;
@@ -31,7 +35,11 @@
   transform: translateX(-50%);
   width: 65px;
   height: 4px;
-  background: linear-gradient(90deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color, #3db6f2),
+    var(--primary-color, #0e5e8d)
+  );
   border-radius: 2px;
 }
 
@@ -52,7 +60,7 @@
   background: #ffffff;
   border-radius: 24px;
   border: 1px solid rgba(61, 182, 242, 0.12);
-  box-shadow: 0 10px 30px rgba(14, 94, 141, 0.04);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -64,13 +72,21 @@
   transition:
     transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
     box-shadow 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
-    border-color 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+    border-color 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    background-color 0.35s ease;
+}
+
+/* دعم الوضع الداكن للبطاقات */
+html.theme-dark .logo-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .logo-card:hover {
   transform: translateY(-12px) scale(1.04);
-  border-color: rgba(61, 182, 242, 0.4);
-  box-shadow: 0 25px 50px rgba(14, 94, 141, 0.12);
+  border-color: var(--secondary-color, #3db6f2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
 }
 
 .logo-glow {
@@ -81,7 +97,7 @@
   height: 100%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(61, 182, 242, 0.06),
+    rgba(61, 182, 242, 0.1),
     transparent 70%
   );
   opacity: 0;
@@ -113,7 +129,7 @@
 }
 
 .logo-card:hover img {
-  transform: scale(1.06); /* تكبير الشعار بنسبة بسيطة وهادئة جداً */
+  transform: scale(1.06);
 }
 
 /* ================= شاشات التجاوب (Responsive) ================= */

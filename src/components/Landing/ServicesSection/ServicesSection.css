@@ -1,7 +1,10 @@
+/* ================= SERVICES SECTION (قسم الخدمات) ================= */
+
 .services {
   padding: 100px 0;
   text-align: center;
-  background-color: #ffffff;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;
 }
 
 .services .container {
@@ -12,15 +15,21 @@
   box-sizing: border-box;
 }
 
+/* ================= العناوين ================= */
+
 .services h2 {
   font-size: 42px;
   font-weight: 800;
-  color: #0e5e8d;
+  color: var(--primary-color);
   margin-bottom: 60px;
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
   padding-bottom: 15px;
+}
+
+html.theme-dark .services h2 {
+  color: #f8fafc;
 }
 
 .services h2::after {
@@ -31,9 +40,15 @@
   transform: translateX(-50%);
   width: 65px;
   height: 4px;
-  background: linear-gradient(90deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   border-radius: 2px;
 }
+
+/* ================= شبكة الكروت ================= */
 
 .services-grid {
   display: grid;
@@ -43,15 +58,17 @@
   box-sizing: border-box;
 }
 
+/* ================= كارت الخدمة ================= */
+
 .service-card {
   background: #ffffff;
   padding: 45px 25px;
   border-radius: 24px;
-  border: 1px solid rgba(61, 182, 242, 0.12);
-  box-shadow: 0 12px 35px rgba(14, 94, 141, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* يمنع بروز الشريط من زوايا الكارت المنحنية */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,17 +79,57 @@
   backface-visibility: hidden;
 
   transition:
-    transform 2s cubic-bezier(0.1, 0.9, 0.2, 1),
-    box-shadow 2s cubic-bezier(0.1, 0.9, 0.2, 1),
-    border-color 2s cubic-bezier(0.1, 0.9, 0.2, 1);
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    background-color 0.3s ease;
 }
 
+/* 🎨 الشريط العلوي الديناميكي متصل بمتغيرات الأدمن 🎨 */
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px; /* سمك الشريط العلوي */
+
+  /* تعبئة الشريط بتدرج الألوان المحددة من لوحة التحكم */
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  ) !important;
+
+  /* خافي بشكل افتراضي ويتحرك لأعلى */
+  opacity: 0;
+  transform: translateY(-100%);
+
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+}
+
+/* دعم الثيم الداكن */
+html.theme-dark .service-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* ✨ عند Hover: ينزل الشريط العلوي بلون الأدمن ويضيء الكارت ✨ */
 .service-card:hover {
-  transform: translateY(-14px) scale(1.03);
-  border-color: rgba(61, 182, 242, 0.4);
-  box-shadow: 0 30px 60px rgba(14, 94, 141, 0.15);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
+.service-card:hover::before {
+  opacity: 1;
+  transform: translateY(0); /* ظهور الشريط ونزوله لسطح الكارت */
+}
+
+/* خلفية التوهج الداخلي عند Hover بألوان الأدمن */
 .service-glow {
   position: absolute;
   top: 0;
@@ -81,24 +138,26 @@
   height: 100%;
   background: radial-gradient(
     circle at 50% 100%,
-    rgba(61, 182, 242, 0.06),
+    var(--secondary-color),
     transparent 70%
   );
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  transition: opacity 0.5s ease;
   pointer-events: none;
 }
 
 .service-card:hover .service-glow {
-  opacity: 1;
+  opacity: 0.12;
 }
+
+/* ================= صندوق الأيقونة ================= */
 
 .service-icon-box {
   width: 80px;
   height: 80px;
   border-radius: 22px;
-  background: linear-gradient(135deg, #f0f7fd, #e1f0fa);
-  color: #0e5e8d;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--primary-color);
   font-size: 34px;
   display: flex;
   align-items: center;
@@ -106,32 +165,48 @@
   margin-bottom: 25px;
 
   transition:
-    transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
-    background 0.9s ease,
-    color 0.9s ease,
-    box-shadow 1.2s ease;
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+html.theme-dark .service-icon-box {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
 }
 
 .service-card:hover .service-icon-box {
-  background: linear-gradient(135deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   color: #ffffff;
-  transform: scale(1.05) rotate(5deg);
-  box-shadow: 0 12px 25px rgba(14, 94, 141, 0.2);
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
+
+/* ================= عنوان الخدمة ================= */
 
 .service-card h3 {
   font-size: 22px;
   font-weight: 700;
-  color: #0e5e8d;
+  color: var(--primary-color);
   margin: 0;
-  transition: color 0.5s ease;
+  transition: color 0.3s ease;
+}
+
+html.theme-dark .service-card h3 {
+  color: #f8fafc;
 }
 
 .service-card:hover h3 {
-  color: #3db6f2;
+  color: var(--secondary-color);
 }
 
-/* ================= شاشات التجاوب (Responsive) ================= */
+/* ================= Responsive ================= */
+
 @media (min-width: 1400px) {
   .services {
     padding: 120px 0;

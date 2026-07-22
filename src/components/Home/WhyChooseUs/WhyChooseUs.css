@@ -2,7 +2,8 @@
 .why-us {
   text-align: center;
   padding: 90px 0;
-  background-color: #f8fbfe; /* خلفية هادئة مريحة تبرز بياض الكروت */
+  background-color: var(--bg-color); /* متغير خلفية الموقع الديناميكي */
+  transition: background-color 0.3s ease;
 }
 
 .why-us .container {
@@ -18,7 +19,7 @@
   display: block;
   font-size: 14px;
   font-weight: 700;
-  color: #3db6f2; /* الأزرق المضيء */
+  color: var(--secondary-color); /* اللون الفرعي للثيم */
   text-transform: uppercase;
   margin-bottom: 12px;
   will-change: transform, opacity, letter-spacing;
@@ -27,12 +28,17 @@
 .section-title {
   font-size: 42px;
   font-weight: 800;
-  color: #0e5e8d; /* الأزرق الملكي العميق */
+  color: var(--primary-color); /* اللون الأساسي للثيم */
   margin-bottom: 20px;
   line-height: 1.2;
   position: relative;
   display: inline-block;
   padding-bottom: 15px;
+}
+
+/* التوافق مع الثيم الداكن للعنوان */
+html.theme-dark .section-title {
+  color: #f8fafc;
 }
 
 /* خط ديكور أنيق تحت العنوان الرئيسي */
@@ -44,7 +50,11 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   border-radius: 2px;
 }
 
@@ -56,10 +66,13 @@
   line-height: 1.6;
 }
 
+html.theme-dark .section-description {
+  color: #94a3b8;
+}
+
 /* ================= شبكة عرض الكروت (Grid Container) ================= */
 .why-grid {
   display: grid;
-  /* كارتين فقط بجانب بعض */
   grid-template-columns: repeat(2, 1fr);
   gap: 35px;
   width: 100%;
@@ -74,23 +87,32 @@
   background: #ffffff;
   border-radius: 24px;
   padding: 45px 35px;
-  text-align: left; /* اتجاه النص يسار، قم بتغييره لـ right إذا كان موقعك عربياً بالكامل */
-  border: 1px solid rgba(61, 182, 242, 0.15);
-  box-shadow: 0 10px 30px rgba(14, 94, 141, 0.04);
+  text-align: right; /* مخصص للغة العربية */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   position: relative;
   overflow: hidden;
-
-  /* نعومة انتقالات خصائص الـ Hover المكملة لـ Framer Motion */
   transition:
     border-color 0.4s ease,
-    box-shadow 0.4s ease;
+    box-shadow 0.4s ease,
+    background-color 0.3s ease;
+}
+
+html.theme-dark .why-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .why-card h3 {
   font-size: 22px;
-  color: #0e5e8d;
+  color: var(--primary-color);
   margin-bottom: 12px;
   font-weight: 700;
+}
+
+html.theme-dark .why-card h3 {
+  color: #f8fafc;
 }
 
 .why-card p {
@@ -100,10 +122,14 @@
   margin: 0;
 }
 
+html.theme-dark .why-card p {
+  color: #cbd5e1;
+}
+
 /* تأثير الـ Hover على حدود وخلفية الكارت */
 .why-card:hover {
-  border-color: rgba(61, 182, 242, 0.5);
-  box-shadow: 0 25px 50px rgba(14, 94, 141, 0.15);
+  border-color: var(--secondary-color);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
 }
 
 /* ================= صندوق الأيقونة (Icon Box) ================= */
@@ -116,11 +142,15 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   color: #ffffff;
   font-size: 32px;
   margin-bottom: 25px;
-  box-shadow: 0 12px 30px rgba(14, 94, 141, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 
   /* حركة الطفو التلقائية المستمرة */
   animation: iconFloat 4s ease-in-out infinite;
@@ -157,10 +187,10 @@
   transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* تأثير حركة الأيقونة ثلاثية الأبعاد عند لمس الكارت بالماوس */
+/* تأثير حركة الأيقونة عند التفاعل */
 .why-card:hover .icon-box {
   transform: translateY(-4px) rotateY(15deg) scale(1.05);
-  box-shadow: 0 20px 40px rgba(14, 94, 141, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .why-card:hover .icon-box svg {
@@ -204,7 +234,6 @@
     margin-bottom: 40px;
   }
   .why-grid {
-    /* يتحول تلقائيًا لكارت واحد عمودي على الموبايل ليعطي مساحة مريحة للعين */
     grid-template-columns: 1fr;
     max-width: 480px;
   }
@@ -217,7 +246,7 @@
     height: 65px;
     border-radius: 18px;
     font-size: 28px;
-    margin: 0 auto 20px; /* لتوسط الأيقونة في وضع الهاتف */
+    margin: 0 auto 20px;
   }
   .why-card:hover .icon-box {
     transform: translateY(-2px) rotateY(10deg);

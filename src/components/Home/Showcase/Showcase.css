@@ -1,3 +1,7 @@
+/*==================================================
+  SHOWCASE SECTION (قسم العرض الرئيسي)
+==================================================*/
+
 .showcase {
   width: 100%;
   height: 100vh;
@@ -8,13 +12,15 @@
   background-attachment: fixed;
 
   position: relative;
+  transition: all 0.3s ease;
 }
 
 .showcase-overlay {
   width: 100%;
   height: 100%;
 
-  background: rgba(0, 0, 0, 0.35);
+  /* خلفية داكنة معتمة تتكيف عند اختيار الثيم الداكن */
+  background: rgba(0, 0, 0, 0.45);
 
   display: flex;
   justify-content: center;
@@ -25,10 +31,11 @@
 }
 
 .showcase-overlay h2 {
-  color: #fff;
+  color: #ffffff;
   font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* ================= Large Screen ================= */
@@ -52,8 +59,7 @@
 @media (max-width: 992px) {
   .showcase {
     height: 80vh;
-
-    /* fixed لا يعمل جيدًا على التابلت */
+    /* fixed لا يعمل جيدًا على الموبايل والتابلت */
     background-attachment: scroll;
   }
 

@@ -13,6 +13,7 @@ import Certification from "./pages/servisecPages/Certificate";
 import Training from "./pages/servisecPages/Traning";
 import Supply from "./pages/servisecPages/Supply";
 import Project from "./pages/servisecPages/Project";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/services/project" element={<Project />} />
           <Route path="/services/supply" element={<Supply />} />
           <Route path="/services/training" element={<Training />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/services/certificate" element={<Certification />} />
           <Route path="/certificate" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />

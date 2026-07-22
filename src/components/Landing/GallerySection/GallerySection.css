@@ -1,25 +1,40 @@
+/* ================= GALLERY SECTION (قسم المعرض) ================= */
+
 .gallery {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--bg-color); /* متغير خلفية الموقع الديناميكي */
+  transition: background-color 0.3s ease;
 }
 
 .gallery button {
   padding: 18px 55px;
-  background: #0d3b66;
-  color: #fff;
+  background: var(--primary-color); /* اللون الأساسي للثيم */
+  color: #ffffff;
   border: none;
   border-radius: 40px;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.4s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gallery button:hover {
-  background: #0077b6;
+  background: var(--secondary-color); /* اللون الفرعي المضيء عند التمرير */
   transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* التوافق مع الثيم الداكن */
+html.theme-dark .gallery button {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-dark .gallery button:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* ================= Large Screen ================= */

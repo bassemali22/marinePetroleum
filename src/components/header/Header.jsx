@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
+import { FaBars, FaTimes, FaChevronDown, FaUserShield } from "react-icons/fa"; // ضفنا أيكونة Admin
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
 
@@ -26,6 +26,7 @@ const Header = () => {
     { name: "Certificate", path: "/certificate" },
     { name: "Get a Quote", path: "/quote" },
     { name: "Contact", path: "/contact" },
+    { name: "Admin", path: "/admin", isAdmin: true }, // 👈 زرار الأدمن المميز
   ];
 
   return (
@@ -89,7 +90,12 @@ const Header = () => {
                       </ul>
                     </>
                   ) : (
-                    <Link to={link.path} onClick={() => setMenuOpen(false)}>
+                    <Link
+                      to={link.path}
+                      className={link.isAdmin ? "admin-btn" : ""}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.isAdmin && <FaUserShield className="admin-icon" />}
                       {link.name}
                     </Link>
                   )}

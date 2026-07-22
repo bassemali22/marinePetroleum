@@ -28,14 +28,15 @@ const Services = () => {
 
         <div className="services-grid">
           {services.map((item, index) => (
-            <Link to={item.path}>
-              <div
-                className="service-card"
-                key={index}
-                data-aos="fade-up"
-                data-aos-delay={index * 250}
-                data-aos-duration="1500"
-              >
+            <Link
+              to={item.path}
+              key={index}
+              className="service-card-link"
+              data-aos="fade-up"
+              data-aos-delay={index * 250}
+              data-aos-duration="1500"
+            >
+              <div className="service-card">
                 <div className="service-glow"></div>
                 <div className="service-icon-box">{item.icon}</div>
                 <h3>{item.title}</h3>

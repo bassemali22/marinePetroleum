@@ -10,11 +10,10 @@ const cookieParser = require("cookie-parser");
 const limiter = require("./middleware/ratelimt");
 const connectionDB = require("./config/Db");
 const authRoutes = require("./routes/user");
-const xss = require("xss-clean");
-
+const xss = require("xss-clean");// يشيل الاكواد ال html js الخبيثه
 app.use(express.json());
 app.use(cookieParser());
-const mongoSanitize = require("express-mongo-sanitize");
+const mongoSanitize = require("express-mongo-sanitize");//  علشان يشيل علامات ??$
 
 app.use(xss());
 app.use(mongoSanitize());

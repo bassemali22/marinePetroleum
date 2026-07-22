@@ -1,45 +1,30 @@
 /*==================================================
-  GOOGLE FONT
+  GOOGLE FONT (Fallback)
 ==================================================*/
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 /*==================================================
-  VARIABLES
+  VARIABLES (مرتبطة بالـ CSS Root المتغير)
 ==================================================*/
-
 :root {
-  --primary: #0e5e8d;
-
-  --primary-dark: #0b4e75;
-
-  --primary-light: #2f9fd8;
-
-  --accent: #3db6f2;
-
+  --primary: var(--primary-color, #0e5e8d);
+  --primary-dark: var(--primary-color, #0b4e75);
+  --primary-light: var(--secondary-color, #2f9fd8);
+  --accent: var(--secondary-color, #3db6f2);
   --text: #17324d;
-
   --text-light: #5e7388;
-
   --white: #ffffff;
-
   --border: #e6edf3;
-
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 /*==================================================
-  RESET
+  RESET & GLOBAL FONT LINK
 ==================================================*/
-
 * {
   margin: 0;
-
   padding: 0;
-
   box-sizing: border-box;
-
-  font-family: "Poppins", sans-serif;
 }
 
 html {
@@ -48,7 +33,6 @@ html {
 
 body {
   background: #fff;
-
   overflow-x: hidden;
 }
 
@@ -62,72 +46,65 @@ ul {
 
 img {
   display: block;
-
   max-width: 100%;
 }
 
 .container {
   width: 90%;
-
   max-width: 1300px;
-
   margin: auto;
 }
 
 /*==================================================
   HEADER
 ==================================================*/
-
 .header {
   position: fixed;
-
   top: 0;
-
   left: 0;
-
   width: 100%;
-
   height: 90px;
-
   background: #fff;
-
   border-bottom: 1px solid var(--border);
-
   box-shadow: var(--shadow);
-
-  transition: 0.35s ease;
-
+  transition:
+    background 0.35s,
+    box-shadow 0.35s,
+    height 0.35s;
   z-index: 1000;
+  animation: headerFade 0.5s ease;
+}
+
+html.theme-dark .header {
+  background: #1e293b;
+  border-bottom-color: #334155;
 }
 
 .header .container {
   height: 100%;
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 }
 
 /*==================================================
   LOGO
 ==================================================*/
-
 .logo {
   display: flex;
-
   align-items: center;
+  transition: 0.35s;
 }
 
 .logo img {
   width: 82px;
-
   height: 82px;
-
   object-fit: contain;
-
   transition: 0.35s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo:hover img {
@@ -137,16 +114,13 @@ img {
 /*==================================================
   NAVIGATION
 ==================================================*/
-
 .nav {
   z-index: 999;
 }
 
 .nav > ul {
   display: flex;
-
   align-items: center;
-
   gap: 38px;
 }
 
@@ -156,31 +130,24 @@ img {
 
 .nav a {
   color: var(--text);
-
   font-size: 16px;
-
   font-weight: 600;
-
-  transition: 0.3s;
-
+  transition: all 0.3s ease;
   position: relative;
+}
+
+html.theme-dark .nav a {
+  color: #e2e8f0;
 }
 
 .nav a::after {
   content: "";
-
   position: absolute;
-
   left: 0;
-
   bottom: -8px;
-
   width: 0;
-
   height: 2px;
-
   background: var(--accent);
-
   transition: 0.35s;
 }
 
@@ -199,32 +166,69 @@ img {
 .nav a.active::after {
   width: 100%;
 }
+
+/*==================================================
+  ADMIN BUTTON (زرار الأدمن الديناميكي)
+==================================================*/
+.nav a.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
+  color: #ffffff !important;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav a.admin-btn::after {
+  display: none !important;
+}
+
+.nav a.admin-btn .admin-icon {
+  font-size: 14px;
+  transition: transform 0.35s ease;
+}
+
+.nav a.admin-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  color: #fff !important;
+}
+
+.nav a.admin-btn:hover .admin-icon {
+  transform: scale(1.15) rotate(-10deg);
+}
+
 /*==================================================
   SERVICES DROPDOWN
 ==================================================*/
-
 .has-dropdown {
   position: relative;
 }
 
 .service-title {
   display: flex;
-
   align-items: center;
-
   gap: 8px;
-
   color: var(--text);
-
   font-size: 16px;
-
   font-weight: 600;
-
   cursor: pointer;
-
-  transition: 0.35s;
-
+  transition: all 0.3s ease;
   user-select: none;
+}
+
+html.theme-dark .service-title {
+  color: #e2e8f0;
 }
 
 .service-title:hover {
@@ -233,9 +237,7 @@ img {
 
 .service-title svg {
   font-size: 12px;
-
   transition: 0.35s ease;
-
   color: var(--primary-light);
 }
 
@@ -246,7 +248,6 @@ img {
 /*==================================================
   DESKTOP DROPDOWN
 ==================================================*/
-
 @media (min-width: 993px) {
   .has-dropdown {
     position: relative;
@@ -254,48 +255,35 @@ img {
 
   .dropdown {
     position: absolute;
-
     top: 115%;
-
     left: 50%;
-
     transform: translateX(-50%) translateY(20px);
-
     width: 250px;
-
     background: #fff;
-
     border: 1px solid var(--border);
-
     border-radius: 14px;
-
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-
     padding: 10px;
-
     display: flex;
-
     flex-direction: column;
-
     gap: 6px;
-
     opacity: 0;
-
     visibility: hidden;
-
     transition:
       opacity 0.35s,
       transform 0.35s,
       visibility 0.35s;
-
     z-index: 999;
+  }
+
+  html.theme-dark .dropdown {
+    background: #1e293b;
+    border-color: #334155;
   }
 
   .has-dropdown:hover .dropdown {
     opacity: 1;
-
     visibility: visible;
-
     transform: translateX(-50%) translateY(0);
   }
 
@@ -305,22 +293,18 @@ img {
 
   .dropdown a {
     display: flex;
-
     align-items: center;
-
     width: 100%;
-
     padding: 12px 16px;
-
     color: var(--text) !important;
-
     font-size: 15px;
-
     font-weight: 500;
-
     border-radius: 10px;
+    transition: all 0.3s ease;
+  }
 
-    transition: 0.3s;
+  html.theme-dark .dropdown a {
+    color: #cbd5e1 !important;
   }
 
   .dropdown a::after {
@@ -329,9 +313,7 @@ img {
 
   .dropdown a:hover {
     background: var(--primary-light);
-
     color: #fff !important;
-
     padding-left: 22px;
   }
 
@@ -341,19 +323,12 @@ img {
 
   .dropdown a::before {
     content: "";
-
     width: 6px;
-
     height: 6px;
-
     border-radius: 50%;
-
     background: #fff;
-
     margin-right: 10px;
-
     opacity: 0;
-
     transition: 0.3s;
   }
 
@@ -365,45 +340,33 @@ img {
 /*==================================================
   MENU ICON
 ==================================================*/
-
 .menu-icon {
   display: none;
-
   font-size: 28px;
-
   color: var(--primary);
-
   cursor: pointer;
-
-  transition: 0.3s;
+  transition: 0.35s;
 }
 
 .menu-icon:hover {
   color: var(--primary-light);
-
   transform: rotate(90deg);
 }
 
 /*==================================================
   OVERLAY
 ==================================================*/
-
 .nav-overlay {
   position: fixed;
-
   inset: 0;
-
   background: rgba(0, 0, 0, 0.45);
-
   backdrop-filter: blur(2px);
-
   z-index: 998;
 }
 
 /*==================================================
   LAPTOP
 ==================================================*/
-
 @media (max-width: 1200px) {
   .container {
     width: 94%;
@@ -411,7 +374,6 @@ img {
 
   .logo img {
     width: 74px;
-
     height: 74px;
   }
 
@@ -423,7 +385,6 @@ img {
 /*==================================================
   TABLET
 ==================================================*/
-
 @media (max-width: 992px) {
   .header {
     height: 80px;
@@ -431,7 +392,6 @@ img {
 
   .logo img {
     width: 70px;
-
     height: 70px;
   }
 
@@ -440,29 +400,23 @@ img {
   }
 
   /*================ Sidebar =================*/
-
   .nav {
     position: fixed;
-
     top: 80px;
-
     right: -100%;
-
     width: 310px;
-
     height: calc(100vh - 80px);
-
     background: #fff;
-
     border-left: 1px solid var(--border);
-
     box-shadow: -10px 0 35px rgba(0, 0, 0, 0.08);
-
     transition: 0.35s;
-
     overflow-y: auto;
-
     padding: 20px 0;
+  }
+
+  html.theme-dark .nav {
+    background: #1e293b;
+    border-left-color: #334155;
   }
 
   .nav.active {
@@ -470,84 +424,86 @@ img {
   }
 
   /*================ List =================*/
-
   .nav > ul {
     flex-direction: column;
-
     align-items: stretch;
-
     gap: 0;
   }
 
   .nav > ul > li {
     width: 100%;
-
     border-bottom: 1px solid #edf3f8;
   }
 
-  /*================ Links =================*/
+  html.theme-dark .nav > ul > li {
+    border-bottom-color: #334155;
+  }
 
+  /*================ Links =================*/
   .nav > ul > li > a,
   .service-title {
     width: 100%;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 18px;
-
     color: var(--text);
-
     font-size: 16px;
-
     font-weight: 600;
-
-    transition: 0.3s;
+    transition: all 0.3s ease;
   }
 
   .nav > ul > li > a:hover,
   .service-title:hover {
     background: #f5fbff;
-
     color: var(--primary-light);
   }
 
-  /*================ Arrow =================*/
+  html.theme-dark .nav > ul > li > a:hover,
+  html.theme-dark .service-title:hover {
+    background: #0f172a;
+  }
 
+  /*================ Admin Button Mobile =================*/
+  .nav > ul > li > a.admin-btn {
+    justify-content: center;
+    margin: 15px auto;
+    width: calc(100% - 40px);
+    border-radius: 12px;
+    padding: 14px;
+    background: linear-gradient(
+      135deg,
+      var(--primary) 0%,
+      var(--primary-light) 100%
+    );
+  }
+
+  /*================ Arrow =================*/
   .service-title svg {
     display: block;
-
     font-size: 14px;
-
     color: var(--primary-light);
-
     transition: 0.35s;
   }
 
   /*================ Mobile Dropdown =================*/
-
   .dropdown {
     position: static;
-
     width: 100%;
-
     background: #f9fcfe;
-
     display: none;
-
     flex-direction: column;
-
     border-top: 1px solid var(--border);
+  }
+
+  html.theme-dark .dropdown {
+    background: #0f172a;
+    border-top-color: #334155;
   }
 
   .dropdown.show {
     display: flex;
-
     animation: dropdownMobile 0.35s ease;
   }
 
@@ -557,255 +513,129 @@ img {
 
   .dropdown a {
     display: block;
-
     width: 100%;
-
     padding: 15px 20px;
-
     text-align: center;
-
     color: var(--text) !important;
-
     font-size: 15px;
-
-    transition: 0.3s;
+    transition: all 0.3s ease;
   }
 
   .dropdown a:hover {
     background: var(--primary-light);
-
     color: #fff !important;
   }
 
   /*================ Animation =================*/
-
   @keyframes dropdownMobile {
     0% {
       opacity: 0;
-
       transform: translateY(-12px);
     }
-
     100% {
       opacity: 1;
-
       transform: translateY(0);
     }
   }
 }
-/*==================================================
-  MOBILE
-==================================================*/
 
+/*==================================================
+  MOBILE & SMALL MOBILE
+==================================================*/
 @media (max-width: 768px) {
   .header {
     height: 70px;
   }
-
   .logo img {
     width: 60px;
-
     height: 60px;
   }
-
   .nav {
     top: 70px;
-
     width: 270px;
-
     height: calc(100vh - 70px);
   }
-
   .menu-icon {
     font-size: 26px;
   }
-
   .nav > ul > li > a,
   .service-title {
     padding: 17px;
-
     font-size: 16px;
   }
-
   .dropdown a {
     padding: 14px;
-
     font-size: 15px;
   }
 }
-
-/*==================================================
-  SMALL MOBILE
-==================================================*/
 
 @media (max-width: 480px) {
   .container {
     width: 92%;
   }
-
   .header {
     height: 65px;
   }
-
   .logo img {
     width: 55px;
-
     height: 55px;
   }
-
   .nav {
     width: 100%;
-
     top: 65px;
-
     height: calc(100vh - 65px);
   }
-
   .menu-icon {
     font-size: 24px;
   }
-
   .nav > ul > li > a,
   .service-title {
     font-size: 17px;
-
     padding: 18px 12px;
   }
-
   .dropdown a {
     font-size: 15px;
-
     padding: 15px 10px;
   }
 }
 
 /*==================================================
-  SCROLLBAR
+  SCROLLBAR & MISC
 ==================================================*/
-
 .nav::-webkit-scrollbar {
   width: 6px;
 }
-
 .nav::-webkit-scrollbar-track {
   background: #eef5fa;
 }
-
 .nav::-webkit-scrollbar-thumb {
   background: var(--primary-light);
-
   border-radius: 20px;
 }
 
-.nav::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
-
-/*==================================================
-  BUTTONS
-==================================================*/
-
 button {
   border: none;
-
   background: none;
-
   cursor: pointer;
-}
-
-/*==================================================
-  SMOOTH EFFECTS
-==================================================*/
-
-.logo {
-  transition: 0.35s;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-.menu-icon {
-  transition: 0.35s;
-}
-
-.menu-icon:hover {
-  color: var(--primary-light);
-
-  transform: rotate(90deg);
-}
-
-.nav a,
-.service-title,
-.dropdown a {
-  transition: all 0.3s ease;
-}
-
-/*==================================================
-  HEADER SHADOW ON SCROLL
-==================================================*/
-
-.header {
-  transition:
-    background 0.35s,
-    box-shadow 0.35s,
-    height 0.35s;
-}
-
-/*==================================================
-  NICE ANIMATION
-==================================================*/
-
-.header {
-  animation: headerFade 0.5s ease;
 }
 
 @keyframes headerFade {
   0% {
     opacity: 0;
-
     transform: translateY(-25px);
   }
-
   100% {
     opacity: 1;
-
     transform: translateY(0);
   }
 }
 
-/*==================================================
-  ACTIVE LINK
-==================================================*/
-
-.nav a.active {
-  color: var(--primary);
-}
-
-.nav a.active::after {
-  width: 100%;
-}
-
-/*==================================================
-  SELECTION
-==================================================*/
-
 ::selection {
   background: var(--primary-light);
-
   color: #fff;
 }
 
-/*==================================================
-  IMAGE
-==================================================*/
-
 img {
   user-select: none;
-
   -webkit-user-drag: none;
 }
-
-/*==================================================
-  END
-==================================================*/
