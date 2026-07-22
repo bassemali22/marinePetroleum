@@ -6,6 +6,10 @@ import DashboardView from "./../components/Admin/DashboardView";
 import QuotesView from "./../components/Admin/QuotesView";
 import LoginView from "./../components/Admin/LoginView";
 import "./Admin.css";
+import {
+  getSiteSettings,
+  updateSiteSettings,
+} from "../services/siteSettings.service";
 
 const Admin = () => {
   // حالة تسجيل الدخول
@@ -20,14 +24,52 @@ const Admin = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // قراءة الثيم والخط المخزنين أو تفعيل الافتراضي
-  const [selectedTheme, setSelectedTheme] = useState(
-    () => localStorage.getItem("appTheme") || "default",
-  );
-  const [selectedFont, setSelectedFont] = useState(
-    () => localStorage.getItem("appFont") || "cairo",
-  );
+  const [selectedTheme, setSelectedTheme] = useState("navy");
+  const [selectedFont, setSelectedFont] = useState("cairo");
+  const handleThemeChange = async (theme) => {
+    setSelectedTheme(theme);
 
+    try {
+      await updateSiteSettings(
+        {
+          theme,
+        },
+        localStorage.getItem("token"),
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleFontChange = async (font) => {
+    setSelectedFont(font);
+
+    try {
+      await updateSiteSettings(
+        {
+          font,
+        },
+        localStorage.getItem("token"),
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
   // تطبيق الثيم والخط على HTML Root
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const data = await getSiteSettings();
+
+        setSelectedTheme(data.theme);
+        setSelectedFont(data.font);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchSettings();
+  }, []);
   useEffect(() => {
     const root = document.documentElement;
 
@@ -49,9 +91,6 @@ const Admin = () => {
     if (selectedFont) {
       root.classList.add(`font-${selectedFont}`);
     }
-
-    localStorage.setItem("appTheme", selectedTheme);
-    localStorage.setItem("appFont", selectedFont);
   }, [selectedTheme, selectedFont]);
 
   // بيانات عروض الأسعار
@@ -147,11 +186,10 @@ const Admin = () => {
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
           selectedTheme={selectedTheme}
-          setSelectedTheme={setSelectedTheme}
+          setSelectedTheme={handleThemeChange}
           selectedFont={selectedFont}
-          setSelectedFont={setSelectedFont}
+          setSelectedFont={handleFontChange}
         />
-
         {activeTab === "dashboard" && (
           <DashboardView quotes={quotes} setActiveTab={setActiveTab} />
         )}
