@@ -1,6 +1,7 @@
 const SiteSettings = require("../models/siteSettings");
+const asyncHandler = require("express-async-handler");
 
-const updateSiteSettings = async (req, res) => {
+const updateSiteSettings = asyncHandler(async (req, res) => {
   try {
     const { theme, font } = req.body;
 
@@ -39,9 +40,9 @@ const updateSiteSettings = async (req, res) => {
       message: error.message,
     });
   }
-};
+});
 
-const getSiteSettings = async (req, res) => {
+const getSiteSettings = asyncHandler(async (req, res) => {
   try {
     const settings = await SiteSettings.findOne();
 
@@ -62,7 +63,7 @@ const getSiteSettings = async (req, res) => {
       message: error.message,
     });
   }
-};
+});
 
 module.exports = {
   getSiteSettings,

@@ -3,14 +3,14 @@ const {
   validateCreateArticle,
   validateUpdateArticle,
 } = require("../models/article");
-
+const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 
 /*=========================================
   Create Article
 =========================================*/
 
-const createArticle = async (req, res) => {
+const createArticle = asyncHandler(async (req, res) => {
   const { error } = validateCreateArticle(req.body);
 
   if (error) {
@@ -65,13 +65,13 @@ const createArticle = async (req, res) => {
     message: "Article created successfully",
     data: article,
   });
-};
+});
 
 /*=========================================
   Update Article
 =========================================*/
 
-const updateArticle = async (req, res) => {
+const updateArticle = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({
       success: false,
@@ -150,13 +150,13 @@ const updateArticle = async (req, res) => {
     message: "Article updated successfully",
     data: updatedArticle,
   });
-};
+});
 
 /*=========================================
   Get All Articles
 =========================================*/
 
-const getArticles = async (req, res) => {
+const getArticles = asyncHandler(async (req, res) => {
   const page = Math.max(parseInt(req.query.page) || 1, 1);
   const limit = Math.min(parseInt(req.query.limit) || 10, 100);
 
@@ -270,13 +270,13 @@ const getArticles = async (req, res) => {
 
     data: articles,
   });
-};
+});
 
 /*=========================================
   Get Article By Id
 =========================================*/
 
-const getArticle = async (req, res) => {
+const getArticle = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({
       success: false,
@@ -300,13 +300,13 @@ const getArticle = async (req, res) => {
     success: true,
     data: article,
   });
-};
+});
 
 /*=========================================
   Increase Views
 =========================================*/
 
-const increaseViews = async (req, res) => {
+const increaseViews = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({
       success: false,
@@ -337,13 +337,13 @@ const increaseViews = async (req, res) => {
     success: true,
     views: article.views,
   });
-};
+});
 
 /*=========================================
   Delete Article
 =========================================*/
 
-const deleteArticle = async (req, res) => {
+const deleteArticle = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({
       success: false,
@@ -366,13 +366,13 @@ const deleteArticle = async (req, res) => {
     success: true,
     message: "Article deleted successfully",
   });
-};
+});
 
 /*=========================================
   Toggle Publish
 =========================================*/
 
-const togglePublish = async (req, res) => {
+const togglePublish = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({
       success: false,
@@ -400,13 +400,13 @@ const togglePublish = async (req, res) => {
       : "Article unpublished successfully",
     data: article,
   });
-};
+});
 
 /*=========================================
   Toggle Featured
 =========================================*/
 
-const toggleFeatured = async (req, res) => {
+const toggleFeatured = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).json({
       success: false,
@@ -434,7 +434,7 @@ const toggleFeatured = async (req, res) => {
       : "Article removed from featured",
     data: article,
   });
-};
+});
 
 module.exports = {
   createArticle,
