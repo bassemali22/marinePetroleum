@@ -1,34 +1,26 @@
 .services-header {
   max-width: 750px;
-
   margin: auto;
-
   text-align: center;
 }
 
 .services-header span {
-  color: #0077b6;
-
+  color: var(--secondary-color);
   font-weight: 700;
-
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .services-header h2 {
   font-size: 45px;
-
   line-height: 1.2;
-
-  color: #005f8f;
-
+  color: var(--primary-color);
   margin: 20px 0;
 }
 
 .services-header p {
   color: #666;
-
   font-size: 17px;
-
   line-height: 1.8;
 }
 

@@ -27,7 +27,8 @@ const Suppliers = () => {
         <div className="container">
           <span className="subtitle">OUR SUPPLIERS</span>
 
-          <h2>Trusted Global Suppliers</h2>
+          {/* أضفنا كلاس هنا للتحكم بلونه بالكامل */}
+          <h2 className="suppliers-title">Trusted Global Suppliers</h2>
 
           <p className="description">
             We proudly collaborate with internationally recognized suppliers to

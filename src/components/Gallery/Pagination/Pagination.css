@@ -15,20 +15,26 @@
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px); /* تأثير زجاجي شفاف وفخم */
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 10px 14px;
-  border-radius: 100px; /* دائري مدمج بالكامل ليتوافق مع أسلوب الدوائر */
-  border: 1px solid rgba(61, 182, 242, 0.12);
+  border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, #e2e8f0);
   box-shadow: 0 12px 35px rgba(14, 94, 141, 0.05);
   gap: 12px;
 
-  /* تهيئة البعد الثالث لضمان جودة الحركة البطيئة */
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transition:
     transform 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
-    box-shadow 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
+    box-shadow 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+html.theme-dark .pagination {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: #334155;
 }
 
 /* ارتفاع عائم وانسيابي جداً عند مرور الماوس على الحاوية كاملة */
@@ -50,7 +56,6 @@
   letter-spacing: -0.2px;
   background: transparent;
 
-  /* ترانزشن بطيء لتبديل الألوان والظلال */
   transition:
     background-color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
     color 0.8s cubic-bezier(0.1, 0.9, 0.2, 1),
@@ -68,21 +73,32 @@
 .page-num-btn {
   width: 44px;
   height: 44px;
-  border-radius: 50%; /* دوائر مثالية صغيرة ومتناسقة مع كروت الشهادات */
-  color: #0e5e8d;
+  border-radius: 50%;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+html.theme-dark .page-num-btn {
+  color: #cbd5e1;
 }
 
 .page-num-btn:hover {
-  background-color: #f0f7fd;
-  color: #3db6f2;
+  background-color: color-mix(in srgb, var(--primary-color) 10%, #f0f7fd);
+  color: var(--primary-color);
   transform: scale(1.05);
+}
+
+html.theme-dark .page-num-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 /* رقم الصفحة النشطة حالياً */
 .page-num-btn.active {
-  background-color: #0e5e8d;
+  background-color: var(--primary-color);
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(14, 94, 141, 0.2);
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 /* ================= أزرار الاتجاهات (Previous / Next) ================= */
@@ -90,15 +106,26 @@
   height: 44px;
   padding: 0 20px;
   border-radius: 100px;
-  color: #0e5e8d;
+  color: var(--primary-color);
   gap: 8px;
-  background-color: rgba(61, 182, 242, 0.05) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--primary-color) 5%,
+    transparent
+  ) !important;
+  transition: all 0.3s ease;
+}
+
+html.theme-dark .nav-btn {
+  color: #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 .nav-btn:hover:not(:disabled) {
-  background-color: #3db6f2 !important;
+  background-color: var(--primary-color) !important;
   color: #ffffff;
-  box-shadow: 0 6px 15px rgba(61, 182, 242, 0.25);
+  box-shadow: 0 6px 15px
+    color-mix(in srgb, var(--primary-color) 25%, transparent);
 }
 
 /* تأثير حركة هادئة للأيقونة عند الحوم */
@@ -127,21 +154,18 @@
 
 /* ================= شاشات التجاوب (Responsive) ================= */
 
-/* أجهزة الديسك توب الضخمة */
 @media (min-width: 1400px) {
   .pagination-wrapper {
     margin-top: 80px;
   }
 }
 
-/* أجهزة اللابتوب */
 @media (max-width: 1200px) {
   .pagination-wrapper {
     margin-top: 60px;
   }
 }
 
-/* أجهزة التابلت */
 @media (max-width: 992px) {
   .pagination {
     padding: 8px 10px;
@@ -163,7 +187,6 @@
   }
 }
 
-/* أجهزة الموبايل */
 @media (max-width: 768px) {
   .pagination-wrapper {
     margin-top: 50px;
@@ -174,7 +197,6 @@
     padding: 6px 8px;
   }
 
-  /* إخفاء الكلمات المكتوبة على الموبايل والاعتماد بالكامل على الأسهم لتوفير مساحة مريحة */
   .nav-btn span {
     display: none;
   }
@@ -190,7 +212,6 @@
   }
 }
 
-/* الهواتف الصغيرة جداً */
 @media (max-width: 480px) {
   .nav-btn,
   .page-num-btn {

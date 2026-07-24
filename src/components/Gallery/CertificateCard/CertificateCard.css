@@ -8,7 +8,6 @@
   text-align: center;
   width: 100%;
 
-  /* تهيئة البعد الثالث للحركات الانسيابية لمنع أي اهتزاز */
   transform-style: preserve-3d;
   perspective: 1000px;
   backface-visibility: hidden;
@@ -27,7 +26,7 @@
   top: -8px;
   width: 236px;
   height: 236px;
-  border: 1px dashed rgba(61, 182, 242, 0.25);
+  border: 1px dashed color-mix(in srgb, var(--secondary-color) 25%, transparent);
   transform: rotate(0deg);
 }
 
@@ -36,20 +35,21 @@
   top: -4px;
   width: 228px;
   height: 228px;
-  border: 1px solid rgba(14, 94, 141, 0.1);
-  box-shadow: 0 10px 30px rgba(14, 94, 141, 0.03);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  box-shadow: 0 10px 30px
+    color-mix(in srgb, var(--primary-color) 3%, transparent);
 }
 
-/* تأثير دوران وحركة الحلقات ببطء شديد عند تمرير الماوس */
 .certificate-circle-card:hover .ring-outer {
   transform: rotate(180deg) scale(1.08);
-  border-color: #3db6f2;
+  border-color: var(--secondary-color);
 }
 
 .certificate-circle-card:hover .ring-inner {
   transform: scale(1.04);
-  border-color: rgba(61, 182, 242, 0.3);
-  box-shadow: 0 15px 40px rgba(61, 182, 242, 0.15);
+  border-color: color-mix(in srgb, var(--secondary-color) 30%, transparent);
+  box-shadow: 0 15px 40px
+    color-mix(in srgb, var(--secondary-color) 15%, transparent);
 }
 
 /* ================= حاوية الصورة الدائرية المثالية ================= */
@@ -57,13 +57,21 @@
   position: relative;
   width: 220px;
   height: 220px;
-  border-radius: 50%; /* دائرة كاملة */
+  border-radius: 50%;
   overflow: hidden;
   background: #ffffff;
-  border: 6px solid #ffffff; /* إطار أبيض سميك يعطي فخامة للشهادة */
+  border: 6px solid #ffffff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   z-index: 2;
-  transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  transition:
+    transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+html.theme-dark .circle-image-wrapper {
+  background: #1e293b;
+  border-color: #1e293b;
 }
 
 .certificate-circle-card:hover .circle-image-wrapper {
@@ -74,12 +82,12 @@
 .certificate-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* لضمان ملء الدائرة بالكامل بدون تمطيط للشهادة */
+  object-fit: cover;
   transition: transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 .certificate-circle-card:hover .certificate-img {
-  transform: scale(1.1) rotate(2deg); /* زووم خفيف مريح جداً للعين */
+  transform: scale(1.1) rotate(2deg);
 }
 
 /* ================= طبقة الـ Hover الزجاجية المظلمة ================= */
@@ -91,7 +99,7 @@
   height: 100%;
   background: radial-gradient(
     circle,
-    rgba(14, 94, 141, 0.9) 0%,
+    color-mix(in srgb, var(--primary-color) 90%, #000) 0%,
     rgba(7, 31, 53, 0.95) 100%
   );
   border-radius: 50%;
@@ -126,13 +134,14 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: #3db6f2;
+  background: var(--secondary-color);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  box-shadow: 0 8px 20px rgba(61, 182, 242, 0.4);
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--secondary-color) 40%, transparent);
 }
 
 .overlay-category {
@@ -157,14 +166,18 @@
 .circle-card-info h4 {
   font-size: 17px;
   font-weight: 700;
-  color: #0e5e8d;
+  color: var(--primary-color);
   margin: 0 0 8px 0;
   line-height: 1.4;
   transition: color 0.8s ease;
 }
 
+html.theme-dark .circle-card-info h4 {
+  color: #f8fafc;
+}
+
 .certificate-circle-card:hover .circle-card-info h4 {
-  color: #3db6f2;
+  color: var(--secondary-color);
 }
 
 /* شارة الفئة الصغيرة الهادئة */
@@ -172,12 +185,19 @@
   display: inline-block;
   padding: 4px 12px;
   border-radius: 30px;
-  background-color: #f0f7fd;
-  color: #0e5e8d;
+  background-color: color-mix(in srgb, var(--secondary-color) 8%, #f0f7fd);
+  color: var(--primary-color);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  border: 1px solid rgba(61, 182, 242, 0.08);
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 8%, transparent);
+  transition: all 0.3s ease;
+}
+
+html.theme-dark .badge-category {
+  background-color: rgba(30, 41, 59, 0.8);
+  color: var(--secondary-color);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 /* ================= شاشات التجاوب (Responsive) ================= */
@@ -200,7 +220,6 @@
 }
 
 @media (max-width: 768px) {
-  /* حركات أبسط لشاشات اللمس لمنع أي تعليق بصري */
   .certificate-circle-card:hover .ring-outer {
     transform: scale(1.03);
   }

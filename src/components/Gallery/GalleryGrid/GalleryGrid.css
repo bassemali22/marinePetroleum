@@ -2,11 +2,12 @@
 .gallery-grid {
   padding: 60px 0 100px;
   position: relative;
-  background: linear-gradient(180deg, #ffffff, #f8fcff);
+  background: linear-gradient(180deg, #ffffff, var(--bg-color));
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
-/* خلفية جمالية مدمجة ثلاثية الأبعاد بوهج أزرق هادئ */
+/* خلفية جمالية مدمجة ثلاثية الأبعاد بوهج أزرق هادئ مبني على الثيم */
 .gallery-grid::before {
   content: "";
   position: absolute;
@@ -15,7 +16,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(61, 182, 242, 0.05) 0%,
+    color-mix(in srgb, var(--primary-color) 6%) 0%,
     transparent 70%
   );
   top: -100px;
@@ -127,25 +128,36 @@
   padding: 80px 30px;
   background: #ffffff;
   border-radius: 24px;
-  border: 1px solid rgba(61, 182, 242, 0.1);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, #e2e8f0);
   box-shadow: 0 20px 50px rgba(14, 94, 141, 0.06);
   text-align: center;
   max-width: 550px;
   margin: 20px auto;
+  transition: all 0.3s ease;
+}
+
+html.theme-dark .empty-gallery {
+  background: #1e293b;
+  border-color: #334155;
 }
 
 .empty-icon-box {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #f0f7fd;
-  color: #3db6f2;
+  background: color-mix(in srgb, var(--primary-color) 10%, #f0f7fd);
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 38px;
   margin-bottom: 25px;
   animation: pulseEmptyIcon 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+html.theme-dark .empty-icon-box {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 @keyframes pulseEmptyIcon {
@@ -160,14 +172,23 @@
 
 .empty-gallery h3 {
   font-size: 26px;
-  color: #0e5e8d;
+  color: var(--primary-color);
   margin-bottom: 12px;
   font-weight: 800;
+  transition: color 0.3s ease;
+}
+
+html.theme-dark .empty-gallery h3 {
+  color: #f8fafc;
 }
 
 .empty-gallery p {
   color: #64748b;
   font-size: 16px;
+}
+
+html.theme-dark .empty-gallery p {
+  color: #94a3b8;
 }
 
 /* ================= شاشات التجاوب (Responsive) ================= */
@@ -203,12 +224,11 @@
   .gallery-grid-container {
     grid-template-columns: 1fr;
     width: 85%;
-    gap: 40px; /* مسافة متباعدة ومريحة للعين في الجوال */
+    gap: 40px;
   }
 
-  /* مواءمة حركة الدخول لتكون أخف على الأجهزة المحمولة باللمس */
   .grid-card-animator.slide-from-left,
   .grid-card-animator.slide-from-right {
-    animation-name: enterCircleFromBottom; /* توحيد الدخول لتأتي كلها من الأسفل بنعومة */
+    animation-name: enterCircleFromBottom;
   }
 }

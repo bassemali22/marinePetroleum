@@ -11,6 +11,7 @@ const connectionDB = require("./config/Db");
 
 const authRoutes = require("./routes/user");
 const settingRoutes = require("./routes/siteSetting");
+const articleRoutes = require("./routes/article");
 
 const limiter = require("./middleware/ratelimt");
 const errorHandler = require("./middleware/error");
@@ -78,9 +79,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-
-// عدلت الاسم ليطابق الـ Frontend
 app.use("/api/site-settings", settingRoutes);
+app.use("/api/article", articleRoutes);
 
 /* ===========================
    Error Handler

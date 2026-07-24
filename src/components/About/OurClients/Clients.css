@@ -1,12 +1,15 @@
 .clients {
   padding: 100px 0;
-  background: #f8f9fa;
+  background: var(--bg-color);
+}
+
+.clients .container {
+  text-align: center;
 }
 
 .clients .subtitle {
   display: block;
-  text-align: center;
-  color: #0077b6;
+  color: var(--secondary-color);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -15,53 +18,51 @@
 }
 
 .clients h2 {
-  text-align: center;
   font-size: 42px;
-  color: #003b5c;
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
 .clients .description {
   max-width: 700px;
-  margin: 0 auto 60px;
-  text-align: center;
+  margin: 0 auto 60px auto;
   color: #666;
   line-height: 1.8;
 }
 
 .clients-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
 .client-card {
   background: #fff;
-  height: 140px;
+  padding: 30px;
   border-radius: 12px;
-  border: 1px solid #eee;
-
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  transition: 0.3s;
+  justify-content: center;
+  height: 140px;
+  transition: 0.3s ease;
 }
 
 .client-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-}
-
-.client-card img {
-  max-width: 140px;
-  max-height: 80px;
-  object-fit: contain;
-  transition: 0.3s;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  background: var(--primary-color);
 }
 
 .client-card:hover img {
-  transform: scale(1.05);
+  filter: brightness(0) invert(1);
+}
+
+.client-card img {
+  max-width: 130px;
+  max-height: 70px;
+  object-fit: contain;
+  transition: 0.3s ease;
 }
 
 /* ================= Large Screen ================= */
@@ -76,8 +77,8 @@
   }
 
   .clients .description {
-    font-size: 18px;
     max-width: 850px;
+    font-size: 18px;
   }
 
   .clients-grid {
@@ -86,11 +87,6 @@
 
   .client-card {
     height: 170px;
-  }
-
-  .client-card img {
-    max-width: 170px;
-    max-height: 100px;
   }
 }
 
@@ -119,22 +115,17 @@
 
   .clients .description {
     max-width: 100%;
-    margin-bottom: 40px;
     padding: 0 15px;
+    margin-bottom: 40px;
   }
 
   .clients-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
   .client-card {
     height: 130px;
-  }
-
-  .client-card img {
-    max-width: 120px;
-    max-height: 70px;
   }
 }
 
@@ -156,22 +147,17 @@
 
   .clients .description {
     font-size: 15px;
+    line-height: 1.7;
     margin-bottom: 35px;
-    padding: 0 10px;
   }
 
   .clients-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 18px;
   }
 
   .client-card {
     height: 120px;
-  }
-
-  .client-card img {
-    max-width: 100px;
-    max-height: 60px;
   }
 }
 
@@ -193,20 +179,11 @@
 
   .clients .description {
     font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .clients-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
   }
 
   .client-card {
-    height: 110px;
-  }
-
-  .client-card img {
-    max-width: 90px;
-    max-height: 55px;
+    height: 100px;
   }
 }

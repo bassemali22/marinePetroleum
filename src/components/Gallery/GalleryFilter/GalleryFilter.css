@@ -16,11 +16,22 @@
   justify-content: center;
   background: #ffffff;
   padding: 8px 12px;
-  border-radius: 100px; /* كبسولة دائرية الأطراف تماماً */
-  border: 1px solid rgba(61, 182, 242, 0.15);
-  box-shadow: 0 15px 35px rgba(14, 94, 141, 0.08);
+  border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--secondary-color) 15%, transparent);
+  box-shadow: 0 15px 35px
+    color-mix(in srgb, var(--primary-color) 8%, transparent);
   gap: 8px;
-  max-width: max-content; /* يمنعه من التمدد لعرض الشاشة بالكامل */
+  max-width: max-content;
+  transition:
+    background-color 0.8s ease,
+    border-color 0.8s ease,
+    box-shadow 0.8s ease;
+}
+
+html.theme-dark .gallery-filter-dock {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 /* ================= أزرار التحكم بداخل الدوك ================= */
@@ -30,7 +41,7 @@
   gap: 8px;
   border: none;
   background: transparent;
-  color: #0e5e8d;
+  color: var(--primary-color);
   padding: 10px 20px;
   border-radius: 100px;
   font-size: 14px;
@@ -38,17 +49,19 @@
   cursor: pointer;
   position: relative;
 
-  /* تهيئة البعد الثالث للحركة */
   transform-style: preserve-3d;
   perspective: 1000px;
   backface-visibility: hidden;
 
-  /* انتقال فائق البطء والنعومة لتغيير الحالة */
   transition:
     transform 1.1s cubic-bezier(0.1, 0.9, 0.2, 1),
     background-color 1.1s cubic-bezier(0.1, 0.9, 0.2, 1),
     color 1.1s cubic-bezier(0.1, 0.9, 0.2, 1),
     box-shadow 1.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+html.theme-dark .filter-btn {
+  color: #94a3b8;
 }
 
 /* الأيقونة بداخل الزر */
@@ -67,25 +80,38 @@
 
 /* تأثير الـ Hover على الزر غير النشط */
 .filter-btn:hover {
-  color: #3db6f2;
-  background-color: rgba(61, 182, 242, 0.05);
+  color: var(--secondary-color);
+  background-color: color-mix(in srgb, var(--secondary-color) 6%, transparent);
+}
+
+html.theme-dark .filter-btn:hover {
+  color: var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* ================= الزر الفعال (Active State) ================= */
 .filter-btn.active {
-  background: linear-gradient(135deg, #3db6f2, #0e5e8d);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(14, 94, 141, 0.2);
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--primary-color) 25%, transparent);
 }
 
 .filter-btn.active:hover {
-  color: #ffffff; /* الحفاظ على اللون الأبيض */
-  background: linear-gradient(135deg, #3db6f2, #0e5e8d);
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
 }
 
 /* ================= شاشات التجاوب (Responsive) ================= */
 
-/* لابتوب وشاشات متوسطة */
 @media (max-width: 1200px) {
   .filter-btn {
     padding: 8px 16px;
@@ -93,36 +119,32 @@
   }
 }
 
-/* التابلت */
 @media (max-width: 992px) {
   .gallery-filter-dock {
     padding: 6px 10px;
     gap: 6px;
   }
-
   .filter-btn {
     padding: 8px 14px;
     font-size: 13px;
   }
-
   .filter-icon {
     font-size: 14px;
   }
 }
 
-/* الهواتف المحمولة واللمس السلس */
 @media (max-width: 768px) {
   .gallery-filter-wrapper {
     margin: 25px 0 35px 0;
     padding: 0 10px;
-    display: block; /* إلغاء الـ Flex لتفعيل السكرول الهادئ للمجموعة بأكملها دون تمدد */
+    display: block;
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
   .gallery-filter-wrapper::-webkit-scrollbar {
-    display: none; /* إخفاء سكرول الجوال تماماً لمظهر الـ Dock النظيف */
+    display: none;
   }
 
   .gallery-filter-dock {
@@ -130,23 +152,26 @@
     white-space: nowrap;
     margin: 0 auto;
     width: max-content;
-    box-shadow: 0 10px 25px rgba(14, 94, 141, 0.06);
+    box-shadow: 0 10px 25px
+      color-mix(in srgb, var(--primary-color) 6%, transparent);
   }
 
   .filter-btn {
     padding: 8px 14px;
   }
 
-  /* مواءمة تفاعلات اللمس على الموبايل لكي لا تعلق الحركة */
   .filter-btn:hover {
     background-color: transparent;
   }
   .filter-btn.active:hover {
-    background: linear-gradient(135deg, #3db6f2, #0e5e8d);
+    background: linear-gradient(
+      135deg,
+      var(--secondary-color),
+      var(--primary-color)
+    );
   }
 }
 
-/* الهواتف الصغيرة جداً */
 @media (max-width: 480px) {
   .filter-btn {
     padding: 7px 12px;

@@ -1,7 +1,7 @@
 /* ================= تصميم الفوتر الرئيسي والطبقة الزجاجية ================= */
 .quote-footer {
-  /* الاعتماد على تدرج لوني عميق جداً من الأزرق الملكي المظلم متناسق مع الأوفيرلاي */
-  background: linear-gradient(180deg, #071526 0%, #030a12 100%);
+  /* الاعتماد على متغير الثيم الخلفي مع تدرج لوني داكن متناسق */
+  background: linear-gradient(180deg, #071526 0%, var(--bg-color) 100%);
   padding: 30px 0;
   position: relative;
   overflow: hidden;
@@ -18,17 +18,19 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(61, 182, 242, 0.4) 50%,
+    var(--secondary-color) 50%,
     transparent 100%
   );
+  opacity: 0.4;
   transition: opacity 0.8s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 .quote-footer:hover .footer-top-border {
+  opacity: 1;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #3db6f2 50%,
+    var(--secondary-color) 50%,
     transparent 100%
   );
 }
@@ -58,9 +60,9 @@
   color: #cbd5e1; /* تفتيح النص بنعومة شديدة عند وقوف الماوس */
 }
 
-/* إبراز اسم البراند باللون الأزرق المضيء */
+/* إبراز اسم البراند باللون الثانوي المضيء المتناسق مع الثيم */
 .brand-highlight {
-  color: #3db6f2;
+  color: var(--secondary-color);
   font-weight: 700;
   position: relative;
   display: inline-block;

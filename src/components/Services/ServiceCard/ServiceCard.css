@@ -1,33 +1,21 @@
 .service-card {
   background: #fff;
-
   padding: 40px 30px;
-
   border-radius: 18px;
-
   position: relative;
-
   overflow: hidden;
-
   transition: 0.4s;
-
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
 .service-card::before {
   content: "";
-
   position: absolute;
-
   top: 0;
-
   left: 0;
-
   width: 100%;
-
   height: 5px;
-
-  background: #0077b6;
+  background: var(--secondary-color); /* تم الربط بالثيم */
 }
 
 .service-card:hover {
@@ -36,50 +24,39 @@
 
 .service-icon {
   width: 75px;
-
   height: 75px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   font-size: 32px;
-
   color: #fff;
-
-  background: #005f8f;
-
+  background: var(--primary-color); /* تم الربط بالثيم */
   border-radius: 50%;
-
   margin-bottom: 25px;
 }
 
 .service-card h3 {
   font-size: 24px;
-
-  color: #005f8f;
-
+  color: var(--primary-color); /* تم الربط بالثيم */
   margin-bottom: 15px;
 }
 
 .service-card p {
   color: #666;
-
   line-height: 1.8;
 }
 
 .service-card a {
   display: inline-block;
-
   margin-top: 25px;
-
-  color: #0077b6;
-
+  color: var(--secondary-color); /* تم الربط بالثيم */
   font-weight: 600;
-
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.service-card a:hover {
+  color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
