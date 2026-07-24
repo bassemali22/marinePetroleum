@@ -436,6 +436,64 @@ const toggleFeatured = asyncHandler(async (req, res) => {
   });
 });
 
+
+
+const toggleLike = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid article id",
+    });
+  }
+
+  const article = await Article.findById(id);
+
+  if (!article) {
+    return res.status(404).json({
+      success: false,
+      message: "Article not found",
+    });
+  }
+
+  const alreadyLiked = article.likedBy.some(
+    (user) => user.toString() === userId,
+  );
+
+  if (alreadyLiked) {
+    article.likes -= 1;
+
+    article.likedBy = article.likedBy.filter(
+      (user) => user.toString() !== userId,
+    );
+
+    await article.save();
+
+    return res.status(200).json({
+      success: true,
+      liked: false,
+      likes: article.likes,
+      message: "Like removed",
+    });
+  }
+
+  article.likes += 1;
+  article.likedBy.push(userId);
+
+  await article.save();
+
+  res.status(200).json({
+    success: true,
+    liked: true,
+    likes: article.likes,
+    message: "Article liked",
+  });
+});
+
+
+
 module.exports = {
   createArticle,
   getArticles,
