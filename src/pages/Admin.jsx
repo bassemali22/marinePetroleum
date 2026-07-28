@@ -4,6 +4,7 @@ import Sidebar from "../components/Admin/Sidebar";
 import TopBar from "./../components/Admin/TopBar";
 import DashboardView from "./../components/Admin/DashboardView";
 import QuotesView from "./../components/Admin/QuotesView";
+import ArticlesView from "./../components/Admin/ArticlesView"; // استيراد مكون المقالات الجديد
 import LoginView from "./../components/Admin/LoginView";
 import "./Admin.css";
 import {
@@ -26,16 +27,11 @@ const Admin = () => {
   // قراءة الثيم والخط المخزنين أو تفعيل الافتراضي
   const [selectedTheme, setSelectedTheme] = useState("navy");
   const [selectedFont, setSelectedFont] = useState("cairo");
+
   const handleThemeChange = async (theme) => {
     setSelectedTheme(theme);
-
     try {
-      await updateSiteSettings(
-        {
-          theme,
-        },
-        localStorage.getItem("token"),
-      );
+      await updateSiteSettings({ theme }, localStorage.getItem("token"));
     } catch (err) {
       console.error(err);
     }
@@ -43,36 +39,29 @@ const Admin = () => {
 
   const handleFontChange = async (font) => {
     setSelectedFont(font);
-
     try {
-      await updateSiteSettings(
-        {
-          font,
-        },
-        localStorage.getItem("token"),
-      );
+      await updateSiteSettings({ font }, localStorage.getItem("token"));
     } catch (err) {
       console.error(err);
     }
   };
+
   // تطبيق الثيم والخط على HTML Root
   useEffect(() => {
     const fetchSettings = async () => {
       try {
         const data = await getSiteSettings();
-
         setSelectedTheme(data.theme);
         setSelectedFont(data.font);
       } catch (err) {
         console.error(err);
       }
     };
-
     fetchSettings();
   }, []);
+
   useEffect(() => {
     const root = document.documentElement;
-
     root.classList.remove(
       "theme-navy",
       "theme-teal",
@@ -87,7 +76,6 @@ const Admin = () => {
     if (selectedTheme !== "default") {
       root.classList.add(`theme-${selectedTheme}`);
     }
-
     if (selectedFont) {
       root.classList.add(`font-${selectedFont}`);
     }
@@ -128,6 +116,21 @@ const Admin = () => {
       amount: "$32,000",
     },
   ]);
+
+  const handleAddArticle = (newArticle) => {
+    setArticles([
+      ...articles,
+      {
+        id: Date.now(),
+        ...newArticle,
+        date: new Date().toISOString().split("T")[0],
+      },
+    ]);
+  };
+
+  const handleDeleteArticle = (id) => {
+    setArticles(articles.filter((a) => a.id !== id));
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -190,6 +193,7 @@ const Admin = () => {
           selectedFont={selectedFont}
           setSelectedFont={handleFontChange}
         />
+
         {activeTab === "dashboard" && (
           <DashboardView quotes={quotes} setActiveTab={setActiveTab} />
         )}
@@ -202,6 +206,9 @@ const Admin = () => {
             handleDeleteQuote={handleDeleteQuote}
           />
         )}
+
+        {/* عرض قسم إدارة المقالات */}
+        {activeTab === "articles" && <ArticlesView />}
 
         {(activeTab === "services" || activeTab === "users") && (
           <div className="content-box empty-state">

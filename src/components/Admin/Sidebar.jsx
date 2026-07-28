@@ -3,6 +3,7 @@ import {
   FaUserShield,
   FaChartBar,
   FaFileContract,
+  FaNewspaper,
   FaBoxes,
   FaUsers,
   FaSignOutAlt,
@@ -56,6 +57,16 @@ const Sidebar = ({
             }}
           >
             <FaFileContract /> عروض الأسعار
+          </button>
+
+          <button
+            className={`menu-item ${activeTab === "articles" ? "active" : ""}`}
+            onClick={() => {
+              setActiveTab("articles");
+              setSidebarOpen(false);
+            }}
+          >
+            <FaNewspaper /> المقالات
           </button>
 
           <button

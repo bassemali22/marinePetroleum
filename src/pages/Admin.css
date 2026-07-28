@@ -27,7 +27,6 @@ html.font-readex * {
   3. GLOBAL COLOR THEMES (متغيرات الألوان للموقع بالكامل)
 ==================================================*/
 :root {
-  /* 🔵 اللون الافتراضي الأصلي للموقع (Default) */
   --primary-color: #0e5e8d;
   --secondary-color: #3db6f2;
   --bg-color: #f4f8fb;
@@ -36,7 +35,6 @@ html.font-readex * {
   --sidebar-active-bg: #3db6f2;
 }
 
-/* 🔵 كحلي بحري (Navy) */
 html.theme-navy {
   --primary-color: #0a4d68;
   --secondary-color: #088395;
@@ -46,7 +44,6 @@ html.theme-navy {
   --sidebar-active-bg: #088395;
 }
 
-/* 🟢 تركواز فخم (Teal) */
 html.theme-teal {
   --primary-color: #0f766e;
   --secondary-color: #14b8a6;
@@ -56,7 +53,6 @@ html.theme-teal {
   --sidebar-active-bg: #14b8a6;
 }
 
-/* 🟣 بنفسجي رويال (Purple) */
 html.theme-purple {
   --primary-color: #581c87;
   --secondary-color: #7e22ce;
@@ -66,7 +62,6 @@ html.theme-purple {
   --sidebar-active-bg: #7e22ce;
 }
 
-/* 🖤 داكن احترافي (Dark) */
 html.theme-dark {
   --primary-color: #2563eb;
   --secondary-color: #3b82f6;
@@ -76,7 +71,6 @@ html.theme-dark {
   --sidebar-active-bg: #2563eb;
 }
 
-/* 🟢 ربط أزرار الـ Navbar وألوان الموقع الأساسي بالثيم المختار */
 .btn-primary,
 .admin-btn,
 nav button,
@@ -408,15 +402,6 @@ html.theme-dark .stat-details .number {
   color: #f8fafc;
 }
 
-.stat-details .trend {
-  font-size: 11px;
-  color: #64748b;
-}
-
-.stat-details .trend.positive {
-  color: #16a34a;
-}
-
 .content-box {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -449,18 +434,6 @@ html.theme-dark .box-header h2 {
   color: #f8fafc;
 }
 
-.view-all-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--primary-color);
-  font-size: 13px;
-  font-weight: 600;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 .table-actions {
   display: flex;
   justify-content: space-between;
@@ -491,6 +464,8 @@ html.theme-dark .box-header h2 {
   border-radius: 10px;
   font-size: 13px;
   outline: none;
+  background: transparent;
+  color: inherit;
 }
 
 .primary-action-btn {
@@ -505,6 +480,11 @@ html.theme-dark .box-header h2 {
   font-size: 13px;
   border: none;
   cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.primary-action-btn:hover {
+  opacity: 0.9;
 }
 
 .table-responsive {
@@ -568,6 +548,7 @@ html.theme-dark .admin-table td {
 .actions-cell {
   display: flex;
   gap: 8px;
+  justify-content: center;
 }
 
 .action-btn {
@@ -580,6 +561,11 @@ html.theme-dark .admin-table td {
   font-size: 13px;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
 }
 
 .action-btn.edit {
@@ -591,98 +577,269 @@ html.theme-dark .admin-table td {
   color: #ef4444;
 }
 
-/* LOGIN */
-.admin-login-wrapper {
-  min-height: calc(100vh - 90px);
-  margin-top: 90px;
+/*==================================================
+  7. MODERN ARTICLES SECTION & REDESIGNED MODAL
+==================================================*/
+.articles-view-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-color);
-  padding: 20px;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.login-card {
+.article-form-wrapper {
   background: #ffffff;
-  width: 100%;
-  max-width: 440px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   border: 1px solid #e2e8f0;
-  padding: 40px 32px;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  animation: slideDown 0.3s ease-in-out;
 }
 
-.login-header {
-  text-align: center;
-  margin-bottom: 28px;
-}
-.login-badge {
-  width: 60px;
-  height: 60px;
-  background: rgba(37, 99, 235, 0.1);
-  color: var(--primary-color);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  margin-bottom: 12px;
+html.theme-dark .article-form-wrapper {
+  background: #1e293b;
+  border-color: #334155;
 }
 
-.login-form .input-group {
-  margin-bottom: 22px;
-  text-align: right;
+.article-form-wrapper h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
 }
-.login-form label {
-  display: block;
+
+html.theme-dark .article-form-wrapper h3 {
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+.article-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group-custom label {
   font-size: 13px;
   font-weight: 600;
-  margin-bottom: 8px;
   color: #334155;
 }
-.input-field {
-  position: relative;
-  display: flex;
-  align-items: center;
+
+html.theme-dark .form-group-custom label {
+  color: #cbd5e1;
 }
-.input-field .field-icon {
-  position: absolute;
-  left: 14px;
-  color: var(--primary-color);
-  font-size: 16px;
-  z-index: 2;
-}
-.input-field input {
+
+.form-input-custom,
+.form-select-custom,
+.form-textarea-custom {
   width: 100%;
-  height: 48px;
-  padding: 0 44px 0 42px;
+  padding: 12px 16px;
   border: 1.5px solid #cbd5e1;
   border-radius: 12px;
   font-size: 14px;
+  background: transparent;
+  color: inherit;
   outline: none;
-  direction: ltr;
-  text-align: left;
-}
-.eye-btn {
-  position: absolute;
-  right: 14px;
-  color: #64748b;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.login-btn {
-  width: 100%;
-  height: 48px;
-  background: var(--primary-color);
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
+html.theme-dark .form-input-custom,
+html.theme-dark .form-select-custom,
+html.theme-dark .form-textarea-custom {
+  border-color: #334155;
+  background: #0f172a;
+}
+
+.form-input-custom:focus,
+.form-select-custom:focus,
+.form-textarea-custom:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-textarea-custom {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.category-badge-custom {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-color);
+  display: inline-block;
+}
+
+/* 🎨 تصميم عصري وحديث جداً لنافذة التأكيد (Delete Modal) بدون أي تداخل */
+.custom-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: fadeInModal 0.25s ease forwards;
+}
+
+.custom-modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 36px 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  animation: scaleUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html.theme-dark .custom-modal-card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+.custom-modal-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #dc2626;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 30px;
+  box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.15);
+}
+
+.custom-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+html.theme-dark .custom-modal-title {
+  color: #f8fafc;
+}
+
+.custom-modal-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+}
+
+html.theme-dark .custom-modal-desc {
+  color: #94a3b8;
+}
+
+.custom-modal-desc strong {
+  color: #0f172a;
+}
+
+html.theme-dark .custom-modal-desc strong {
+  color: #f8fafc;
+}
+
+.custom-modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.custom-modal-btn-cancel,
+.custom-modal-btn-confirm {
+  flex: 1;
+  padding: 13px 20px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-modal-btn-cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+html.theme-dark .custom-modal-btn-cancel {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.custom-modal-btn-cancel:hover {
+  background: #e2e8f0;
+}
+
+.custom-modal-btn-confirm {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.custom-modal-btn-confirm:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUpModal {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*==================================================
+  8. RESPONSIVE DESIGN
+==================================================*/
 @media (max-width: 992px) {
   .admin-sidebar {
     position: fixed;
@@ -703,4 +860,37 @@ html.theme-dark .admin-table td {
     background: rgba(0, 0, 0, 0.4);
     z-index: 980;
   }
+}
+
+/* إصلاح تداخل ألوان النصوص والكونتينر */
+.admin-main-content .content-box,
+.admin-main-content div[class*="articles"],
+.article-form-wrapper {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+html.theme-dark .admin-main-content .content-box,
+html.theme-dark .admin-main-content div[class*="articles"],
+html.theme-dark .article-form-wrapper {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+.articles-table th {
+  color: #64748b !important;
+  background-color: #f8fafc !important;
+}
+
+html.theme-dark .articles-table th {
+  color: #94a3b8 !important;
+  background-color: #0f172a !important;
+}
+
+.articles-table td {
+  color: #334155 !important;
+}
+
+html.theme-dark .articles-table td {
+  color: #cbd5e1 !important;
 }
