@@ -51,7 +51,7 @@ const login = asyncHandler(async (req, res) => {
   const { error } = validateLoginUser(req.body);
   if (error) {
     res.status(400);
-    throw new Error(error.details[0].message);
+    throw new Error("bassem");
   }
 
   const { email, password } = req.body;
@@ -59,13 +59,13 @@ const login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     res.status(400);
-    throw new Error("Invalid Credentials");
+    throw new Error("Invalid email");
   }
 
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
-    res.status(400);
-    throw new Error("Invalid Credentials");
+    res.status(400).json({message:"invalid passord"});
+  
   }
 
   const userResponse = user.toObject();

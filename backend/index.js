@@ -77,6 +77,10 @@ app.get("/", (req, res) => {
     message: "API is Running 🚀",
   });
 });
+app.use((req, res, next) => {
+  console.log(req.method, req.originalUrl);
+  next();
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/site-settings", settingRoutes);
@@ -97,4 +101,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
-

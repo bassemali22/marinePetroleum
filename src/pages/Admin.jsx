@@ -11,10 +11,11 @@ import {
   getSiteSettings,
   updateSiteSettings,
 } from "../services/siteSettings.service";
+import { login } from "../services/auth.service";
 
 const Admin = () => {
   // حالة تسجيل الدخول
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState("");
@@ -132,16 +133,22 @@ const Admin = () => {
     setArticles(articles.filter((a) => a.id !== id));
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (
-      loginData.email.trim().toLowerCase() === "admin@marine.com" &&
-      loginData.password === "admin123"
-    ) {
-      setIsAuthenticated(true);
-      setLoginError("");
-    } else {
-      setLoginError("البريد الإلكتروني أو كلمة السر غير صحيحة");
+
+    try {
+      console.log("first");
+      const res = await login(loginData);
+      console.log(res);
+
+      if (res) {
+        setIsAuthenticated(true);
+        setLoginError("");
+      }
+    } catch (err) {
+      // قم بعرض الرسالة القادمة من السيرفر مباشرة هنا:
+      const errorMessage = err.response?.data?.message || "حدث خطأ ما";
+      setLoginError(errorMessage);
     }
   };
 

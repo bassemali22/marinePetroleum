@@ -25,6 +25,22 @@ router.post(
   register,
 );
 
+// router.post(
+//   "/login",
+//   (req, res, next) => {
+//     console.log("STEP 1");
+//     next();
+//   },
+//   (req, res) => {
+//     console.log("STEP 2");
+
+//     res.json({
+//       success: true,
+//       message: "Route Works",
+//     });
+//   },
+// );
+
 router.post(
   "/login",
 

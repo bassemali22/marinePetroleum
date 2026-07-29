@@ -1,14 +1,12 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:5000/api/site-settings";
+import api from "./Api"
 
 export const getSiteSettings = async () => {
-  const res = await axios.get(API_URL);
+  const res = await api.get("/site-settings");
   return res.data.data;
 };
 
 export const updateSiteSettings = async (data, token) => {
-  const res = await axios.patch(API_URL, data, {
+  const res = await api.patch("/site-setting", data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
